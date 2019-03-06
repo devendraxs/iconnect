@@ -2,5 +2,33 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#cdced0</color>
+    <color name="background_app_color">#FFFFFF</color>
+    <color name="white">#ffffff</color>
+    <color name="color_blue">#036FBF</color>
+    <color name="button_color">	#649629</color>
+
+
+    <color name="app_color">#E8F9E7</color>
+    <color name="c_blue">#006FC0</color>
+    <color name="c_dark_blue">#134077</color>
+    <color name="c_dark">#002c63</color>
+    <color name="c_green">#48B14C</color>
+    <color name="btn_color">#33BF18</color>
+    <color name="c_white">#FFFFFF</color>
+    <color name="c_hint_blue">#A5B1C1</color>
+    <color name="c_footer">#D9EFD8</color>
+    <color name="c_txt_blue">#114172</color>
+    <color name="c_tranparency">#80FFFFFF</color>
+    <color name="c_light_green">#1E7241</color>
+    <color name="c_gplus_red">#C23524</color>
+    <color name="c_fb_blue">#3B5A9A</color>
+    <color name="c_light_pink">#EAC8BE</color>
+    <color name="c_halka_green">#B1E4AB</color>
+    <color name="c_black">#000000</color>
+    <color name="c_grey">#818181</color>
+    <color name="c_light_grey">#dedede</color>
+    <color name="c_red">#fc9a9a</color>
+    <color name="grey">#cdced0</color>
+    <color name="green_bg">#73934A</color>
 </resources>

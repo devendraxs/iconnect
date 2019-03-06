@@ -1,4 +1,24 @@
 <resources>
     <string name="app_name">iconnect</string>
     <string name="please_wait">Please wait...</string>
+
+    <string name="login">Login</string>
+    <string name="user_name">username</string>
+    <string name="password">password</string>
+    <string name="user_login">User Login</string>
+    <string name="submit">Submit</string>
+    <string name="name">Name</string>
+    <string name="designation">Designation</string>
+    <string name="headquarter">Headquarter</string>
+
+
+    <string-array name="navigation_drawer_items_array">
+        <item>My Profile</item>
+        <item>Our Mission</item>
+        <item>Our Vision</item>
+        <item>Our Value</item>
+        <item>My Travel</item>
+        <item>SignOut</item>
+    </string-array>
+
 </resources>
