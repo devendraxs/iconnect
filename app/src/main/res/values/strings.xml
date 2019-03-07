@@ -10,6 +10,23 @@
     <string name="name">Name</string>
     <string name="designation">Designation</string>
     <string name="headquarter">Headquarter</string>
+    <string name="mytravel_request">My Travel Request</string>
+    <string name="approvedtravel_request">Approved Travel Request</string>
+    <string name="create_new_travel_request">Create New Travel Request</string>
+    <string name="same_day_return">Same Day Return</string>
+    <string name="start">Start</string>
+    <string name="end">End</string>
+    <string name="project">Project</string>
+    <string name="date">Date</string>
+    <string name="destination">Destination</string>
+    <string name="select_project">Select Project</string>
+    <string name="save">Save</string>
+    <string name="fascilities">Fascilities</string>
+    <string name="add_travel">Add Travel</string>
+    <string name="remove_travel">Remove Travel</string>
+    <string name="personal_travel">Personal Travel</string>
+    <string name="via">Via</string>
+
 
 
     <string-array name="navigation_drawer_items_array">

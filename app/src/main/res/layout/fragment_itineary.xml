@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginLeft="@dimen/dp_30"
+    android:layout_marginRight="@dimen/dp_30">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+    <CheckBox
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/same_day_return"
+        android:textColor="@color/c_dark_blue"
+        android:layout_weight=".5"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/dp_10"
+                android:weightSum="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_30"
+                android:text="@string/start"
+                android:layout_weight=".5"
+                android:textStyle="bold"
+                android:textColor="@color/c_dark_blue"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dp_30"
+                    android:text="Delhi"
+                    android:layout_weight=".5"
+                    android:background="@drawable/tv_bg"
+                    android:textColor="@color/c_dark_blue"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                android:weightSum="1"
+                android:layout_marginTop="@dimen/dp_10">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dp_30"
+                    android:text="@string/end"
+                    android:layout_weight=".5"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/c_dark_blue"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dp_30"
+                    android:text="Delhi"
+                    android:layout_weight=".5"
+                    android:background="@drawable/tv_bg"
+                    android:textColor="@color/c_dark_blue"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/dp_30"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".3"
+            android:textStyle="bold"
+            android:textColor="@color/c_dark_blue"
+            android:text="@string/project"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".8"
+            android:background="@drawable/tv_bg"
+            android:layout_marginLeft="@dimen/dp_30"
+           android:layout_marginRight="@dimen/dp_150"
+            android:text="@string/project"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:orientation="horizontal"
+        android:background="@drawable/tv_bg"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".2"
+            android:text="@string/date"
+            android:background="@drawable/tv_bg"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".3"
+            android:text="@string/designation"
+            android:background="@drawable/tv_bg"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".1"
+            android:background="@drawable/tv_bg"
+
+            android:src="@drawable/fascilities"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:background="@drawable/tv_bg"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".1"
+            android:src="@drawable/plus"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".1"
+            android:background="@drawable/tv_bg"
+            android:src="@drawable/minus"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".1"
+            android:background="@drawable/tv_bg"
+            android:src="@drawable/personal"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight=".1"
+            android:background="@drawable/tv_bg"
+            android:layout_height="@dimen/dp_40"
+            android:src="@drawable/via"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/dp_60"
+        android:weightSum="1">
+
+        <Button
+            android:id="@+id/itinearySave"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_40"
+
+            android:background="@drawable/button_bg"
+            android:layout_weight=".5"
+            android:text="@string/save"
+            android:layout_marginRight="@dimen/dp_6"
+            android:paddingRight="@dimen/dp_10"/>
+
+        <Button
+            android:id="@+id/itinearySubmit"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".5"
+            android:background="@drawable/button_bg"
+         android:layout_marginLeft="@dimen/dp_6"
+            android:text="@string/submit" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:orientation="horizontal"    >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_40"
+            android:text="@string/fascilities"
+            android:background="@drawable/tv_bg"
+            android:drawableLeft="@drawable/fascilities"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_40"
+            android:text="@string/add_travel"
+            android:background="@drawable/tv_bg"
+            android:drawableLeft="@drawable/plus"/>
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_40"
+            android:background="@drawable/tv_bg"
+            android:text="@string/remove_travel"
+            android:drawableLeft="@drawable/minus"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_40"
+            android:background="@drawable/tv_bg"
+            android:text="@string/personal_travel"
+            android:drawableLeft="@drawable/personal"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/via"
+            android:background="@drawable/tv_bg"
+            android:drawableLeft="@drawable/via"/>
+
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>

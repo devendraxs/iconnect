@@ -47,5 +47,6 @@ public class BaseActivity extends AppCompatActivity {
     }
 
 
+
 //    public abstract void onTerminate();
 }

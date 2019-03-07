@@ -3,6 +3,8 @@ package iconnect.psi.com.iconnect.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
@@ -15,6 +17,8 @@ import android.widget.TextView;
 
 import iconnect.psi.com.iconnect.R;
 import iconnect.psi.com.iconnect.adapter.DrawerItemNavigationAdapter;
+import iconnect.psi.com.iconnect.fragment.FragmentMyTravel;
+import iconnect.psi.com.iconnect.fragment.FragmentMyTravelRequest;
 import iconnect.psi.com.iconnect.fragment.FragmentUserProfile;
 import iconnect.psi.com.iconnect.model.NavigationModel;
 
@@ -30,6 +34,7 @@ public class NavigationDrawerActivity extends BaseActivity implements View.OnCli
     private CharSequence mTitle;
     private CharSequence mDrawerTitle;
     private LinearLayout llLeftDrawer;
+    private MainActivity mActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +80,6 @@ public class NavigationDrawerActivity extends BaseActivity implements View.OnCli
         FragmentUserProfile fragmentUserProfile=new FragmentUserProfile();
         replaceFragment(NavigationDrawerActivity.this,R.id.ll_dashboard_container_fragment,fragmentUserProfile,null,true);
 
-
     }
 
     private void setUpToolbar() {
@@ -100,20 +104,32 @@ public class NavigationDrawerActivity extends BaseActivity implements View.OnCli
 
         private void selectItem(int position) {
             Fragment fragment=null;
+            FragmentManager manager=null;
+            FragmentTransaction transaction=null;
             switch (position){
                 case 0:
-                    myProfile();
+                    setUpUserProfile();
+                    mDrawerLayout.closeDrawers();
+
                     break;
                 case 1:
-                    ourMission();
+
                     break;
                 case 2:
-                    ourVision();
+
                     break;
                 case 3:
-                    ourValue();
+
                     break;
                 case 4:
+                    FragmentMyTravel fragmentMyTravel=new FragmentMyTravel();
+                    manager=getSupportFragmentManager();
+                    transaction=manager.beginTransaction();
+                    transaction.replace(R.id.ll_dashboard_container_fragment,fragmentMyTravel).commit();
+                    mDrawerLayout.closeDrawers();
+
+                    break;
+                case 5:
                     signOut();
                     break;
             }
@@ -121,18 +137,23 @@ public class NavigationDrawerActivity extends BaseActivity implements View.OnCli
     }
 
     private void signOut() {
+        startActivity(new Intent(this,LoginActivity.class));
+        finish();
     }
 
-    private void ourValue() {
-    }
+    @Override
+    public void onBackPressed() {
+        Fragment fragment=this.getSupportFragmentManager().findFragmentById(R.id.ll_dashboard_container_fragment);
+        if (fragment instanceof FragmentUserProfile){
+            finish();
+        }else if (fragment instanceof FragmentMyTravel){
+            FragmentUserProfile fragmentUserProfile=new FragmentUserProfile();
+            this.replaceFragment(this,R.id.ll_dashboard_container_fragment,fragmentUserProfile,null,false);
+        }else if (fragment instanceof FragmentMyTravelRequest){
+            FragmentUserProfile fragmentUserProfile=new FragmentUserProfile();
+            this.replaceFragment(this,R.id.ll_dashboard_container_fragment,fragmentUserProfile,null,false);
 
-    private void ourVision() {
-    }
-
-    private void ourMission() {
-    }
-
-    private void myProfile() {
-
+        }
+        super.onBackPressed();
     }
 }
