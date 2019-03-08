@@ -8,6 +8,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+
+    <include layout="@layout/travel_request_tab"/>
+
+
     <!-- our toolbar -->
 <!--
     <android.support.v7.widget.Toolbar
@@ -20,13 +25,14 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 -->
 
+<!--
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:weightSum="1">
 
-    <!-- our tablayout to display tabs  -->
+    &lt;!&ndash; our tablayout to display tabs  &ndash;&gt;
     <android.support.design.widget.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
@@ -36,7 +42,7 @@
         android:layout_weight=".1"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
-    <!-- View pager to swipe views -->
+    &lt;!&ndash; View pager to swipe views &ndash;&gt;
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
@@ -53,7 +59,21 @@
             android:text="@string/create_new_travel_request" />
 
     </LinearLayout>
-
+-->
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        android:layout_weight=".8"/>
+    <Button
+        android:id="@+id/newTravelRequest"
+        android:layout_weight=".1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/button_bg"
+        android:drawableLeft="@drawable/plus"
+        android:text="@string/create_new_travel_request" />
 
 
 </LinearLayout>

@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_height="match_parent"
+    android:paddingLeft="@dimen/dp_10"
+    android:paddingRight="@dimen/dp_10"
+    android:layout_width="match_parent">
+<LinearLayout
+
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_marginLeft="@dimen/dp_30"
-    android:layout_marginRight="@dimen/dp_30">
+  >
 
     <LinearLayout
 
@@ -19,7 +24,9 @@
         android:layout_height="wrap_content"
         android:text="@string/same_day_return"
         android:textColor="@color/c_dark_blue"
-        android:layout_weight=".5"/>
+        android:layout_weight=".5"
+        android:buttonTint="@color/c_dark_blue"
+        />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -43,12 +50,15 @@
                 android:textColor="@color/c_dark_blue"/>
 
                 <TextView
+                    android:id="@+id/start"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dp_30"
                     android:text="Delhi"
+                    android:gravity="center"
                     android:layout_weight=".5"
+                    android:textColor="@color/c_grey"
                     android:background="@drawable/tv_bg"
-                    android:textColor="@color/c_dark_blue"/>
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -69,12 +79,14 @@
                     android:textColor="@color/c_dark_blue"/>
 
                 <TextView
+                    android:id="@+id/end"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dp_30"
                     android:text="Delhi"
                     android:layout_weight=".5"
+                    android:gravity="center"
                     android:background="@drawable/tv_bg"
-                    android:textColor="@color/c_dark_blue"/>
+                    android:textColor="@color/c_grey"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -89,17 +101,20 @@
 
         <TextView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".3"
+            android:layout_height="@dimen/dp_30"
+            android:layout_weight=".4"
             android:textStyle="bold"
             android:textColor="@color/c_dark_blue"
             android:text="@string/project"/>
 
         <TextView
+            android:id="@+id/project"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".8"
+            android:layout_height="@dimen/dp_30"
+            android:layout_weight=".6"
             android:background="@drawable/tv_bg"
+            android:textColor="@color/c_grey"
+            android:gravity="center"
             android:layout_marginLeft="@dimen/dp_30"
            android:layout_marginRight="@dimen/dp_150"
             android:text="@string/project"/>
@@ -118,6 +133,8 @@
             android:layout_height="@dimen/dp_40"
             android:layout_weight=".2"
             android:text="@string/date"
+            android:gravity="center"
+            android:textColor="@color/c_grey"
             android:background="@drawable/tv_bg"/>
 
         <TextView
@@ -125,37 +142,42 @@
             android:layout_height="@dimen/dp_40"
             android:layout_weight=".3"
             android:text="@string/designation"
+            android:gravity="center"
+            android:textColor="@color/c_grey"
             android:background="@drawable/tv_bg"/>
 
         <ImageView
             android:layout_width="0dp"
             android:layout_height="@dimen/dp_40"
             android:layout_weight=".1"
-            android:background="@drawable/tv_bg"
-
+            android:paddingRight="@dimen/dp_1"
             android:src="@drawable/fascilities"/>
         <ImageView
             android:layout_width="0dp"
-            android:background="@drawable/tv_bg"
+
             android:layout_height="@dimen/dp_40"
+            android:paddingLeft="@dimen/dp_1"
             android:layout_weight=".1"
+            android:paddingRight="@dimen/dp_1"
             android:src="@drawable/plus"/>
         <ImageView
             android:layout_width="0dp"
             android:layout_height="@dimen/dp_40"
             android:layout_weight=".1"
-            android:background="@drawable/tv_bg"
+            android:paddingRight="@dimen/dp_1"
             android:src="@drawable/minus"/>
         <ImageView
             android:layout_width="0dp"
             android:layout_height="@dimen/dp_40"
             android:layout_weight=".1"
-            android:background="@drawable/tv_bg"
+            android:paddingRight="@dimen/dp_1"
+            android:paddingLeft="@dimen/dp_1"
             android:src="@drawable/personal"/>
         <ImageView
             android:layout_width="0dp"
             android:layout_weight=".1"
-            android:background="@drawable/tv_bg"
+            android:paddingLeft="@dimen/dp_1"
+            android:paddingRight="@dimen/dp_1"
             android:layout_height="@dimen/dp_40"
             android:src="@drawable/via"/>
     </LinearLayout>
@@ -171,7 +193,6 @@
             android:id="@+id/itinearySave"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_40"
-
             android:background="@drawable/button_bg"
             android:layout_weight=".5"
             android:text="@string/save"
@@ -191,6 +212,13 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/dp_100"
+        android:layout_marginBottom="@dimen/dp_10">
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="@dimen/dp_40"
         android:orientation="horizontal"    >
 
@@ -198,38 +226,32 @@
             android:layout_width="wrap_content"
             android:layout_height="@dimen/dp_40"
             android:text="@string/fascilities"
-            android:background="@drawable/tv_bg"
+
+            android:textColor="@color/c_grey"
+            android:gravity="center"
             android:drawableLeft="@drawable/fascilities"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="@dimen/dp_40"
             android:text="@string/add_travel"
-            android:background="@drawable/tv_bg"
+            android:layout_marginLeft="@dimen/dp_3"
+            android:layout_marginRight="@dimen/dp_3"
+            android:textColor="@color/c_grey"
+            android:gravity="center"
             android:drawableLeft="@drawable/plus"/>
-
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="@dimen/dp_40"
-            android:background="@drawable/tv_bg"
+            android:layout_marginRight="@dimen/dp_3"
+            android:layout_marginLeft="@dimen/dp_3"
+            android:textColor="@color/c_grey"
+            android:gravity="center"
             android:text="@string/remove_travel"
             android:drawableLeft="@drawable/minus"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/dp_40"
-            android:background="@drawable/tv_bg"
-            android:text="@string/personal_travel"
-            android:drawableLeft="@drawable/personal"/>
+
+
 
     </LinearLayout>
 
@@ -238,17 +260,29 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/dp_40"
+            android:layout_marginRight="@dimen/dp_3"
+
+            android:text="@string/personal_travel"
+            android:textColor="@color/c_grey"
+            android:gravity="center"
+            android:drawableLeft="@drawable/personal"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_40"
             android:text="@string/via"
-            android:background="@drawable/tv_bg"
+            android:textColor="@color/c_grey"
+            android:gravity="center"
+            android:layout_marginLeft="@dimen/dp_3"
+
             android:drawableLeft="@drawable/via"/>
 
     </LinearLayout>
 
 
-
-
-
+    </LinearLayout>
 </LinearLayout>
+</ScrollView>

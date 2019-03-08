@@ -26,6 +26,43 @@
     <string name="remove_travel">Remove Travel</string>
     <string name="personal_travel">Personal Travel</string>
     <string name="via">Via</string>
+    <string name="itineary">Itineary</string>
+    <string name="purpose">Purpose</string>
+    <string name="advance">Advance</string>
+    <string name="attach_agenda">Attach Agenda</string>
+    <string name="request">Request</string>
+    <string name="day">Day</string>
+    <string name="per_diam">Per Diam</string>
+    <string name="per_advance">% Advance</string>
+    <string name="any_other_purpose">Any Other Purpose</string>
+    
+    <string-array name="poject_name">
+        <item>Project1  10%</item>
+        <item>Project2  10%</item>
+        <item>Project3  10%</item>
+        <item>Project4  10%</item>
+        <item>Project5  10%</item>
+        <item>Project6  10%</item>
+    </string-array>
+
+    <string-array name="source_station">
+        <item>Delhi</item>
+        <item>Locknow</item>
+        <item>Mumbai</item>
+        <item>Hyderabad</item>
+        <item>Banglore</item>
+        <item>Varanasi</item>
+    </string-array>
+
+
+    <string-array name="destination_station">
+        <item>Delhi</item>
+        <item>Locknow</item>
+        <item>Mumbai</item>
+        <item>Hyderabad</item>
+        <item>Banglore</item>
+        <item>Varanasi</item>
+    </string-array>
 
 
 

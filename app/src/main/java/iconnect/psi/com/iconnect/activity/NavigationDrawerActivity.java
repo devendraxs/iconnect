@@ -17,8 +17,11 @@ import android.widget.TextView;
 
 import iconnect.psi.com.iconnect.R;
 import iconnect.psi.com.iconnect.adapter.DrawerItemNavigationAdapter;
+import iconnect.psi.com.iconnect.fragment.FragmentAdvance;
+import iconnect.psi.com.iconnect.fragment.FragmentItineary;
 import iconnect.psi.com.iconnect.fragment.FragmentMyTravel;
 import iconnect.psi.com.iconnect.fragment.FragmentMyTravelRequest;
+import iconnect.psi.com.iconnect.fragment.FragmentPurpose;
 import iconnect.psi.com.iconnect.fragment.FragmentUserProfile;
 import iconnect.psi.com.iconnect.model.NavigationModel;
 
@@ -135,12 +138,10 @@ public class NavigationDrawerActivity extends BaseActivity implements View.OnCli
             }
         }
     }
-
     private void signOut() {
         startActivity(new Intent(this,LoginActivity.class));
         finish();
     }
-
     @Override
     public void onBackPressed() {
         Fragment fragment=this.getSupportFragmentManager().findFragmentById(R.id.ll_dashboard_container_fragment);
@@ -152,7 +153,15 @@ public class NavigationDrawerActivity extends BaseActivity implements View.OnCli
         }else if (fragment instanceof FragmentMyTravelRequest){
             FragmentUserProfile fragmentUserProfile=new FragmentUserProfile();
             this.replaceFragment(this,R.id.ll_dashboard_container_fragment,fragmentUserProfile,null,false);
-
+        }else if (fragment instanceof FragmentItineary){
+            FragmentUserProfile fragmentUserProfile=new FragmentUserProfile();
+            this.replaceFragment(this,R.id.ll_dashboard_container_fragment,fragmentUserProfile,null,false);
+        }else if (fragment instanceof FragmentPurpose){
+            FragmentUserProfile fragmentUserProfile=new FragmentUserProfile();
+            this.replaceFragment(this,R.id.ll_dashboard_container_fragment,fragmentUserProfile,null,false);
+        }else if (fragment instanceof FragmentAdvance){
+            FragmentUserProfile fragmentUserProfile=new FragmentUserProfile();
+            this.replaceFragment(this,R.id.ll_dashboard_container_fragment,fragmentUserProfile,null,false);
         }
         super.onBackPressed();
     }
