@@ -10,6 +10,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -20,7 +21,6 @@ import iconnect.psi.com.iconnect.adapter.DrawerItemNavigationAdapter;
 import iconnect.psi.com.iconnect.fragment.FragmentAdvance;
 import iconnect.psi.com.iconnect.fragment.FragmentItineary;
 import iconnect.psi.com.iconnect.fragment.FragmentMyTravel;
-import iconnect.psi.com.iconnect.fragment.FragmentMyTravelRequest;
 import iconnect.psi.com.iconnect.fragment.FragmentPurpose;
 import iconnect.psi.com.iconnect.fragment.FragmentUserProfile;
 import iconnect.psi.com.iconnect.model.NavigationModel;
@@ -38,6 +38,7 @@ public class NavigationDrawerActivity extends BaseActivity implements View.OnCli
     private CharSequence mDrawerTitle;
     private LinearLayout llLeftDrawer;
     private MainActivity mActivity;
+    private ExpandableListView mExpandableListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,7 @@ public class NavigationDrawerActivity extends BaseActivity implements View.OnCli
         Intent intent=getIntent();
         username=intent.getStringExtra("username");
         password=intent.getStringExtra("password");
+
         setUpToolbar();
         setUpUserProfile();
         mTitle = mDrawerTitle = getTitle();
@@ -148,9 +150,6 @@ public class NavigationDrawerActivity extends BaseActivity implements View.OnCli
         if (fragment instanceof FragmentUserProfile){
             finish();
         }else if (fragment instanceof FragmentMyTravel){
-            FragmentUserProfile fragmentUserProfile=new FragmentUserProfile();
-            this.replaceFragment(this,R.id.ll_dashboard_container_fragment,fragmentUserProfile,null,false);
-        }else if (fragment instanceof FragmentMyTravelRequest){
             FragmentUserProfile fragmentUserProfile=new FragmentUserProfile();
             this.replaceFragment(this,R.id.ll_dashboard_container_fragment,fragmentUserProfile,null,false);
         }else if (fragment instanceof FragmentItineary){

@@ -25,7 +25,7 @@
                android:layout_height="@dimen/dp_40"
                android:layout_weight=".6"
                android:textColor="@color/c_dark_blue"
-               android:text="@string/purpose"/>
+               android:text="@string/request"/>
 
            <EditText
                android:layout_width="0dp"

@@ -75,8 +75,9 @@
                 android:layout_gravity="start"
                 android:background="@color/white"
                 android:choiceMode="singleChoice"
-                android:divider="@null" />
+                 />
         </LinearLayout>
-    </LinearLayout>
+
+     </LinearLayout>
 
 </android.support.v4.widget.DrawerLayout>

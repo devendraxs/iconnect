@@ -25,7 +25,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
         password=findViewById(R.id.password);
         submit=findViewById(R.id.submit);
         submit.setOnClickListener(this);
-
+        userName.setText("chenchaiah@chenchaiah.com");
+        password.setText("123456");
     }
 
     @Override

@@ -19,11 +19,11 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
     private TextView project;
     private TextView start,end;
     private String[] listItems,startList,endList;
+    private FragmentMyTravelRequest mActivity;
     boolean[] checkedItem;
     ArrayList<Integer> mUserItem=new ArrayList<>();
     ArrayList<Integer> startItem=new ArrayList<>();
     ArrayList<Integer> endItem=new ArrayList<>();
-
 
 
     @Nullable
@@ -38,7 +38,6 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
         checkedItem=new boolean[startList.length];
         checkedItem=new boolean[endList.length];
 
-
         setViews(view);
 
         return view;
@@ -51,6 +50,9 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
         start.setOnClickListener(this);
         end=view.findViewById(R.id.end);
         end.setOnClickListener(this);
+        mActivity=(FragmentMyTravelRequest) getActivity();
+
+        mActivity.newTravelRequest.setVisibility(View.GONE);
 
     }
 
@@ -159,9 +161,8 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
                         for (int i=0;i<checkedItem.length;i++){
                             checkedItem[i]=false;
                             startItem.clear();
-                            project.setText("");
+                            start.setText("");
                         }
-
                     }
                 });
                 AlertDialog mDialog1=mBuider1.create();
@@ -195,7 +196,6 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
 /*
                             if (i!=endItem.size()-1){
                                 item=item+",";
-
                             }
 */
                         }
@@ -216,19 +216,13 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
                         for (int i=0;i<checkedItem.length;i++){
                             checkedItem[i]=false;
                             endItem.clear();
-                            project.setText("");
+                            end.setText("");
                         }
-
                     }
                 });
                 AlertDialog mDialog2=mBuider2.create();
                 mDialog2.show();
-                break;
-
-
-
-
+               break;
         }
-
     }
 }

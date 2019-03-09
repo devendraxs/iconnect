@@ -8,4 +8,21 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme1" parent="Theme.AppCompat.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="android:fitsSystemWindows">true</item>
+    </style>
+
+    <style name="myTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#F79535</item>
+        <item name="colorPrimaryDark">#F79535</item>
+        <item name="colorAccent">#F79535</item>
+    </style>
+
+
+
+
+
+
 </resources>

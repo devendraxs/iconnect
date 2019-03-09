@@ -12,11 +12,22 @@
 
         >
 
+<!--
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/userProfile"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/profile"
+            android:layout_gravity="center_horizontal"
+            />
+-->
+
        <ImageView
            android:layout_width="@dimen/dp_60"
            android:layout_height="@dimen/dp_60"
            android:src="@drawable/profile"
            android:layout_marginTop="@dimen/dp_170"
+           android:id="@+id/userProfile"
            android:layout_gravity="center_horizontal"/>
 
         <LinearLayout
@@ -100,8 +111,6 @@
                 android:text="Delhi"
                 android:textColor="@color/c_black"
                 android:textStyle="bold"/>
-
-
         </LinearLayout>
 
 

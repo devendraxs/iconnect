@@ -4,21 +4,21 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-     android:background="@color/color_blue">
+     android:background="@color/color_button">
 
     <ImageView
        android:layout_width="@dimen/dp_10"
         android:layout_height="@dimen/dp_50"
        android:layout_weight="1"
-        android:id="@+id/floppy"
-        android:src="@drawable/floppy"/>
+        android:id="@+id/showSave"
+        android:src="@drawable/save"/>
 
     <ImageView
         android:layout_width="@dimen/dp_10"
         android:layout_height="@dimen/dp_50"
         android:layout_weight="1"
         android:id="@+id/showSubmit"
-        android:src="@drawable/postbox"/>
+        android:src="@drawable/submit"/>
 
 
     <ImageView
@@ -26,7 +26,7 @@
         android:layout_height="@dimen/dp_50"
         android:layout_weight="1"
         android:id="@+id/showReject"
-        android:src="@drawable/thumdown"/>
+        android:src="@drawable/thumb_down"/>
 
 
     <ImageView
@@ -34,7 +34,7 @@
         android:layout_height="@dimen/dp_50"
         android:layout_weight="1"
         android:id="@+id/showApproved"
-        android:src="@drawable/thumbup"/>
+        android:src="@drawable/thumbs_up"/>
 
     <ImageView
         android:layout_width="@dimen/dp_10"

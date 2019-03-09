@@ -1,5 +1,6 @@
 package iconnect.psi.com.iconnect.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -36,8 +37,9 @@ public class FragmentMyTravel extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.travelRequest:
-                FragmentMyTravelRequest fragmentMyTravelRequest=new FragmentMyTravelRequest();
-                mActivity.replaceFragment(mActivity,R.id.ll_dashboard_container_fragment,fragmentMyTravelRequest,null,false);
+//                FragmentMyTravelRequest fragmentMyTravelRequest=new FragmentMyTravelRequest();
+//                mActivity.replaceFragment(mActivity,R.id.ll_dashboard_container_fragment,fragmentMyTravelRequest,null,false);
+                startActivity(new Intent(mActivity,FragmentMyTravelRequest.class));
                 break;
             case R.id.approvedRequest:
                 FragmentApprovedTravelRequest fragmentApprovedTravelRequest=new FragmentApprovedTravelRequest();

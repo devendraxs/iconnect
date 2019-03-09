@@ -14,13 +14,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import iconnect.psi.com.iconnect.R;
-import iconnect.psi.com.iconnect.activity.NavigationDrawerActivity;
 import iconnect.psi.com.iconnect.adapter.NewTravelRequestAdapter;
 
 public class FragmentCreateNewTravelRequest extends Fragment implements TabLayout.OnTabSelectedListener {
     private TabLayout tabLayoutNewRequest;
     private ViewPager pagerNewRequest;
-    private NavigationDrawerActivity mActivity;
+    private FragmentMyTravelRequest mActivity;
     private NewTravelRequestAdapter newTravelRequestAdapter;
     private TextView itineary,purpose,advance;
 
@@ -30,7 +29,7 @@ public class FragmentCreateNewTravelRequest extends Fragment implements TabLayou
         View view=inflater.inflate(R.layout.fragment_create_newtravel_request,container,false);
 
         pagerNewRequest =view.findViewById(R.id.pagerNewRequest);
-        mActivity= (NavigationDrawerActivity) getActivity();
+        mActivity= (FragmentMyTravelRequest) getActivity();
 
         itineary=view.findViewById(R.id.itineary);
         purpose=view.findViewById(R.id.purpose);
