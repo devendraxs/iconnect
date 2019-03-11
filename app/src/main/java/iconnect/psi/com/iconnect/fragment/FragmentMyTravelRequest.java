@@ -71,8 +71,8 @@ public class FragmentMyTravelRequest extends BaseActivity implements View.OnClic
             adapter.addFrag(new FragmentSave(), "ONE");
             adapter.addFrag(new FragmentSubmit(), "TWO");
             adapter.addFrag(new FragmentReject(), "THREE");
-            adapter.addFrag(new FragmentReject(), "FOUR");
-            adapter.addFrag(new FragmentReject(), "FIVE");
+            adapter.addFrag(new FragmentApproved(), "FOUR");
+            adapter.addFrag(new FragmentComplete(), "FIVE");
             viewPager.setAdapter(adapter);
         }
 

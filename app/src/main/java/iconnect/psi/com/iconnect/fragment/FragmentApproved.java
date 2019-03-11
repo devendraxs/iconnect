@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import iconnect.psi.com.iconnect.R;
 
-public class FragmentArrroved extends Fragment {
+public class FragmentApproved extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

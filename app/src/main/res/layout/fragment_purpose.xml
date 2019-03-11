@@ -13,7 +13,7 @@
        android:layout_marginTop="@dimen/dp_20"
        android:layout_marginLeft="@dimen/dp_20"
        android:layout_marginRight="@dimen/dp_20"
-       android:textColor="@color/c_black"
+       android:textColor="@color/c_blue"
        android:textColorHint="@color/c_grey"
        android:hint="Please enter purpose"/>
 
@@ -31,6 +31,7 @@
             android:layout_weight=".6"
             android:text="@string/attach_agenda"
             android:gravity="center"
+            android:textStyle="bold"
             android:textColor="@color/c_grey"
             android:background="@drawable/tv_bg"/>
 
@@ -53,14 +54,13 @@
 
     <Button
         android:id="@+id/itinearySave"
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/dp_100"
         android:layout_height="@dimen/dp_40"
         android:background="@drawable/button_bg"
-        android:text="@string/save"
-        android:layout_marginRight="@dimen/dp_60"
+        android:text="@string/go_next"
+        android:layout_gravity="center|right"
+        android:layout_marginRight="@dimen/dp_6"
         android:paddingRight="@dimen/dp_10"
-        android:layout_marginTop="@dimen/dp_30"
-        android:layout_marginLeft="@dimen/dp_60"
-        />
+        android:layout_marginTop="@dimen/dp_150"/>
 
 </LinearLayout>

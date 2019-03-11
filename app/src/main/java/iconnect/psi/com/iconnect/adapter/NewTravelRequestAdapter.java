@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import iconnect.psi.com.iconnect.fragment.FragmentAdvance;
+import iconnect.psi.com.iconnect.fragment.FragmentExpenses;
 import iconnect.psi.com.iconnect.fragment.FragmentItineary;
 import iconnect.psi.com.iconnect.fragment.FragmentPurpose;
 
@@ -20,14 +21,17 @@ public class NewTravelRequestAdapter extends FragmentPagerAdapter {
         Fragment fragment=null;
         switch (position){
             case 0:
-                fragment=new FragmentItineary();
+                fragment=new FragmentPurpose();
                 break;
             case 1:
-                fragment=new FragmentPurpose();
+
+                fragment=new FragmentItineary();
                 break;
             case 2:
                 fragment=new FragmentAdvance();
                 break;
+            case 3:
+                fragment=new FragmentExpenses();
         }
        /* if (position==0){
             return new FragmentItineary();
@@ -44,6 +48,6 @@ public class NewTravelRequestAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+        return 4;
     }
 }

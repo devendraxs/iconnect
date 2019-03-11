@@ -280,7 +280,7 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
                // itinearyDatabase.setSame_day_return(sameDayReturn.getText().toString().trim());
                 itinearyDatabase.setStart_journey(start.getText().toString().trim());
                 itinearyDatabase.setEnd_journey(end.getText().toString().trim());
-                itinearyDatabase.setDestination(destination.getText().toString().trim());
+//                itinearyDatabase.setDestination(destination.getText().toString().trim());
                 itinearyDatabase.setDate(tvDate.getText().toString().trim());
                 //itinearyDatabase.setFacilities(facilities.get);
 

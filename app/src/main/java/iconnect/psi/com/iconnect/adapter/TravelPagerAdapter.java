@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import iconnect.psi.com.iconnect.fragment.FragmentArrroved;
+import iconnect.psi.com.iconnect.fragment.FragmentApproved;
 import iconnect.psi.com.iconnect.fragment.FragmentComplete;
 import iconnect.psi.com.iconnect.fragment.FragmentReject;
 import iconnect.psi.com.iconnect.fragment.FragmentSave;
@@ -31,7 +31,7 @@ public class TravelPagerAdapter extends FragmentPagerAdapter {
                 fragment=new FragmentReject();
                 break;
             case 3:
-                fragment=new FragmentArrroved();
+                fragment=new FragmentApproved();
                 break;
             case 4:
                 fragment=new FragmentComplete();
