@@ -86,7 +86,7 @@ public class FragmentMyTravelRequest extends BaseActivity implements View.OnClic
                 }
     }
 
-    class ViewPagerAdapter extends FragmentPagerAdapter {
+    static class ViewPagerAdapter extends FragmentPagerAdapter {
             private final List<Fragment> mFragmentList = new ArrayList<>();
             private final List<String> mFragmentTitleList = new ArrayList<>();
 
@@ -104,10 +104,12 @@ public class FragmentMyTravelRequest extends BaseActivity implements View.OnClic
                 return mFragmentList.size();
             }
 
+/*
             public void addFrag(Fragment fragment, String title) {
                 mFragmentList.add(fragment);
                 mFragmentTitleList.add(title);
             }
+*/
 
             @Override
             public CharSequence getPageTitle(int position) {
@@ -115,7 +117,13 @@ public class FragmentMyTravelRequest extends BaseActivity implements View.OnClic
                 // return null to display only the icon
                 return null;
             }
+
+        public void addFrag(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
         }
+        }
+
        // viewPager = findViewById(R.id.pager);
         //mActivity= (NavigationDrawerActivity) getActivity();
 
@@ -258,6 +266,6 @@ public class FragmentMyTravelRequest extends BaseActivity implements View.OnClic
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        startActivity(new Intent());
+        startActivity(new Intent(this,NavigationDrawerActivity.class));
     }
 }

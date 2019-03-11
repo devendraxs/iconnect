@@ -25,7 +25,7 @@ import iconnect.psi.com.iconnect.fragment.FragmentPurpose;
 import iconnect.psi.com.iconnect.fragment.FragmentUserProfile;
 import iconnect.psi.com.iconnect.model.NavigationModel;
 
-public class NavigationDrawerActivity extends BaseActivity implements View.OnClickListener {
+public class NavigationDrawerActivity extends BaseActivity implements View.OnClickListener  {
     private String[] mNavigationDrawerItemTitle;
     private ListView mDrawerList;
     public DrawerLayout mDrawerLayout;
@@ -47,7 +47,6 @@ public class NavigationDrawerActivity extends BaseActivity implements View.OnCli
         Intent intent=getIntent();
         username=intent.getStringExtra("username");
         password=intent.getStringExtra("password");
-
         setUpToolbar();
         setUpUserProfile();
         mTitle = mDrawerTitle = getTitle();
@@ -56,13 +55,11 @@ public class NavigationDrawerActivity extends BaseActivity implements View.OnCli
         mDrawerList = findViewById(R.id.left_drawer);
         llLeftDrawer = findViewById(R.id.ll_left_drawer);
 
-        NavigationModel[] navigationDrawer = new NavigationModel[6];
+        NavigationModel[] navigationDrawer = new NavigationModel[4];
         navigationDrawer[0]  = new NavigationModel(R.drawable.ic_profile, mNavigationDrawerItemTitle[0]);
         navigationDrawer[1]  = new NavigationModel(R.drawable.ic_profile, mNavigationDrawerItemTitle[1]);
         navigationDrawer[2]  = new NavigationModel(R.drawable.ic_profile, mNavigationDrawerItemTitle[2]);
         navigationDrawer[3]  = new NavigationModel(R.drawable.ic_profile, mNavigationDrawerItemTitle[3]);
-        navigationDrawer[4]  = new NavigationModel(R.drawable.ic_profile, mNavigationDrawerItemTitle[4]);
-        navigationDrawer[5]  = new NavigationModel(R.drawable.ic_profile, mNavigationDrawerItemTitle[5]);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         DrawerItemNavigationAdapter navigationAdapter=new DrawerItemNavigationAdapter(this,R.layout.nav_list_row,navigationDrawer);
@@ -71,7 +68,7 @@ public class NavigationDrawerActivity extends BaseActivity implements View.OnCli
         mDrawerLayout = findViewById(R.id.drawer_layout);
         mDrawerLayout.setDrawerListener(mActionBarDrawerToggle);
         setUpDrawerToggle();
-     }
+    }
 
     private void setUpDrawerToggle() {
 
@@ -120,13 +117,8 @@ public class NavigationDrawerActivity extends BaseActivity implements View.OnCli
                 case 1:
 
                     break;
+
                 case 2:
-
-                    break;
-                case 3:
-
-                    break;
-                case 4:
                     FragmentMyTravel fragmentMyTravel=new FragmentMyTravel();
                     manager=getSupportFragmentManager();
                     transaction=manager.beginTransaction();
@@ -134,7 +126,7 @@ public class NavigationDrawerActivity extends BaseActivity implements View.OnCli
                     mDrawerLayout.closeDrawers();
 
                     break;
-                case 5:
+                case 3:
                     signOut();
                     break;
             }
@@ -151,7 +143,7 @@ public class NavigationDrawerActivity extends BaseActivity implements View.OnCli
             finish();
         }else if (fragment instanceof FragmentMyTravel){
             FragmentUserProfile fragmentUserProfile=new FragmentUserProfile();
-            this.replaceFragment(this,R.id.ll_dashboard_container_fragment,fragmentUserProfile,null,false);
+            this.replaceFragment(this, R.id.ll_dashboard_container_fragment,fragmentUserProfile,null,false);
         }else if (fragment instanceof FragmentItineary){
             FragmentUserProfile fragmentUserProfile=new FragmentUserProfile();
             this.replaceFragment(this,R.id.ll_dashboard_container_fragment,fragmentUserProfile,null,false);

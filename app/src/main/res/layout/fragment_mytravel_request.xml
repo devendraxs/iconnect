@@ -110,13 +110,14 @@
     </android.support.design.widget.CoordinatorLayout>
 
     <Button
-        android:visibility="gone"
+
         android:id="@+id/newTravelRequest"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_50"
         android:background="@drawable/button_bg"
         android:drawableLeft="@drawable/plus"
+        android:paddingLeft="@dimen/dp_70"
         android:text="@string/create_new_travel_request" />
 
 

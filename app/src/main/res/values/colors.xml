@@ -32,4 +32,5 @@
     <color name="c_red">#fc9a9a</color>
     <color name="grey">#cdced0</color>
     <color name="green_bg">#73934A</color>
+    <color name="color_dvider">#73934A</color>
 </resources>

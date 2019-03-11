@@ -3,7 +3,7 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="@dimen/dp_55"
-    android:background="@color/green_bg">
+    android:background="@color/color_button">
 
     <RelativeLayout
         android:layout_width="match_parent"

@@ -16,7 +16,7 @@
     <string name="same_day_return">Same Day Return</string>
     <string name="start">Start</string>
     <string name="end">End</string>
-    <string name="project">Project</string>
+    <string name="project">Project:</string>
     <string name="date">Date</string>
     <string name="destination">Destination</string>
     <string name="select_project">Select Project</string>
@@ -33,9 +33,12 @@
     <string name="request">Request</string>
     <string name="day">Day</string>
     <string name="per_diam">Per Diam</string>
+
     <string name="per_advance">% Advance</string>
     <string name="any_other_purpose">Any Other Purpose</string>
-    
+    <string name="open" />
+    <string name="close" />
+
     <string-array name="poject_name">
         <item>Project1  10%</item>
         <item>Project2  10%</item>
@@ -68,11 +71,16 @@
 
     <string-array name="navigation_drawer_items_array">
         <item>My Profile</item>
-        <item>Our Mission</item>
-        <item>Our Vision</item>
-        <item>Our Value</item>
+        <item>Know PSI</item>
         <item>My Travel</item>
         <item>SignOut</item>
     </string-array>
+
+    <string-array name="navigation_drawer_items_array1">
+         <item>Our Mission</item>
+        <item>Our Vision</item>
+        <item>Our Value</item>
+    </string-array>
+
 
 </resources>

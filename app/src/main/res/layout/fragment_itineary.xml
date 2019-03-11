@@ -134,6 +134,7 @@
             android:layout_weight=".2"
             android:text="@string/date"
             android:gravity="center"
+            android:id="@+id/tvDate"
             android:textColor="@color/c_grey"
             android:background="@drawable/tv_bg"/>
 
@@ -146,12 +147,21 @@
             android:textColor="@color/c_grey"
             android:background="@drawable/tv_bg"/>
 
-        <ImageView
+        <Spinner
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".1"
+            android:id="@+id/facilities"
+            android:paddingRight="@dimen/dp_1"
+            android:background="@drawable/fascilities"/>
+
+       <!-- <ImageView
             android:layout_width="0dp"
             android:layout_height="@dimen/dp_40"
             android:layout_weight=".1"
             android:paddingRight="@dimen/dp_1"
-            android:src="@drawable/fascilities"/>
+            android:id="@+id/facilities"
+            android:src="@drawable/fascilities"/>-->
         <ImageView
             android:layout_width="0dp"
 

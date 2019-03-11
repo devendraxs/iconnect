@@ -55,8 +55,6 @@
                 android:layout_marginTop="@dimen/dp_20"
                 android:src="@drawable/splash" />
 
-
-
         </LinearLayout>
 
         <LinearLayout
@@ -75,9 +73,9 @@
                 android:layout_gravity="start"
                 android:background="@color/white"
                 android:choiceMode="singleChoice"
-                 />
+                />
         </LinearLayout>
 
-     </LinearLayout>
+    </LinearLayout>
 
 </android.support.v4.widget.DrawerLayout>

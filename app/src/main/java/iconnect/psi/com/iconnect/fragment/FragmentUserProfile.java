@@ -18,16 +18,16 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import iconnect.psi.com.iconnect.R;
 
 public class FragmentUserProfile extends Fragment implements View.OnClickListener{
-    private ImageView userProfile;
+    private CircleImageView userProfile;
     private static final int CAMERA=1;
     private static final int FILE=2;
     private Bitmap bitmap;
@@ -74,12 +74,10 @@ public class FragmentUserProfile extends Fragment implements View.OnClickListene
                             intent.setAction(Intent.ACTION_GET_CONTENT);
                             startActivityForResult(Intent.createChooser(intent,"media"),FILE);
                         }
-
                     }
                 });
                 final AlertDialog dialog=builder.create();
                 dialog.show();
-
         }
 
     }
