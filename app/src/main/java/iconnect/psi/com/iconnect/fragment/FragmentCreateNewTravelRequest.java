@@ -24,6 +24,7 @@ public class FragmentCreateNewTravelRequest extends Fragment implements TabLayou
     private FragmentMyTravelRequest mActivity;
     private NewTravelRequestAdapter newTravelRequestAdapter;
     private TextView itineary,purpose,advance,expence;
+    private String emp_name,Designation,CostCenter;
 
         @Nullable
         @Override
@@ -32,6 +33,12 @@ public class FragmentCreateNewTravelRequest extends Fragment implements TabLayou
 
             pagerNewRequest =view.findViewById(R.id.pagerNewRequest);
             mActivity= (FragmentMyTravelRequest) getActivity();
+
+          /*  Bundle bundle=getArguments();
+            emp_name=bundle.getString("emp_name");
+            Designation=bundle.getString("Designation");
+            CostCenter=bundle.getString("CostCenter");*/
+
 
             itineary=view.findViewById(R.id.itineary);
             purpose=view.findViewById(R.id.purpose);
@@ -62,12 +69,14 @@ public class FragmentCreateNewTravelRequest extends Fragment implements TabLayou
                 @Override
                 public void onClick(View view) {
                     pagerNewRequest.setCurrentItem(0);
+
                 }
             });
             itineary.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     pagerNewRequest.setCurrentItem(1);
+
                 }
             });
 
@@ -75,12 +84,14 @@ public class FragmentCreateNewTravelRequest extends Fragment implements TabLayou
                 @Override
                 public void onClick(View view) {
                     pagerNewRequest.setCurrentItem(2);
+
                 }
             });
             expence.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     pagerNewRequest.setCurrentItem(3);
+
 
                 }
             });

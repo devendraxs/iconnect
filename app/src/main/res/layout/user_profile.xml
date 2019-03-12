@@ -65,6 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight=".5"
                 android:text="Devendra"
+                android:id="@+id/name"
                 android:textColor="@color/c_black"
                 android:textStyle="bold"/>
 
@@ -94,6 +95,7 @@
                 android:layout_weight=".5"
                 android:textColor="@color/c_black"
                 android:text="Androoid Developer"
+                android:id="@+id/designation"
                 android:textStyle="bold"/>
 
 
@@ -122,6 +124,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight=".5"
                 android:text="Delhi"
+                android:id="@+id/headQ"
                 android:textColor="@color/c_black"
                 android:textStyle="bold"/>
         </LinearLayout>

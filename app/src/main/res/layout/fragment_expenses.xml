@@ -1,9 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/dp_20"
+    android:paddingRight="@dimen/dp_20">
 
-    <include layout="@layout/perdiam_view"/>
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal"
+         android:weightSum="1"
+         android:layout_marginTop="@dimen/dp_10">
 
-</RelativeLayout>
+         <TextView
+             android:layout_width="0dp"
+             android:layout_height="@dimen/dp_40"
+             android:layout_weight=".5"
+             android:textColor="@color/c_grey"
+             android:text="@string/total_night"/>
+
+         <TextView
+             android:layout_width="0dp"
+             android:layout_height="@dimen/dp_40"
+             android:layout_weight=".5"
+             android:textColor="@color/c_grey"
+            android:text="5"/>
+
+
+     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".5"
+            android:textColor="@color/c_grey"
+            android:text="@string/leaving_hq"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".5"
+            android:textColor="@color/c_grey"
+           android:text="15/03/19"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".5"
+            android:textColor="@color/c_grey"
+            android:text="@string/reaching_hq"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".5"
+            android:textColor="@color/c_grey"
+            android:text="15/03/19"/>
+
+
+    </LinearLayout>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_70"
+        android:background="@drawable/purpose_bg"
+
+        android:textColorHint="@color/c_grey"
+        android:textColor="@color/c_blue"
+        android:hint="@string/superior_comment"
+        android:paddingLeft="@dimen/dp_10"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:layout_marginTop="@dimen/dp_10">
+
+        <RadioGroup
+            android:layout_width="match_parent"
+
+            android:layout_height="@dimen/dp_60"
+            android:weightSum="1"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Accept"
+                android:layout_weight=".5"
+                android:buttonTint="@color/c_grey"
+                android:checked="true"
+                android:textColor="@color/c_grey"
+                android:id="@+id/accept"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reject"
+                android:layout_weight=".5"
+                android:buttonTint="@color/c_grey"
+                android:textColor="@color/c_grey"
+                android:id="@+id/reject"/>
+
+        </RadioGroup>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+     android:layout_marginTop="@dimen/dp_170">
+
+    <Button
+        android:id="@+id/finalSave"
+        android:layout_width="@dimen/dp_100"
+        android:layout_height="@dimen/dp_40"
+        android:background="@drawable/button_bg"
+        android:text="@string/save"
+        android:layout_weight=".5"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginRight="@dimen/dp_5"
+         />
+
+        <Button
+            android:id="@+id/finalSubmit"
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="@dimen/dp_40"
+            android:background="@drawable/button_bg"
+            android:text="@string/submit"
+            android:layout_weight=".5"
+            android:layout_marginRight="@dimen/dp_20"
+            android:layout_marginLeft="@dimen/dp_5"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

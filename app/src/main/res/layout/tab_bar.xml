@@ -4,19 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:background="@color/color_blue">
+    android:background="@color/color_blue"
+    android:weightSum="4" >
     <TextView
         android:id="@+id/purpose"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="@dimen/dp_50"
         android:text="@string/purpose"
         android:textSize="@dimen/sp_15"
         android:layout_weight="1"
-        android:textColor="@color/white"/>
+        android:gravity="center"
+        android:textColor="@color/white"
+       />
 
     <TextView
         android:id="@+id/itineary"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="@dimen/dp_50"
         android:text="@string/itineary"
         android:textSize="@dimen/sp_15"
@@ -26,7 +29,7 @@
 
     <TextView
         android:id="@+id/advance"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="@dimen/dp_50"
         android:text="@string/advance"
         android:textSize="@dimen/sp_15"
@@ -34,9 +37,9 @@
         android:textColor="@color/white"/>
     <TextView
         android:id="@+id/expence"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="@dimen/dp_50"
-        android:text="@string/estimate_expenses"
+        android:text="@string/summary"
         android:textSize="@dimen/sp_15"
         android:layout_weight="1"
         android:textColor="@color/white"/>

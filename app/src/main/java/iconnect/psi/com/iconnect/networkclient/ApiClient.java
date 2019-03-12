@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiClient {
 
     private static Retrofit retrofit = null;
-    private static String URL_CI = "http://xsinfoways.net/savera/Api/";
+    private static String URL_CI = "http://67.227.236.229:1050/travel/v1/";
 
     public static Retrofit getClientCI()
     {

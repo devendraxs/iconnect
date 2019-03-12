@@ -25,11 +25,18 @@ public class FragmentMyTravelRequest extends BaseActivity implements View.OnClic
     private ViewPager viewPager;
     public Button newTravelRequest;
     private NavigationDrawerActivity mActivity;
+    private String emp_name,Designation,CostCenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_mytravel_request);
+
+     /*    Intent intent=getIntent();
+        emp_name=intent.getStringExtra("emp_name");
+        Designation=intent.getStringExtra("Designation");
+        CostCenter=intent.getStringExtra("CostCenter");*/
+
 
         toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -81,7 +88,12 @@ public class FragmentMyTravelRequest extends BaseActivity implements View.OnClic
         switch (view.getId()){
             case R.id.newTravelRequest:
                 FragmentCreateNewTravelRequest fragmentCreateNewTravelRequest=new FragmentCreateNewTravelRequest();
-                replaceFragment(FragmentMyTravelRequest.this,R.id.main_layout,fragmentCreateNewTravelRequest,null,true);
+
+                Bundle bundle=new Bundle();
+                bundle.putString("emp_name",emp_name);
+                bundle.putString("Designation",Designation);
+                bundle.putString("CostCenter",CostCenter);
+                replaceFragment(FragmentMyTravelRequest.this,R.id.main_layout,fragmentCreateNewTravelRequest,bundle,true);
                // this.replaceFragment(this,R.id.ll_dashboard_container_fragment,fragmentCreateNewTravelRequest,null,false);
                 }
     }

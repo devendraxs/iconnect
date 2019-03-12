@@ -61,6 +61,6 @@
         android:layout_gravity="center|right"
         android:layout_marginRight="@dimen/dp_6"
         android:paddingRight="@dimen/dp_10"
-        android:layout_marginTop="@dimen/dp_150"/>
+        android:layout_marginTop="@dimen/dp_180"/>
 
 </LinearLayout>

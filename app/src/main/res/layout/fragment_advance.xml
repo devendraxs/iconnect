@@ -4,14 +4,68 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+   android:paddingLeft="@dimen/dp_20"
+    android:paddingRight="@dimen/dp_20"
     >
- <!--<include layout="@layout/perdiam_view"/>-->
+ <include layout="@layout/perdiam_view"/>
+
+ <LinearLayout
+     android:layout_width="match_parent"
+     android:layout_height="@dimen/dp_50"
+     android:orientation="horizontal"
+     android:weightSum="6"
+     >
+  <TextView
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:text="15/03/19"
+      android:layout_weight="1"
+      android:gravity="center"
+
+      android:textColor="@color/c_grey"/>
+
+  <CheckBox
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:buttonTint="@color/c_grey"
+      android:layout_weight="1"
+      android:id="@+id/check1"/>
+
+  <CheckBox
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:buttonTint="@color/c_grey"
+      android:layout_weight="1"
+      android:id="@+id/check2"/>
+
+  <CheckBox
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:buttonTint="@color/c_grey"
+      android:layout_weight="1"
+      android:id="@+id/check3"/>
+  <CheckBox
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:buttonTint="@color/c_grey"
+      android:layout_weight="1"
+      android:id="@+id/check4"/>
+  <CheckBox
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:buttonTint="@color/c_grey"
+      android:layout_weight="1"
+      android:checked="true"
+      android:id="@+id/check5"/>
+
+ </LinearLayout>
 
  <LinearLayout
      android:layout_width="match_parent"
      android:layout_height="wrap_content"
      android:orientation="horizontal"
      android:weightSum="1"
+     android:layout_marginTop="@dimen/dp_10"
      >
 
   <TextView
@@ -20,6 +74,7 @@
       android:layout_weight=".5"
       android:textColor="@color/c_grey"
       android:gravity="center"
+
       android:text="@string/estimated_perdiam"/>
 
   <TextView
@@ -27,7 +82,8 @@
       android:layout_height="@dimen/dp_40"
       android:layout_weight=".5"
       android:textColor="@color/c_grey"
-      android:text="1500"
+      android:text="1200"
+
       android:gravity="center"/>
 
  </LinearLayout>
@@ -53,15 +109,19 @@
       android:textColor="@color/c_grey"
       android:layout_height="@dimen/dp_40"
       android:layout_weight=".5"
-      android:id="@+id/advanceAmount"
+
+      android:id="@+id/advanceAmountPer"
       />
 
  </LinearLayout>
 
  <SeekBar
      android:layout_width="match_parent"
-     android:layout_height="@dimen/dp_20"
-     android:id="@+id/seekbar"/>
+     android:layout_height="@dimen/dp_30"
+     android:id="@+id/seekbar"
+     android:thumbOffset="@dimen/dp_20"
+     android:layout_marginBottom="@dimen/dp_10"
+     android:layout_marginTop="@dimen/dp_20"/>
 
  <LinearLayout
      android:layout_width="match_parent"
@@ -80,14 +140,18 @@
   <TextView
       android:layout_width="0dp"
       android:gravity="center"
-      android:text="1050"
+      android:text="0"
+      android:id="@+id/estmPdm"
       android:textColor="@color/c_grey"
       android:layout_height="@dimen/dp_40"
+
       android:layout_weight=".3"
      />
 
+<!--
   <RadioGroup
       android:layout_width="0dp"
+
       android:layout_height="@dimen/dp_60"
       android:layout_weight=".3"
       android:orientation="vertical">
@@ -96,6 +160,8 @@
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:text="Accept"
+       android:buttonTint="@color/c_grey"
+       android:checked="true"
        android:textColor="@color/c_grey"
        android:id="@+id/accept"/>
 
@@ -103,15 +169,25 @@
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:text="Reject"
+       android:buttonTint="@color/c_grey"
        android:textColor="@color/c_grey"
        android:id="@+id/reject"/>
 
   </RadioGroup>
+-->
 
   </LinearLayout>
 
 
 
+ <CheckBox
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:buttonTint="@color/c_grey"
+     android:textColor="@color/c_grey"
+     android:text="@string/advance_appprove"/>
+
+<!--
  <LinearLayout
      android:layout_width="match_parent"
      android:layout_height="wrap_content"
@@ -126,40 +202,47 @@
       android:gravity="center"
       android:textColor="@color/c_grey"
       android:text="@string/any_other_advance"/>
-  <TextView
+  <EditText
       android:layout_width="0dp"
       android:gravity="center"
-      android:text="1050"
+      android:text="0"
+      android:background="@drawable/white_bg"
       android:textColor="@color/c_grey"
       android:layout_height="@dimen/dp_40"
       android:layout_weight=".3"/>
 
 
 
+&lt;!&ndash;
   <RadioGroup
       android:layout_width="0dp"
+
       android:layout_height="@dimen/dp_60"
       android:layout_weight=".3"
-
       android:orientation="vertical">
 
    <RadioButton
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:text="Accept"
+       android:checked="true"
+       android:buttonTint="@color/c_grey"
        android:textColor="@color/c_grey"
-       />
+       android:id="@+id/accept1"/>
 
    <RadioButton
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:text="Reject"
+       android:buttonTint="@color/c_grey"
        android:textColor="@color/c_grey"
-       />
+       android:id="@+id/reject1"/>
 
   </RadioGroup>
+&ndash;&gt;
 
  </LinearLayout>
+-->
  <Button
      android:id="@+id/itinearySave"
      android:layout_width="@dimen/dp_100"
@@ -169,7 +252,7 @@
      android:layout_gravity="center|right"
      android:layout_marginRight="@dimen/dp_6"
      android:paddingRight="@dimen/dp_10"
-     android:layout_marginTop="@dimen/dp_150"/>
+     android:layout_marginTop="@dimen/dp_50"/>
 
 
 

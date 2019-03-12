@@ -31,7 +31,7 @@ public class NavigationDrawerActivity extends BaseActivity implements View.OnCli
     public DrawerLayout mDrawerLayout;
     public Toolbar mToolbar;
     public ActionBarDrawerToggle mActionBarDrawerToggle;
-    private String TAG=NavigationDrawerActivity.class.getSimpleName(),username,password;
+    private String TAG=NavigationDrawerActivity.class.getSimpleName(),emp_name,Designation,CostCenter;
     public ImageView ivLogo;
     public TextView tvToolbar;
     private CharSequence mTitle;
@@ -45,8 +45,9 @@ public class NavigationDrawerActivity extends BaseActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation_drawer);
         Intent intent=getIntent();
-        username=intent.getStringExtra("username");
-        password=intent.getStringExtra("password");
+        emp_name=intent.getStringExtra("emp_name");
+        Designation=intent.getStringExtra("Designation");
+        CostCenter=intent.getStringExtra("CostCenter");
         setUpToolbar();
         setUpUserProfile();
         mTitle = mDrawerTitle = getTitle();
@@ -80,7 +81,11 @@ public class NavigationDrawerActivity extends BaseActivity implements View.OnCli
     private void setUpUserProfile() {
         getSupportActionBar().setHomeButtonEnabled(true);
         FragmentUserProfile fragmentUserProfile=new FragmentUserProfile();
-        replaceFragment(NavigationDrawerActivity.this,R.id.ll_dashboard_container_fragment,fragmentUserProfile,null,true);
+        Bundle bundle=new Bundle();
+        bundle.putString("emp_name",emp_name);
+        bundle.putString("Designation",Designation);
+        bundle.putString("CostCenter",CostCenter);
+        replaceFragment(NavigationDrawerActivity.this,R.id.ll_dashboard_container_fragment,fragmentUserProfile,bundle,true);
 
     }
 

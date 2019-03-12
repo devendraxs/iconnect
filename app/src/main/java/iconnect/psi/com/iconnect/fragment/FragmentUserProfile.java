@@ -18,6 +18,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -32,6 +33,8 @@ public class FragmentUserProfile extends Fragment implements View.OnClickListene
     private static final int FILE=2;
     private Bitmap bitmap;
     private String encodedImage=null;
+    private String emp_name,Designation,CostCenter;
+    private TextView name,designation,headQ;
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -45,6 +48,20 @@ public class FragmentUserProfile extends Fragment implements View.OnClickListene
         View view=inflater.inflate(R.layout.user_profile,container,false);
         userProfile=view.findViewById(R.id.userProfile);
         userProfile.setOnClickListener(this);
+        name=view.findViewById(R.id.name);
+        designation=view.findViewById(R.id.designation);
+        headQ=view.findViewById(R.id.headQ);
+
+
+
+        Bundle bundle=getArguments();
+        emp_name=bundle.getString("emp_name");
+        Designation=bundle.getString("Designation");
+        CostCenter=bundle.getString("CostCenter");
+
+        name.setText(emp_name);
+        designation.setText(Designation);
+        headQ.setText(CostCenter);
         return view;
     }
 

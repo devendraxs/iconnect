@@ -14,9 +14,12 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -30,6 +33,7 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
     private TextView project,tvDate;
     private Button itinearySave;
     ItinearyDatabase itinearyDatabase;
+    private ImageView official;
     private int day, month, year;
     private String date,getCurentDate;
     private TextView start,end,destination;
@@ -40,17 +44,27 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
     ArrayList<Integer> startItem=new ArrayList<>();
     ArrayList<Integer> endItem=new ArrayList<>();
     private Spinner facilities;
-    String[] name={" "," "," "," ",""};
+   private String[] name={" ", "Nothing", "Hotel", "Flight", "Flight and Hotel"};
     int[] images={R.drawable.fascilities,R.drawable.none,R.drawable.hotel,R.drawable.flight,R.drawable.flight_hotel};
     private CheckBox sameDayReturn;
     private List<ItinearyDatabase> passItinearyDatabase;
+    private ImageView plus,minus,via;
+    private String emp_name,Designation,CostCenter;
+    private EditText editTextDialogUserInput;
 
 
+   // private EditText result;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_itineary,container,false);
+
+        /*Bundle bundle=getArguments();
+        emp_name=bundle.getString("emp_name");
+        Designation=bundle.getString("Designation");
+        CostCenter=bundle.getString("CostCenter");*/
+
 
         passItinearyDatabase=new ArrayList<ItinearyDatabase>();
 
@@ -67,18 +81,15 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
         facilities.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-               // Toast.makeText(mActivity, ""+name, Toast.LENGTH_SHORT).show();
-                
+              // Toast.makeText(mActivity, ""+name, Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
             }
         });
 
-        return view;
-    }
+        return view;    }
 
     private void setViews(View view) {
         project=view.findViewById(R.id.project);
@@ -92,17 +103,30 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
         tvDate.setOnClickListener(this);
         itinearySave=view.findViewById(R.id.itinearySave);
         itinearySave.setOnClickListener(this);
+        official=view.findViewById(R.id.official);
+        official.setOnClickListener(this);
+        plus=view.findViewById(R.id.plus);
+        plus.setOnClickListener(this);
+        editTextDialogUserInput=view.findViewById(R.id.editTextDialogUserInput);
+       // button =view.findViewById(R.id.editTextDialogUserInput);
+      //  result =view.findViewById(R.id.editTextDialogUserInput);
+
+        minus=view.findViewById(R.id.minus);
+        minus.setOnClickListener(this);
+
+        via=view.findViewById(R.id.via);
+        via.setOnClickListener(this);
     /*    facilities=view.findViewById(R.id.facilities);
         facilities.setOnClickListener(this);*/
         mActivity=(FragmentMyTravelRequest) getActivity();
 
         mActivity.newTravelRequest.setVisibility(View.GONE);
 
-
-       }
-
-
-
+       // start=view.findViewById(R.id.start);
+        end=view.findViewById(R.id.end);
+      /*  start.setText(CostCenter);
+        end.setText(CostCenter);*/
+        }
 
     @Override
     public void onClick(View view) {
@@ -161,8 +185,8 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
                 AlertDialog mDialog=mBuider.create();
                 mDialog.show();
                 break;
-            case R.id.start:
-                final AlertDialog.Builder mBuider1=new AlertDialog.Builder(getActivity());
+             case R.id.start:
+                /*final AlertDialog.Builder mBuider1=new AlertDialog.Builder(getActivity());
                 mBuider1.setTitle("Source Station");
 
                 mBuider1.setMultiChoiceItems(startList, checkedItem, new DialogInterface.OnMultiChoiceClickListener() {
@@ -175,7 +199,6 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
                                 startItem.remove(position);
                             }
                         }
-
                     }
                 });
                 mBuider1.setCancelable(false);
@@ -186,14 +209,14 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
                         String item="";
                         for (int i=0;i<startItem.size();i++){
                             item=item+startList[startItem.get(i)];
-/*
+*//*
                             if (i!=startItem.size()-1){
                                 item=item+",";
 
                             }
-*/
+*//*
                         }
-                        start.setText(item);
+                        start.setText("Start: "+item);
 
                     }
                 });
@@ -201,7 +224,6 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
-
                     }
                 });
                 mBuider1.setNeutralButton("Clear All", new DialogInterface.OnClickListener() {
@@ -215,66 +237,77 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
                     }
                 });
                 AlertDialog mDialog1=mBuider1.create();
-                mDialog1.show();
-                break;
+                mDialog1.show();*/
+
+                 LayoutInflater li = LayoutInflater.from(mActivity);
+                 View promptsView = li.inflate(R.layout.edittext_dialog, null);
+
+                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(mActivity);
+                 alertDialogBuilder.setView(promptsView);
+
+                 final EditText userInput = (EditText) promptsView
+                         .findViewById(R.id.editTextDialogUserInput);
+
+                 alertDialogBuilder
+                         .setCancelable(false)
+                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                             @Override
+                             public void onClick(DialogInterface dialogInterface, int id) {
+                                 start.setText("Start: "+userInput.getText().toString().trim());
+
+                             }
+                         }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                     @Override
+                     public void onClick(DialogInterface diialog, int i) {
+                         diialog.cancel();
+                     }
+                 });
+
+                 AlertDialog alertDialog=alertDialogBuilder.create();
+                 alertDialog.show();
+
+
+                 break;
 
             case R.id.end:
-                final AlertDialog.Builder mBuider2=new AlertDialog.Builder(getActivity());
-                mBuider2.setTitle("Destination Station");
-                mBuider2.setMultiChoiceItems(endList, checkedItem, new DialogInterface.OnMultiChoiceClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int position, boolean isChecked) {
-                        if (isChecked){
-                            if (!endItem.contains(position)){
-                                endItem.add(position);
-                            }else {
-                                endItem.remove(position);
+                LayoutInflater lii = LayoutInflater.from(mActivity);
+                View promptsView1 = lii.inflate(R.layout.edittext_dialog, null);
+
+                AlertDialog.Builder alertDialogBuilder1 = new AlertDialog.Builder(mActivity);
+                alertDialogBuilder1.setView(promptsView1);
+
+                final EditText userInput1 = (EditText) promptsView1
+                        .findViewById(R.id.editTextDialogUserInput);
+
+                alertDialogBuilder1
+                        .setCancelable(false)
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int id) {
+                                end.setText("End: "+userInput1.getText().toString().trim());
+
                             }
-                        }
-
-                    }
-                });
-                mBuider2.setCancelable(false);
-                mBuider2.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int which) {
-
-                        String item="";
-                        for (int i=0;i<endItem.size();i++){
-                            item=item+endList[endItem.get(i)];
-/*
-                            if (i!=endItem.size()-1){
-                                item=item+",";
-                            }
-*/
-                        }
-                        end.setText(item);
-
+                    public void onClick(DialogInterface diialog, int i) {
+                        diialog.cancel();
                     }
                 });
-                mBuider2.setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
 
-                    }
-                });
-                mBuider2.setNeutralButton("Clear All", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int which) {
-                        for (int i=0;i<checkedItem.length;i++){
-                            checkedItem[i]=false;
-                            endItem.clear();
-                            end.setText("");
-                        }
-                    }
-                });
-                AlertDialog mDialog2=mBuider2.create();
-                mDialog2.show();
-               break;
+                AlertDialog alertDialog1=alertDialogBuilder1.create();
+                alertDialog1.show();
+
+
+
+
+                break;
             case R.id.tvDate:
                 dateDialog();
                 break;
+            case R.id.official:
+                official.setImageResource(R.drawable.personal);
+                Toast.makeText(mActivity, "This travel require special approval" +
+                        "", Toast.LENGTH_SHORT).show();
             case R.id.itinearySave:
                 itinearyDatabase=new ItinearyDatabase();
                // itinearyDatabase.setSame_day_return(sameDayReturn.getText().toString().trim());
