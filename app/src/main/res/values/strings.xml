@@ -9,6 +9,7 @@
     <string name="submit">Submit</string>
     <string name="advance_appprove">Advance Approved</string>
     <string name="name">Name</string>
+    <string name="multi_select_dialog_title">Select Project</string>
     <string name="designation">Designation</string>
     <string name="headquarter">Headquarter</string>
     <string name="mytravel_request">My Team Travel Request</string>

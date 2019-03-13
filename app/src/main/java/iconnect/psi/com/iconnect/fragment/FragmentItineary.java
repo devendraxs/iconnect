@@ -53,6 +53,7 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
     private EditText editTextDialogUserInput;
 
 
+
    // private EditText result;
 
     @Nullable
@@ -132,7 +133,23 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.project:
-                final AlertDialog.Builder mBuider=new AlertDialog.Builder(getActivity());
+                //Toast.makeText(mActivity, "hkfkl", Toast.LENGTH_SHORT).show();
+
+                FragmentProject dialog = FragmentProject.newInstance();
+
+                dialog.show(mActivity.getSupportFragmentManager(), "MyDialogFragment");
+
+             /* /  *//*FragmentProject dialog = new FragmentProject(getContext());
+                //dialog.setTitle("Select project");
+                dialog.setContentView(R.layout.dialog_layout);*//*
+                RecyclerView recyclerView=view.findViewById(R.id.projectRecyclerview);
+                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+                recyclerView.setLayoutManager(layoutManager);
+                recyclerView.setHasFixedSize(true);
+                dialog.show()*/;
+             // openDialog(view);
+
+              /*  final AlertDialog.Builder mBuider=new AlertDialog.Builder(getActivity());
                 mBuider.setTitle("Projets List");
                 mBuider.setMultiChoiceItems(listItems, checkedItem, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
@@ -144,7 +161,6 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
                                 mUserItem.remove(position);
                             }
                         }
-
                     }
                 });
                 mBuider.setCancelable(false);
@@ -183,7 +199,7 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
                     }
                 });
                 AlertDialog mDialog=mBuider.create();
-                mDialog.show();
+                mDialog.show();*/
                 break;
              case R.id.start:
                 /*final AlertDialog.Builder mBuider1=new AlertDialog.Builder(getActivity());
@@ -322,6 +338,7 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
         }
     }
 
+
     private void dateDialog() {
         DatePickerDialog.OnDateSetListener listener=new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -340,4 +357,95 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
         datePickerDialog.show();
 
     }
-}
+/*
+    public void openDialog(View view){
+        final String[] items = {"Apple", "Banana", "Orange", "Grapes"};
+        final ArrayList<Integer> selectedList = new ArrayList<>();
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("This is list choice dialog box");
+        builder.setMultiChoiceItems(items, null, new DialogInterface.OnMultiChoiceClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                if (isChecked){
+                    selectedList.add(which);
+                }else if(selectedList.contains(which)){
+                    selectedList.remove(which);
+                }
+
+            }
+        }); builder.setPositiveButton("DONE", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                ArrayList<String> selectedStrings = new ArrayList<>();
+
+                for (int j = 0; j < selectedList.size(); j++) {
+                    selectedStrings.add(items[selectedList.get(j)]);
+                }
+
+                Toast.makeText(getActivity(), "Items selected are: " + Arrays.toString(selectedStrings.toArray()), Toast.LENGTH_SHORT).show();
+
+
+            }
+        });
+
+        builder.show();
+
+    }
+*/
+
+
+
+
+       /* final ArrayList<Integer> alreadySelectedCountries = new ArrayList<>();
+        alreadySelectedCountries.add(1);
+        alreadySelectedCountries.add(3);
+        alreadySelectedCountries.add(4);
+        alreadySelectedCountries.add(7);
+
+        //List of Countries with Name and Id
+        ArrayList<MultiSelectModel> listOfCountries= new ArrayList<>();
+        listOfCountries.add(new MultiSelectModel(1,"INDIA"));
+        listOfCountries.add(new MultiSelectModel(2,"USA"));
+        listOfCountries.add(new MultiSelectModel(3,"UK"));
+        listOfCountries.add(new MultiSelectModel(4,"UAE"));
+        listOfCountries.add(new MultiSelectModel(5,"JAPAN"));
+        listOfCountries.add(new MultiSelectModel(6,"SINGAPORE"));
+        listOfCountries.add(new MultiSelectModel(7,"CHINA"));
+        listOfCountries.add(new MultiSelectModel(8,"RUSSIA"));
+        listOfCountries.add(new MultiSelectModel(9,"BANGLADESH"));
+        listOfCountries.add(new MultiSelectModel(10,"BELGIUM"));
+
+        MultiSelectDialog multiSelectDialog = new MultiSelectDialog()
+                .title(getResources().getString(R.string.multi_select_dialog_title)) //setting title for dialog
+                .titleSize(25)
+                .positiveText("Done")
+                .negativeText("Cancel")
+                .setMinSelectionLimit(1) //you can set minimum checkbox selection limit (Optional)
+                .setMaxSelectionLimit(listOfCountries.size()) //you can set maximum checkbox selection limit (Optional)
+                .preSelectIDsList(alreadySelectedCountries) //List of ids that you need to be selected
+                .multiSelectList(listOfCountries) // the multi select model list with ids and name
+                .onSubmit(new MultiSelectDialog.SubmitCallbackListener() {
+                    @Override
+                    public void onSelected(ArrayList<Integer> selectedIds, ArrayList<String> selectedNames, String dataString) {
+                        //will return list of selected IDS
+                        for (int i = 0; i < selectedIds.size(); i++) {
+                            Toast.makeText(getActivity(), "Selected Ids : " + selectedIds.get(i) + "\n" +
+                                    "Selected Names : " + selectedNames.get(i) + "\n" +
+                                    "DataString : " + dataString, Toast.LENGTH_SHORT).show();
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        Log.d("TAG","Dialog cancelled");
+                    }
+
+
+                });
+
+        multiSelectDialog.show(getFragmentManager(), "multiSelectDialog");*/
+    }
+
+

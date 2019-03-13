@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/projectDialog"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/projectRecyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp_50"       >
+
+    </android.support.v7.widget.RecyclerView>
+
+
+    <LinearLayout
+        android:id="@+id/llProject"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:paddingLeft="@dimen/dp_10"
+        android:paddingRight="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_10">
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:text="Cancle"
+            android:layout_weight=".5"
+            android:id="@+id/cancle"
+            android:layout_marginRight="@dimen/dp_10"
+            android:background="@drawable/button_bg"
+            />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:text="OK"
+            android:id="@+id/ok"
+            android:layout_weight=".5"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:background="@drawable/button_bg"/>
+
+
+    </LinearLayout>
+
+</RelativeLayout>
