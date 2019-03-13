@@ -7,9 +7,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Base64;
 import android.view.LayoutInflater;
@@ -41,9 +38,9 @@ public class FragmentUserProfile extends Fragment implements View.OnClickListene
         super.onCreateOptionsMenu(menu, inflater);
     }
 
-    @Nullable
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view=inflater.inflate(R.layout.user_profile,container,false);
         userProfile=view.findViewById(R.id.userProfile);
@@ -51,7 +48,6 @@ public class FragmentUserProfile extends Fragment implements View.OnClickListene
         name=view.findViewById(R.id.name);
         designation=view.findViewById(R.id.designation);
         headQ=view.findViewById(R.id.headQ);
-
 
 
         Bundle bundle=getArguments();
@@ -78,18 +74,20 @@ public class FragmentUserProfile extends Fragment implements View.OnClickListene
                     @Override
                     public void onClick(DialogInterface dialog, int media) {
                         if (media==0){
-                            Intent intent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                          //  Intent intent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                             try {
-                                startActivityForResult(intent,CAMERA);
+                                Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                                startActivityForResult(intent, CAMERA);
                             }catch (Exception e){
                                 e.printStackTrace();
                             }
                             dialog.cancel();
                         }else if (media==1){
-                            Intent intent=new Intent();
-                            intent.setType("image/*");
-                            intent.setAction(Intent.ACTION_GET_CONTENT);
-                            startActivityForResult(Intent.createChooser(intent,"media"),FILE);
+                            Intent galleryIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+                            galleryIntent.setType("image/*");
+                            galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
+                            startActivityForResult(Intent.createChooser(galleryIntent,"media"),FILE);
                         }
                     }
                 });

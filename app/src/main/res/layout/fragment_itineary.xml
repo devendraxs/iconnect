@@ -209,7 +209,7 @@
         android:layout_gravity="center|right"
         android:layout_marginRight="@dimen/dp_6"
         android:paddingRight="@dimen/dp_10"
-        android:layout_marginTop="@dimen/dp_180"/>
+        android:layout_marginTop="@dimen/dp_200"/>
 
 <!--
     <LinearLayout
@@ -255,14 +255,27 @@
         android:layout_height="@dimen/dp_40"
         android:orientation="horizontal"    >
 
+       <!-- <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_40"
+            android:text="@string/fascilities"
+            android:layout_marginLeft="@dimen/dp_3"
+            android:layout_marginRight="@dimen/dp_3"
+            android:textColor="@color/c_grey"
+            android:gravity="center"
+            android:drawableLeft="@drawable/facilities"/>-->
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="@dimen/dp_40"
             android:text="@string/fascilities"
-
+            android:layout_marginLeft="@dimen/dp_3"
+            android:layout_marginRight="@dimen/dp_3"
+            android:paddingTop="@dimen/dp_3"
+            android:paddingBottom="@dimen/dp_3"
             android:textColor="@color/c_grey"
             android:gravity="center"
-            android:drawableLeft="@drawable/fascilities"/>
+            android:drawableLeft="@drawable/facilities"/>
 
         <TextView
             android:layout_width="wrap_content"

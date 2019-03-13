@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,14 +46,12 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
     ArrayList<Integer> endItem=new ArrayList<>();
     private Spinner facilities;
    private String[] name={" ", "Nothing", "Hotel", "Flight", "Flight and Hotel"};
-    int[] images={R.drawable.fascilities,R.drawable.none,R.drawable.hotel,R.drawable.flight,R.drawable.flight_hotel};
+    int[] images={R.drawable.facilities,R.drawable.none,R.drawable.hotel,R.drawable.flight,R.drawable.flight_hotel};
     private CheckBox sameDayReturn;
     private List<ItinearyDatabase> passItinearyDatabase;
     private ImageView plus,minus,via;
     private String emp_name,Designation,CostCenter;
     private EditText editTextDialogUserInput;
-
-
 
    // private EditText result;
 
@@ -65,7 +64,6 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
         emp_name=bundle.getString("emp_name");
         Designation=bundle.getString("Designation");
         CostCenter=bundle.getString("CostCenter");*/
-
 
         passItinearyDatabase=new ArrayList<ItinearyDatabase>();
 
@@ -446,6 +444,22 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
                 });
 
         multiSelectDialog.show(getFragmentManager(), "multiSelectDialog");*/
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Bundle b=getArguments();
+        if(b !=null) {
+            int sel_pro = b.getInt("select_project");
+            Log.e("Selected  Itineary ", "=================" + sel_pro);
+            if(sel_pro == 1) {
+                project.setText("Single");
+            }else{
+                project.setText("Mulptiple");
+            }
+
+        }
+    }
     }
 
 

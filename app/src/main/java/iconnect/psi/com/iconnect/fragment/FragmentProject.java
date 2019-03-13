@@ -23,10 +23,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FragmentProject extends DialogFragment {
+public class FragmentProject extends DialogFragment implements View.OnClickListener{
     private RecyclerView mRecyclerView;
     private MyRecyclerAdapter adapter;
     private Button cancle,ok;
+    private List<ProjectResponse.Datum> projectSelected=new ArrayList<ProjectResponse.Datum>();
     private List<ProjectResponse.Datum> projectName=new ArrayList<ProjectResponse.Datum>();
 
 
@@ -38,7 +39,7 @@ public class FragmentProject extends DialogFragment {
         mRecyclerView = view.findViewById(R.id.projectRecyclerview);
         cancle=view.findViewById(R.id.cancle);
         ok=view.findViewById(R.id.ok);
-
+        ok.setOnClickListener(this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         getProjectData();
@@ -81,8 +82,6 @@ public class FragmentProject extends DialogFragment {
 //                }else{
 //
 //                }
-
-
             }
         });
         mRecyclerView.setAdapter(adapter);
@@ -90,7 +89,22 @@ public class FragmentProject extends DialogFragment {
 
     public static FragmentProject newInstance() {
         FragmentProject f = new FragmentProject();
-
         return f;
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.ok:
+                if (projectSelected.size() > -1) {
+                    FragmentItineary fragmentItineary = new FragmentItineary();
+                    Bundle b = new Bundle();
+                    b.putInt("select_project", projectSelected.size());
+                    fragmentItineary.setArguments(b);
+                    dismiss();
+                } else {
+
+                }
+        }
     }
 }

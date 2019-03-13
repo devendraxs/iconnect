@@ -22,12 +22,14 @@ public class FragmentAdvance extends Fragment {
     private   int advAmount;
     private CheckBox check1,check2,check3,check4,check5;
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_advance,container,false);
         seekbar=view.findViewById(R.id.seekbar);
         advanceAmountPer=view.findViewById(R.id.advanceAmountPer);
+
 
         estmPdm= view.findViewById(R.id.estmPdm);
         check1=view.findViewById(R.id.check1);

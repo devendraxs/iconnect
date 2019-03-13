@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import iconnect.psi.com.iconnect.R;
@@ -59,23 +58,19 @@ public class MyRecyclerAdapter  extends RecyclerView.Adapter<MyRecyclerAdapter.M
                 try
                 {
                     Integer pos = (Integer) holder.projectCheckbox.getTag();
-                    if (projectList.get(pos).getselected())
-                    {
+                    if (projectList.get(pos).getselected()) {
                         projectList.get(pos).setSelected(false);
-                        projectCounting.remove(projectList.get(pos));
-                       Log.e("Dialog data 1", "===========================" + projectCounting.size());
+                        projectCounting.remove(projectCounting.get(pos));
+                        Log.e(" Dialog remove ", " =========================== " + projectCounting.size());
                         mListener.onItemClickListener(pos, v, projectCounting);
                         notifyDataSetChanged();
-                    }
-                    else {
-                        projectCounting=new ArrayList<>();
-                        projectCounting.clear();
-                        projectCounting.get(pos).setSelected(true);
+                    } else {
+                        projectList.get(pos).setSelected(true);
                         ProjectResponse.Datum order = new ProjectResponse.Datum();
                         order.setProjectName(projectList.get(pos).getProjectName());
                         order.setProjectCode(projectList.get(pos).getProjectCode());
                         projectCounting.add(order);
-                        Log.e("Dialog data 2", "===========================" + projectCounting.size());
+                        Log.e( "Dialog data 2 ", " =========================== " + projectCounting.size());
                         mListener.onItemClickListener(pos,v,projectCounting);
                         notifyDataSetChanged();
                     }
@@ -95,15 +90,13 @@ public class MyRecyclerAdapter  extends RecyclerView.Adapter<MyRecyclerAdapter.M
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView project, percentage;
         public CheckBox projectCheckbox;
-        public MyViewHolder(View view) {
+        public MyViewHolder(View view)
+        {
             super(view);
             project =view.findViewById(R.id.projectView);
             percentage = view.findViewById(R.id.percentage);
             projectCheckbox=view.findViewById(R.id.projectCheckbox);
-
         }
     }
-
-
 
 }

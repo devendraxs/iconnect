@@ -15,7 +15,8 @@
        android:layout_marginRight="@dimen/dp_20"
        android:textColor="@color/c_blue"
        android:textColorHint="@color/c_grey"
-       android:hint="Please enter purpose"/>
+       android:hint="Please enter purpose"
+       />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -43,12 +44,16 @@
             android:src="@drawable/upload"
             />
 
+
         <ImageView
             android:layout_width="0dp"
             android:layout_height="@dimen/dp_40"
-            android:layout_weight=".2"
+            android:src="@drawable/camera"
             android:id="@+id/camera"
-             android:src="@drawable/camera"/>
+            android:layout_weight=".2"
+            android:layout_marginTop="@dimen/dp_170"
+            android:layout_gravity="center_horizontal"
+            />
 
     </LinearLayout>
 
@@ -61,6 +66,6 @@
         android:layout_gravity="center|right"
         android:layout_marginRight="@dimen/dp_6"
         android:paddingRight="@dimen/dp_10"
-        android:layout_marginTop="@dimen/dp_180"/>
+        android:layout_marginTop="@dimen/dp_200"/>
 
 </LinearLayout>
