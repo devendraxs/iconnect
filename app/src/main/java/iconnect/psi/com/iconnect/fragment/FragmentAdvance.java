@@ -16,11 +16,15 @@ import iconnect.psi.com.iconnect.R;
 
 public class FragmentAdvance extends Fragment {
     private SeekBar seekbar;
-    private TextView advanceAmountPer,advanceAmount;
+    private TextView advanceAmountPer,totalAmount;
     int stepSize=5;
     private TextView estmPdm;
     private   int advAmount;
     private CheckBox check1,check2,check3,check4,check5;
+    private int amount=1200;
+    private int  calCheck2,calcheck3,calcheck4,calcheck5;
+    private   int checkBoxAmount;
+
 
 
     @Nullable
@@ -29,7 +33,7 @@ public class FragmentAdvance extends Fragment {
         View view=inflater.inflate(R.layout.fragment_advance,container,false);
         seekbar=view.findViewById(R.id.seekbar);
         advanceAmountPer=view.findViewById(R.id.advanceAmountPer);
-
+        totalAmount=view.findViewById(R.id.totalAmount);
 
         estmPdm= view.findViewById(R.id.estmPdm);
         check1=view.findViewById(R.id.check1);
@@ -51,23 +55,48 @@ public class FragmentAdvance extends Fragment {
                     check4.setChecked(true);
 
                 }
+            }
+        });
+        check2.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+             calCheck2=(amount*15)/100;
+
+        }
+    });
+        check3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               calcheck3=(amount*25)/100;
+            }
+        });
+        check4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calcheck4=(amount*40)/100;
 
             }
         });
-
-
+        check5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                 calcheck5=(1200*20)/100;
+            }
+        });
+        checkBoxAmount= calCheck2+calcheck3+calcheck4+calcheck5;
+        //checkBoxAmount=calCheck2+calcheck3+calcheck4+calcheck5;
         final String[] percent = { "0", "10", "20", "30","40","50","60","70"};
 
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar bar, int progress, boolean fromUser) {
                 progress=(progress/stepSize)*stepSize;
+                 amount=((checkBoxAmount)*progress)/100;
                 //advanceAmount.setText(""+percent[progress]+"%");
                  advanceAmountPer.setText(""+progress+"%");
                 bar.setMax(70);
-                int amount=(1200*progress)/100;
-                estmPdm.setText(""+amount);
 
+                estmPdm.setText(""+amount);
             }
 
             @Override
@@ -81,7 +110,6 @@ public class FragmentAdvance extends Fragment {
 
             }
         });
-
 
         return view;
     }

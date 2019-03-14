@@ -117,7 +117,6 @@ public class FragmentUserProfile extends Fragment implements View.OnClickListene
                         e.printStackTrace();
                     }
 
-
                 }else {
                     try {
                         bitmap = (Bitmap) data.getExtras().get("data");

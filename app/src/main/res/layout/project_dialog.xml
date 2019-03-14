@@ -28,7 +28,7 @@
         <Button
             android:layout_width="0dp"
             android:layout_height="@dimen/dp_40"
-            android:text="Cancle"
+            android:text="Cancel"
             android:layout_weight=".5"
             android:id="@+id/cancle"
             android:layout_marginRight="@dimen/dp_10"

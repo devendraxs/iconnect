@@ -82,7 +82,8 @@
       android:layout_height="@dimen/dp_40"
       android:layout_weight=".5"
       android:textColor="@color/c_grey"
-      android:text="1200"
+      android:text="totalAmount"
+      android:id="@+id/totalAmount"
 
       android:gravity="center"/>
 
@@ -119,13 +120,11 @@
      android:layout_width="match_parent"
      android:layout_height="@dimen/dp_30"
      android:id="@+id/seekbar"
-     android:thumbOffset="@dimen/dp_20"
+
      android:layout_marginBottom="@dimen/dp_10"
      android:layout_marginTop="@dimen/dp_20"
      android:thumb="@drawable/thumb"
-     android:layout_marginLeft="@dimen/dp_10"
 
-    android:progressDrawable="@drawable/progress_fill"
      />
 
  <LinearLayout

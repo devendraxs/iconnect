@@ -76,7 +76,8 @@ public class FragmentProject extends DialogFragment implements View.OnClickListe
         adapter.setClickListener(new MyRecyclerAdapter.OnClickListener() {
             @Override
             public void onItemClickListener(int position, View view, List<ProjectResponse.Datum> projectlist) {
-                Log.e("Selected List",""+projectlist.size());
+                Log.e("Selected List", "" + projectlist.size());
+                projectSelected = projectlist;
 //                if(projectlist.size()==0){
 //
 //                }else{
@@ -105,6 +106,7 @@ public class FragmentProject extends DialogFragment implements View.OnClickListe
                 } else {
 
                 }
+                break;
         }
     }
 }

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import iconnect.psi.com.iconnect.R;
@@ -20,10 +21,9 @@ public class MyRecyclerAdapter  extends RecyclerView.Adapter<MyRecyclerAdapter.M
     private OnClickListener mListener;
     List<ProjectResponse.Datum> projectList;
     private Context mContext;
-    List<ProjectResponse.Datum> projectCounting;
+    List<ProjectResponse.Datum> projectCounting=new ArrayList<>();
 
-    public interface OnClickListener
-    {
+    public interface OnClickListener {
         void onItemClickListener(int position, View view, List<ProjectResponse.Datum> listdOrder);
     }
 

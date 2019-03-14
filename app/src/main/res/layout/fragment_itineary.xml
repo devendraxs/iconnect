@@ -24,6 +24,7 @@
         android:text="@string/same_day_return"
         android:textColor="@color/c_dark_blue"
         android:layout_weight=".5"
+        android:id="@+id/checkboxSameday"
         android:buttonTint="@color/c_dark_blue"
         />
 
@@ -128,7 +129,6 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_40"
         android:orientation="horizontal"
-        android:background="@drawable/tv_bg"
         android:weightSum="1">
 
         <TextView
@@ -147,16 +147,27 @@
             android:layout_weight=".3"
             android:text="@string/destination"
             android:gravity="center"
+            android:id="@+id/destination"
             android:textColor="@color/c_grey"
             android:background="@drawable/tv_bg"/>
 
-        <Spinner
+      <!--  <Spinner
             android:layout_width="0dp"
             android:layout_height="@dimen/dp_40"
             android:layout_weight=".1"
             android:id="@+id/facilities"
             android:paddingRight="@dimen/dp_1"
-            android:background="@drawable/fascilities"/>
+            android:background="@drawable/fascilities"/>-->
+        <Spinner
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_marginTop="@dimen/dp_2"
+            android:layout_marginBottom="@dimen/dp_2"
+            android:paddingLeft="@dimen/dp_1"
+            android:layout_weight=".1"
+            android:paddingRight="@dimen/dp_1"
+            android:background="@drawable/plus"
+            android:id="@+id/facilities"/>
 
        <!-- <ImageView
             android:layout_width="0dp"
@@ -166,7 +177,33 @@
             android:id="@+id/facilities"
             android:src="@drawable/fascilities"/>-->
 
-        <ImageView
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".2"
+            android:id="@+id/llPlusMinus">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_40"
+                android:paddingLeft="@dimen/dp_1"
+                android:layout_weight=".1"
+                android:paddingRight="@dimen/dp_1"
+                android:src="@drawable/plus"
+                android:id="@+id/plus"/>
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_40"
+                android:layout_weight=".1"
+                android:paddingRight="@dimen/dp_1"
+                android:src="@drawable/minus"
+                android:id="@+id/minus"/>
+
+        </LinearLayout>
+
+
+
+     <!--   <ImageView
             android:layout_width="0dp"
             android:layout_height="@dimen/dp_40"
             android:paddingLeft="@dimen/dp_1"
@@ -180,7 +217,7 @@
             android:layout_weight=".1"
             android:paddingRight="@dimen/dp_1"
             android:src="@drawable/minus"
-            android:id="@+id/minus"/>
+            android:id="@+id/minus"/>-->
         <ImageView
             android:layout_width="0dp"
             android:layout_height="@dimen/dp_40"
@@ -198,6 +235,803 @@
             android:src="@drawable/via"
             android:id="@+id/via"/>
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="@dimen/dp_180"
+        android:layout_height="@dimen/dp_40"
+        android:layout_marginTop="@dimen/dp_10"
+        android:visibility="gone"
+        android:weightSum="1"
+        android:id="@+id/llReturn">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".4"
+            android:text="@string/date"
+            android:gravity="center"
+            android:id="@+id/tvDate1"
+            android:textColor="@color/c_grey"
+            android:background="@drawable/tv_bg"/>
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".6"
+            android:gravity="center"
+            android:id="@+id/end1"
+            android:textColor="@color/c_grey"
+            android:background="@drawable/tv_bg"/>
+
+    </LinearLayout>
+
+
+
+
+
+
+    ///////////////////////////////////////////////////////////////////////////
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/ll_1"
+        android:layout_marginTop="@dimen/dp_6"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:orientation="horizontal"
+        android:background="@drawable/tv_bg"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".2"
+            android:text="@string/date"
+            android:gravity="center"
+            android:id="@+id/tvDate2"
+            android:textColor="@color/c_grey"
+            android:background="@drawable/tv_bg"/>
+
+        <TextView
+            android:id="@+id/des_selection2"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".3"
+            android:text="@string/destination"
+            android:gravity="center"
+            android:textColor="@color/c_grey"
+            android:background="@drawable/tv_bg"/>
+
+        <Spinner
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".1"
+            android:id="@+id/facilities2"
+            android:paddingRight="@dimen/dp_1"
+            android:background="@drawable/fascilities" />
+
+        <!-- <ImageView
+             android:layout_width="0dp"
+             android:layout_height="@dimen/dp_40"
+             android:layout_weight=".1"
+             android:paddingRight="@dimen/dp_1"
+             android:id="@+id/facilities"
+             android:src="@drawable/fascilities"/>-->
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:paddingLeft="@dimen/dp_1"
+            android:layout_weight=".1"
+            android:paddingRight="@dimen/dp_1"
+            android:src="@drawable/plus"
+            android:id="@+id/plus2"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".1"
+            android:paddingRight="@dimen/dp_1"
+            android:src="@drawable/minus"
+            android:id="@+id/minus2"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".1"
+            android:paddingRight="@dimen/dp_1"
+            android:paddingLeft="@dimen/dp_1"
+            android:id="@+id/official2"
+            android:src="@drawable/official"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight=".1"
+            android:paddingLeft="@dimen/dp_1"
+            android:paddingRight="@dimen/dp_1"
+            android:layout_height="@dimen/dp_40"
+            android:src="@drawable/via"
+            android:id="@+id/via2"/>
+    </LinearLayout>
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/ll_2"
+        android:layout_marginTop="@dimen/dp_6"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:orientation="horizontal"
+        android:background="@drawable/tv_bg"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".2"
+            android:text="@string/date"
+            android:gravity="center"
+            android:id="@+id/tvDate3"
+            android:textColor="@color/c_grey"
+            android:background="@drawable/tv_bg"/>
+
+        <TextView
+            android:id="@+id/des_selection3"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".3"
+            android:text="@string/destination"
+            android:gravity="center"
+            android:textColor="@color/c_grey"
+            android:background="@drawable/tv_bg"/>
+
+        <Spinner
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".1"
+            android:id="@+id/facilities3"
+            android:paddingRight="@dimen/dp_1"
+            android:background="@drawable/fascilities" />
+
+        <!-- <ImageView
+             android:layout_width="0dp"
+             android:layout_height="@dimen/dp_40"
+             android:layout_weight=".1"
+             android:paddingRight="@dimen/dp_1"
+             android:id="@+id/facilities"
+             android:src="@drawable/fascilities"/>-->
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:paddingLeft="@dimen/dp_1"
+            android:layout_weight=".1"
+            android:paddingRight="@dimen/dp_1"
+            android:src="@drawable/plus"
+            android:id="@+id/plus3"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".1"
+            android:paddingRight="@dimen/dp_1"
+            android:src="@drawable/minus"
+            android:id="@+id/minus3"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".1"
+            android:paddingRight="@dimen/dp_1"
+            android:paddingLeft="@dimen/dp_1"
+            android:id="@+id/official3"
+            android:src="@drawable/official"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight=".1"
+            android:paddingLeft="@dimen/dp_1"
+            android:paddingRight="@dimen/dp_1"
+            android:layout_height="@dimen/dp_40"
+            android:src="@drawable/via"
+            android:id="@+id/via3"/>
+    </LinearLayout>
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/ll_3"
+        android:layout_marginTop="@dimen/dp_6"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:orientation="horizontal"
+        android:background="@drawable/tv_bg"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".2"
+            android:text="@string/date"
+            android:gravity="center"
+            android:id="@+id/tvDate4"
+            android:textColor="@color/c_grey"
+            android:background="@drawable/tv_bg"/>
+
+        <TextView
+            android:id="@+id/des_selection4"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".3"
+            android:text="@string/destination"
+            android:gravity="center"
+            android:textColor="@color/c_grey"
+            android:background="@drawable/tv_bg"/>
+
+        <Spinner
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".1"
+            android:id="@+id/facilities4"
+            android:paddingRight="@dimen/dp_1"
+            android:background="@drawable/fascilities" />
+
+        <!-- <ImageView
+             android:layout_width="0dp"
+             android:layout_height="@dimen/dp_40"
+             android:layout_weight=".1"
+             android:paddingRight="@dimen/dp_1"
+             android:id="@+id/facilities"
+             android:src="@drawable/fascilities"/>-->
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:paddingLeft="@dimen/dp_1"
+            android:layout_weight=".1"
+            android:paddingRight="@dimen/dp_1"
+            android:src="@drawable/plus"
+            android:id="@+id/plus4"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".1"
+            android:paddingRight="@dimen/dp_1"
+            android:src="@drawable/minus"
+            android:id="@+id/minus4"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".1"
+            android:paddingRight="@dimen/dp_1"
+            android:paddingLeft="@dimen/dp_1"
+            android:id="@+id/official4"
+            android:src="@drawable/official"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight=".1"
+            android:paddingLeft="@dimen/dp_1"
+            android:paddingRight="@dimen/dp_1"
+            android:layout_height="@dimen/dp_40"
+            android:src="@drawable/via"
+            android:id="@+id/via4"/>
+    </LinearLayout>
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/ll_4"
+        android:layout_marginTop="@dimen/dp_6"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:orientation="horizontal"
+        android:background="@drawable/tv_bg"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".2"
+            android:text="@string/date"
+            android:gravity="center"
+            android:id="@+id/tvDate5"
+            android:textColor="@color/c_grey"
+            android:background="@drawable/tv_bg"/>
+
+        <TextView
+            android:id="@+id/des_selection5"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".3"
+            android:text="@string/destination"
+            android:gravity="center"
+            android:textColor="@color/c_grey"
+            android:background="@drawable/tv_bg"/>
+
+        <Spinner
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".1"
+            android:id="@+id/facilities5"
+            android:paddingRight="@dimen/dp_1"
+            android:background="@drawable/fascilities" />
+
+        <!-- <ImageView
+             android:layout_width="0dp"
+             android:layout_height="@dimen/dp_40"
+             android:layout_weight=".1"
+             android:paddingRight="@dimen/dp_1"
+             android:id="@+id/facilities"
+             android:src="@drawable/fascilities"/>-->
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:paddingLeft="@dimen/dp_1"
+            android:layout_weight=".1"
+            android:paddingRight="@dimen/dp_1"
+            android:src="@drawable/plus"
+            android:id="@+id/plus5"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".1"
+            android:paddingRight="@dimen/dp_1"
+            android:src="@drawable/minus"
+            android:id="@+id/minus5"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".1"
+            android:paddingRight="@dimen/dp_1"
+            android:paddingLeft="@dimen/dp_1"
+            android:id="@+id/official5"
+            android:src="@drawable/official"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight=".1"
+            android:paddingLeft="@dimen/dp_1"
+            android:paddingRight="@dimen/dp_1"
+            android:layout_height="@dimen/dp_40"
+            android:src="@drawable/via"
+            android:id="@+id/via5"/>
+    </LinearLayout>
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/ll_5"
+        android:layout_marginTop="@dimen/dp_6"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:orientation="horizontal"
+        android:background="@drawable/tv_bg"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".2"
+            android:text="@string/date"
+            android:gravity="center"
+            android:id="@+id/tvDate6"
+            android:textColor="@color/c_grey"
+            android:background="@drawable/tv_bg"/>
+
+        <TextView
+            android:id="@+id/des_selection6"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".3"
+            android:text="@string/destination"
+            android:gravity="center"
+            android:textColor="@color/c_grey"
+            android:background="@drawable/tv_bg"/>
+
+        <Spinner
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".1"
+            android:id="@+id/facilities6"
+            android:paddingRight="@dimen/dp_1"
+            android:background="@drawable/fascilities" />
+
+        <!-- <ImageView
+             android:layout_width="0dp"
+             android:layout_height="@dimen/dp_40"
+             android:layout_weight=".1"
+             android:paddingRight="@dimen/dp_1"
+             android:id="@+id/facilities"
+             android:src="@drawable/fascilities"/>-->
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:paddingLeft="@dimen/dp_1"
+            android:layout_weight=".1"
+            android:paddingRight="@dimen/dp_1"
+            android:src="@drawable/plus"
+            android:id="@+id/plus6"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".1"
+            android:paddingRight="@dimen/dp_1"
+            android:src="@drawable/minus"
+            android:id="@+id/minus6"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".1"
+            android:paddingRight="@dimen/dp_1"
+            android:paddingLeft="@dimen/dp_1"
+            android:id="@+id/official6"
+            android:src="@drawable/official"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight=".1"
+            android:paddingLeft="@dimen/dp_1"
+            android:paddingRight="@dimen/dp_1"
+            android:layout_height="@dimen/dp_40"
+            android:src="@drawable/via"
+            android:id="@+id/via6"/>
+    </LinearLayout>
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/ll_6"
+        android:layout_marginTop="@dimen/dp_6"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:orientation="horizontal"
+        android:background="@drawable/tv_bg"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".2"
+            android:text="@string/date"
+            android:gravity="center"
+            android:id="@+id/tvDate7"
+            android:textColor="@color/c_grey"
+            android:background="@drawable/tv_bg"/>
+
+        <TextView
+            android:id="@+id/des_selection7"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".3"
+            android:text="@string/destination"
+            android:gravity="center"
+            android:textColor="@color/c_grey"
+            android:background="@drawable/tv_bg"/>
+
+        <Spinner
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".1"
+            android:id="@+id/facilities7"
+            android:paddingRight="@dimen/dp_1"
+            android:background="@drawable/fascilities" />
+
+        <!-- <ImageView
+             android:layout_width="0dp"
+             android:layout_height="@dimen/dp_40"
+             android:layout_weight=".1"
+             android:paddingRight="@dimen/dp_1"
+             android:id="@+id/facilities"
+             android:src="@drawable/fascilities"/>-->
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:paddingLeft="@dimen/dp_1"
+            android:layout_weight=".1"
+            android:paddingRight="@dimen/dp_1"
+            android:src="@drawable/plus"
+            android:id="@+id/plus7"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".1"
+            android:paddingRight="@dimen/dp_1"
+            android:src="@drawable/minus"
+            android:id="@+id/minus7"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".1"
+            android:paddingRight="@dimen/dp_1"
+            android:paddingLeft="@dimen/dp_1"
+            android:id="@+id/official7"
+            android:src="@drawable/official"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight=".1"
+            android:paddingLeft="@dimen/dp_1"
+            android:paddingRight="@dimen/dp_1"
+            android:layout_height="@dimen/dp_40"
+            android:src="@drawable/via"
+            android:id="@+id/via7"/>
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/ll_7"
+        android:layout_marginTop="@dimen/dp_6"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:orientation="horizontal"
+        android:background="@drawable/tv_bg"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".2"
+            android:text="@string/date"
+            android:gravity="center"
+            android:id="@+id/tvDate8"
+            android:textColor="@color/c_grey"
+            android:background="@drawable/tv_bg"/>
+
+        <TextView
+            android:id="@+id/des_selection8"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".3"
+            android:text="@string/destination"
+            android:gravity="center"
+            android:textColor="@color/c_grey"
+            android:background="@drawable/tv_bg"/>
+
+        <Spinner
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".1"
+            android:id="@+id/facilities8"
+            android:paddingRight="@dimen/dp_1"
+            android:background="@drawable/fascilities" />
+
+        <!-- <ImageView
+             android:layout_width="0dp"
+             android:layout_height="@dimen/dp_40"
+             android:layout_weight=".1"
+             android:paddingRight="@dimen/dp_1"
+             android:id="@+id/facilities"
+             android:src="@drawable/fascilities"/>-->
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:paddingLeft="@dimen/dp_1"
+            android:layout_weight=".1"
+            android:paddingRight="@dimen/dp_1"
+            android:src="@drawable/plus"
+            android:id="@+id/plus8"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".1"
+            android:paddingRight="@dimen/dp_1"
+            android:src="@drawable/minus"
+            android:id="@+id/minus8"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".1"
+            android:paddingRight="@dimen/dp_1"
+            android:paddingLeft="@dimen/dp_1"
+            android:id="@+id/official8"
+            android:src="@drawable/official"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight=".1"
+            android:paddingLeft="@dimen/dp_1"
+            android:paddingRight="@dimen/dp_1"
+            android:layout_height="@dimen/dp_40"
+            android:src="@drawable/via"
+            android:id="@+id/via8"/>
+    </LinearLayout>
+
+
+
+
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/ll_8"
+        android:layout_marginTop="@dimen/dp_6"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:orientation="horizontal"
+        android:background="@drawable/tv_bg"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".2"
+            android:text="@string/date"
+            android:gravity="center"
+            android:id="@+id/tvDate9"
+            android:textColor="@color/c_grey"
+            android:background="@drawable/tv_bg"/>
+
+        <TextView
+            android:id="@+id/des_selection9"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".3"
+            android:text="@string/destination"
+            android:gravity="center"
+            android:textColor="@color/c_grey"
+            android:background="@drawable/tv_bg"/>
+
+        <Spinner
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".1"
+            android:id="@+id/facilities9"
+            android:paddingRight="@dimen/dp_1"
+            android:background="@drawable/fascilities" />
+
+        <!-- <ImageView
+             android:layout_width="0dp"
+             android:layout_height="@dimen/dp_40"
+             android:layout_weight=".1"
+             android:paddingRight="@dimen/dp_1"
+             android:id="@+id/facilities"
+             android:src="@drawable/fascilities"/>-->
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:paddingLeft="@dimen/dp_1"
+            android:layout_weight=".1"
+            android:paddingRight="@dimen/dp_1"
+            android:src="@drawable/plus"
+            android:id="@+id/plus9"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".1"
+            android:paddingRight="@dimen/dp_1"
+            android:src="@drawable/minus"
+            android:id="@+id/minus9"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".1"
+            android:paddingRight="@dimen/dp_1"
+            android:paddingLeft="@dimen/dp_1"
+            android:id="@+id/official9"
+            android:src="@drawable/official"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight=".1"
+            android:paddingLeft="@dimen/dp_1"
+            android:paddingRight="@dimen/dp_1"
+            android:layout_height="@dimen/dp_40"
+            android:src="@drawable/via"
+            android:id="@+id/via9"/>
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/ll_9"
+        android:layout_marginTop="@dimen/dp_6"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:orientation="horizontal"
+        android:background="@drawable/tv_bg"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".2"
+            android:text="@string/date"
+            android:gravity="center"
+            android:id="@+id/tvDate10"
+            android:textColor="@color/c_grey"
+            android:background="@drawable/tv_bg"/>
+
+        <TextView
+            android:id="@+id/des_selection10"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".3"
+            android:text="@string/destination"
+            android:gravity="center"
+            android:textColor="@color/c_grey"
+            android:background="@drawable/tv_bg"/>
+
+        <Spinner
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".1"
+            android:id="@+id/facilities10"
+            android:paddingRight="@dimen/dp_1"
+            android:background="@drawable/fascilities" />
+
+        <!-- <ImageView
+             android:layout_width="0dp"
+             android:layout_height="@dimen/dp_40"
+             android:layout_weight=".1"
+             android:paddingRight="@dimen/dp_1"
+             android:id="@+id/facilities"
+             android:src="@drawable/fascilities"/>-->
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:paddingLeft="@dimen/dp_1"
+            android:layout_weight=".1"
+            android:paddingRight="@dimen/dp_1"
+            android:src="@drawable/plus"
+            android:id="@+id/plus10"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".1"
+            android:paddingRight="@dimen/dp_1"
+            android:src="@drawable/minus"
+            android:id="@+id/minus10"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".1"
+            android:paddingRight="@dimen/dp_1"
+            android:paddingLeft="@dimen/dp_1"
+            android:id="@+id/official10"
+            android:src="@drawable/official"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight=".1"
+            android:paddingLeft="@dimen/dp_1"
+            android:paddingRight="@dimen/dp_1"
+            android:layout_height="@dimen/dp_40"
+            android:src="@drawable/via"
+            android:id="@+id/via10"/>
+    </LinearLayout>
+
+
+    ///////////////////////////////////////////////////////////////////////
+
+
+    <LinearLayout
+        android:layout_gravity="right"
+        android:orientation="vertical"
+        android:weightSum=".8"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp_150">
+        <TextView
+            android:hint="start_dest"
+            android:textColor="@color/c_black"
+            android:id="@+id/tv_start"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_weight=".2"
+            android:layout_height="0dp" />
+        <TextView
+            android:hint="first_dest"
+            android:textColor="@color/c_black"
+            android:id="@+id/tv_mid1"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_weight=".2"
+            android:layout_height="0dp" />
+        <TextView
+            android:hint="second_dest"
+            android:textColor="@color/c_black"
+            android:id="@+id/tv_mid2"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_weight=".2"
+            android:layout_height="0dp" />
+        <TextView
+            android:hint="end_dest"
+            android:textColor="@color/c_black"
+            android:id="@+id/tv_dest"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_weight=".2"
+            android:layout_height="0dp" />
+    </LinearLayout>
+
 
 
     <Button
@@ -253,7 +1087,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_40"
-        android:orientation="horizontal"    >
+        android:orientation="horizontal">
 
        <!-- <TextView
             android:layout_width="wrap_content"
@@ -270,9 +1104,6 @@
             android:layout_height="@dimen/dp_40"
             android:text="@string/fascilities"
             android:layout_marginLeft="@dimen/dp_3"
-            android:layout_marginRight="@dimen/dp_3"
-            android:paddingTop="@dimen/dp_3"
-            android:paddingBottom="@dimen/dp_3"
             android:textColor="@color/c_grey"
             android:gravity="center"
             android:drawableLeft="@drawable/facilities"/>
@@ -281,23 +1112,16 @@
             android:layout_width="wrap_content"
             android:layout_height="@dimen/dp_40"
             android:text="@string/add_travel"
-            android:layout_marginLeft="@dimen/dp_3"
-            android:layout_marginRight="@dimen/dp_3"
             android:textColor="@color/c_grey"
             android:gravity="center"
             android:drawableLeft="@drawable/plus"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="@dimen/dp_40"
-            android:layout_marginRight="@dimen/dp_3"
-            android:layout_marginLeft="@dimen/dp_3"
             android:textColor="@color/c_grey"
             android:gravity="center"
             android:text="@string/remove_travel"
             android:drawableLeft="@drawable/minus"/>
-
-
-
 
     </LinearLayout>
 
@@ -306,12 +1130,9 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="@dimen/dp_40"
-            android:layout_marginRight="@dimen/dp_3"
-
             android:text="@string/personal_travel"
             android:textColor="@color/c_grey"
             android:gravity="center"
@@ -322,8 +1143,6 @@
             android:text="@string/via"
             android:textColor="@color/c_grey"
             android:gravity="center"
-            android:layout_marginLeft="@dimen/dp_3"
-
             android:drawableLeft="@drawable/via"/>
 
     </LinearLayout>
