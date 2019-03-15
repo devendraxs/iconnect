@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import java.io.ByteArrayOutputStream;
@@ -33,6 +34,7 @@ public class FragmentPurpose extends Fragment implements View.OnClickListener {
     private ImageView camera;
     private Bitmap bitmap;
     private String encodedImage=null;
+    private Button goNextPurpose;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -42,7 +44,8 @@ public class FragmentPurpose extends Fragment implements View.OnClickListener {
         camera=view.findViewById(R.id.camera);
         upload.setOnClickListener(this);
         camera.setOnClickListener(this);
-
+        goNextPurpose=view.findViewById(R.id.goNextPurpose);
+        goNextPurpose.setOnClickListener(this);
         return view;
     }
 

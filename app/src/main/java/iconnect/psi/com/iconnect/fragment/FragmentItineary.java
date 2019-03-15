@@ -21,7 +21,6 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -36,7 +35,7 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
     private LinearLayout llReturn,llPlusMinus;
     private Button itinearySave;
     ItinearyDatabase itinearyDatabase;
-    private ImageView official;
+    private ImageView official,official2,official3,official4,official5,official6,official7;
     private int day, month, year;
     private String date;
     private String getCurentDate;
@@ -48,18 +47,22 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
     ArrayList<Integer> mUserItem=new ArrayList<>();
     ArrayList<Integer> startItem=new ArrayList<>();
     ArrayList<Integer> endItem=new ArrayList<>();
-    private Spinner facilities;
+    private Spinner facilities,facilities2,facilities3,facilities4,facilities5,facilities6,facilities7;
     private TextView tv1,tv2,tv3,tv4,tv_select_dest,tv_select_dest2,tv_select_dest3,tv_select_dest4,tv_select_dest5,tv_select_dest6,tv_select_dest7;
-   private String[] name={" ", "Nothing", "Hotel", "Flight", "Flight and Hotel"};
+   private String[] name={" ", "Nothing", "Hotel", "Flight", "Flight & Hotel"};
     int[] images={R.drawable.facilities,R.drawable.new_none,R.drawable.new_hotel,R.drawable.new_flight,R.drawable.new_travel_fh};
     private CheckBox sameDayReturn;
     private List<ItinearyDatabase> passItinearyDatabase;
-    private ImageView plus,minus,via,plus2,plus3,plus4,plus5,plus6,plus7,plus8,plus9,plus10;
+    private ImageView plus,plus2,plus3,plus4,plus5,plus6,plus7;
+    private ImageView minus,minus2,minus3,minus4,minus5,minus6,minus7;
+    private ImageView via,via2,via3,via4,via5,via6,via7;
     private String emp_name,Designation,CostCenter;
     private EditText editTextDialogUserInput;
     private List<String> list_sou_des;
     private LinearLayout ll_1,ll_2,ll_3,ll_4,ll_5,ll_6,ll_7,ll_8,ll_9;
     private TextView tvDate_2,tvDate_3,tvDate_4,tvDate_5,tvDate_6,tvDate_7;
+    boolean flag=true;
+
 
    // private EditText result;
 
@@ -98,7 +101,91 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
             }
         });
 
-        return view;    }
+        SpinnerAdapter spinnerAdapter1=new iconnect.psi.com.iconnect.adapter.SpinnerAdapter(getActivity(),name,images);
+        facilities2.setAdapter(spinnerAdapter1);
+        facilities2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
+        SpinnerAdapter spinnerAdapter2=new iconnect.psi.com.iconnect.adapter.SpinnerAdapter(getActivity(),name,images);
+        facilities3.setAdapter(spinnerAdapter2);
+        facilities3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        SpinnerAdapter spinnerAdapter3=new iconnect.psi.com.iconnect.adapter.SpinnerAdapter(getActivity(),name,images);
+        facilities4.setAdapter(spinnerAdapter3);
+        facilities4.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        SpinnerAdapter spinnerAdapter4=new iconnect.psi.com.iconnect.adapter.SpinnerAdapter(getActivity(),name,images);
+        facilities5.setAdapter(spinnerAdapter4);
+        facilities5.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        SpinnerAdapter spinnerAdapter5=new iconnect.psi.com.iconnect.adapter.SpinnerAdapter(getActivity(),name,images);
+        facilities6.setAdapter(spinnerAdapter5);
+        facilities6.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        SpinnerAdapter spinnerAdapter6=new iconnect.psi.com.iconnect.adapter.SpinnerAdapter(getActivity(),name,images);
+        facilities7.setAdapter(spinnerAdapter6);
+        facilities7.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        return view;
+    }
 
     private void setViews(View view) {
 
@@ -118,35 +205,68 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
         end=view.findViewById(R.id.end);
         end.setOnClickListener(this);
         facilities=view.findViewById(R.id.facilities);
+        facilities2=view.findViewById(R.id.facilities2);
+        facilities3=view.findViewById(R.id.facilities3);
+        facilities4=view.findViewById(R.id.facilities4);
+        facilities5=view.findViewById(R.id.facilities5);
+        facilities6=view.findViewById(R.id.facilities6);
+        facilities7=view.findViewById(R.id.facilities7);
         tvDate=view.findViewById(R.id.tvDate);
         tvDate.setOnClickListener(this);
         itinearySave=view.findViewById(R.id.itinearySave);
         itinearySave.setOnClickListener(this);
         official=view.findViewById(R.id.official);
         official.setOnClickListener(this);
+
+        official2=view.findViewById(R.id.official2);
+        official2.setOnClickListener(this);
+        official3=view.findViewById(R.id.official3);
+        official3.setOnClickListener(this);
+        official4=view.findViewById(R.id.official4);
+        official4.setOnClickListener(this);
+        official5=view.findViewById(R.id.official5);
+        official5.setOnClickListener(this);
+        official6=view.findViewById(R.id.official6);
+        official6.setOnClickListener(this);
+        official7=view.findViewById(R.id.official7);
+        official7.setOnClickListener(this);
+
         plus=view.findViewById(R.id.plus);
         plus.setOnClickListener(this);
+
         plus2=view.findViewById(R.id.plus2);
         plus2.setOnClickListener(this);
+
         plus3=view.findViewById(R.id.plus3);
         plus3.setOnClickListener(this);
+
         plus4=view.findViewById(R.id.plus4);
         plus4.setOnClickListener(this);
+
         plus5=view.findViewById(R.id.plus5);
         plus5.setOnClickListener(this);
-        plus6=view.findViewById(R.id.plus5);
+
+        plus6=view.findViewById(R.id.plus6);
         plus6.setOnClickListener(this);
+
         plus7=view.findViewById(R.id.plus7);
         plus7.setOnClickListener(this);
+        minus=view.findViewById(R.id.minus);
+        minus.setOnClickListener(this);
+        minus2=view.findViewById(R.id.minus2);
+        minus2.setOnClickListener(this);
+        minus3=view.findViewById(R.id.minus3);
+        minus3.setOnClickListener(this);
+        minus4=view.findViewById(R.id.minus4);
+        minus4.setOnClickListener(this);
+        minus5=view.findViewById(R.id.minus5);
+        minus5.setOnClickListener(this);
+        minus6=view.findViewById(R.id.minus6);
+        minus6.setOnClickListener(this);
+        minus7=view.findViewById(R.id.minus7);
+        minus7.setOnClickListener(this);
 
-        plus8=view.findViewById(R.id.plus8);
-        plus8.setOnClickListener(this);
 
-        plus9=view.findViewById(R.id.plus9);
-        plus9.setOnClickListener(this);
-
-        plus10=view.findViewById(R.id.plus10);
-        plus10.setOnClickListener(this);
 
         destination=view.findViewById(R.id.destination);
         destination.setOnClickListener(this);
@@ -244,6 +364,24 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
         minus.setOnClickListener(this);
         via=view.findViewById(R.id.via);
         via.setOnClickListener(this);
+        via2=view.findViewById(R.id.via2);
+        via2.setOnClickListener(this);
+
+        via3=view.findViewById(R.id.via3);
+        via3.setOnClickListener(this);
+
+        via4=view.findViewById(R.id.via4);
+        via4.setOnClickListener(this);
+        via5=view.findViewById(R.id.via5);
+        via5.setOnClickListener(this);
+
+        via6=view.findViewById(R.id.via6);
+        via6.setOnClickListener(this);
+
+        via7=view.findViewById(R.id.via7);
+        via7.setOnClickListener(this);
+
+
     /*    facilities=view.findViewById(R.id.facilities);
         facilities.setOnClickListener(this);*/
         mActivity=(FragmentMyTravelRequest) getActivity();
@@ -481,10 +619,79 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
                 break;*/
 
             case R.id.official:
-                official.setImageResource(R.drawable.personal);
+                if (flag){
+                    official.setImageResource(R.drawable.personal);
+                    flag=false;
+                }else {
+                    official.setImageResource(R.drawable.official);
+                    flag=true;
+                }
+                break;
+
+            case R.id.official2:
+                if (flag){
+                    official2.setImageResource(R.drawable.personal);
+                    flag=false;
+                }else {
+                    official2.setImageResource(R.drawable.official);
+                    flag=true;
+                }
+                break;
+
+            case R.id.official3:
+                if (flag){
+                    official3.setImageResource(R.drawable.personal);
+                    flag=false;
+                }else {
+                    official3.setImageResource(R.drawable.official);
+                    flag=true;
+                }
+                break;
+
+            case R.id.official4:
+                if (flag){
+                    official4.setImageResource(R.drawable.personal);
+                    flag=false;
+                }else {
+                    official4.setImageResource(R.drawable.official);
+                    flag=true;
+                }
+                break;
+
+            case R.id.official5:
+                if (flag){
+                    official5.setImageResource(R.drawable.personal);
+                    flag=false;
+                }else {
+                    official5.setImageResource(R.drawable.official);
+                    flag=true;
+                }
+                break;
+
+            case R.id.official6:
+                if (flag){
+                    official6.setImageResource(R.drawable.personal);
+                    flag=false;
+                }else {
+                    official6.setImageResource(R.drawable.official);
+                    flag=true;
+                }
+                break;
+
+            case R.id.official7:
+                if (flag){
+                    official7.setImageResource(R.drawable.personal);
+                    flag=false;
+                }else {
+                    official7.setImageResource(R.drawable.official);
+                    flag=true;
+                }
+                break;
+              /*  official.setImageResource(R.drawable.personal);
                 Toast.makeText(mActivity, "This travel require special approval" +
                         "", Toast.LENGTH_SHORT).show();
-                break;
+                break;*/
+
             case R.id.itinearySave:
                 itinearyDatabase=new ItinearyDatabase();
                // itinearyDatabase.setSame_day_return(sameDayReturn.getText().toString().trim());
@@ -529,21 +736,239 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
                 // Log.e("List pro list",""+list_sou_des.size());
                 break;
 
+            case R.id.via2:
+                LayoutInflater lii3 = LayoutInflater.from(mActivity);
+                View promptsVieww2 = lii3.inflate(R.layout.edittext_dialog, null);
+                AlertDialog.Builder alertDialogBuilderr2 = new AlertDialog.Builder(mActivity);
+                alertDialogBuilderr2.setView(promptsVieww2);
+                final EditText userInputt2 =  promptsVieww2.findViewById(R.id.editTextDialogUserInput);
+                alertDialogBuilderr2.setCancelable(false).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int id)
+                    {
+
+                        list_sou_des.add(""+userInputt2.getText().toString().trim());
+                        if(list_sou_des.size()==1){
+                            tv2.setText(""+list_sou_des.get(0));
+                        }else{
+                            tv2.setText(""+list_sou_des.get(0));
+                            tv3.setText(""+list_sou_des.get(1));
+                        }
+                    }
+                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface diialog, int i) {
+                        diialog.cancel();
+                    }
+                });
+
+                AlertDialog alertDialog112=alertDialogBuilderr2.create();
+                alertDialog112.show();
+
+                tv1.setText(""+start.getText().toString().trim());
+                tv4.setText(""+end.getText().toString().trim());
+                // Log.e("List pro list",""+list_sou_des.size());
+                break;
+
+            case R.id.via3:
+                LayoutInflater lii4 = LayoutInflater.from(mActivity);
+                View promptsVieww3 = lii4.inflate(R.layout.edittext_dialog, null);
+                AlertDialog.Builder alertDialogBuilderr3 = new AlertDialog.Builder(mActivity);
+                alertDialogBuilderr3.setView(promptsVieww3);
+                final EditText userInputt3 =  promptsVieww3.findViewById(R.id.editTextDialogUserInput);
+                alertDialogBuilderr3.setCancelable(false).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int id)
+                    {
+
+                        list_sou_des.add(""+userInputt3.getText().toString().trim());
+                        if(list_sou_des.size()==1){
+                            tv2.setText(""+list_sou_des.get(0));
+                        }else{
+                            tv2.setText(""+list_sou_des.get(0));
+                            tv3.setText(""+list_sou_des.get(1));
+                        }
+                    }
+                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface diialog, int i) {
+                        diialog.cancel();
+                    }
+                });
+
+                AlertDialog alertDialog113=alertDialogBuilderr3.create();
+                alertDialog113.show();
+
+                tv1.setText(""+start.getText().toString().trim());
+                tv4.setText(""+end.getText().toString().trim());
+                // Log.e("List pro list",""+list_sou_des.size());
+                break;
 
 
-                // plus 1
+            case R.id.via4:
+                LayoutInflater lii5 = LayoutInflater.from(mActivity);
+                View promptsVieww4 = lii5.inflate(R.layout.edittext_dialog, null);
+                AlertDialog.Builder alertDialogBuilderr4 = new AlertDialog.Builder(mActivity);
+                alertDialogBuilderr4.setView(promptsVieww4);
+                final EditText userInputt4 =  promptsVieww4.findViewById(R.id.editTextDialogUserInput);
+                alertDialogBuilderr4.setCancelable(false).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int id)
+                    {
+
+                        list_sou_des.add(""+userInputt4.getText().toString().trim());
+                        if(list_sou_des.size()==1){
+                            tv2.setText(""+list_sou_des.get(0));
+                        }else{
+                            tv2.setText(""+list_sou_des.get(0));
+                            tv3.setText(""+list_sou_des.get(1));
+                        }
+                    }
+                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface diialog, int i) {
+                        diialog.cancel();
+                    }
+                });
+
+                AlertDialog alertDialog114=alertDialogBuilderr4.create();
+                alertDialog114.show();
+
+                tv1.setText(""+start.getText().toString().trim());
+                tv4.setText(""+end.getText().toString().trim());
+                // Log.e("List pro list",""+list_sou_des.size());
+                break;
+
+
+            case R.id.via5:
+                LayoutInflater lii6 = LayoutInflater.from(mActivity);
+                View promptsVieww5 = lii6.inflate(R.layout.edittext_dialog, null);
+                AlertDialog.Builder alertDialogBuilderr5 = new AlertDialog.Builder(mActivity);
+                alertDialogBuilderr5.setView(promptsVieww5);
+                final EditText userInputt5 =  promptsVieww5.findViewById(R.id.editTextDialogUserInput);
+                alertDialogBuilderr5.setCancelable(false).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int id)
+                    {
+
+                        list_sou_des.add(""+userInputt5.getText().toString().trim());
+                        if(list_sou_des.size()==1){
+                            tv2.setText(""+list_sou_des.get(0));
+                        }else{
+                            tv2.setText(""+list_sou_des.get(0));
+                            tv3.setText(""+list_sou_des.get(1));
+                        }
+                    }
+                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface diialog, int i) {
+                        diialog.cancel();
+                    }
+                });
+
+                AlertDialog alertDialog115=alertDialogBuilderr5.create();
+                alertDialog115.show();
+
+                tv1.setText(""+start.getText().toString().trim());
+                tv4.setText(""+end.getText().toString().trim());
+                // Log.e("List pro list",""+list_sou_des.size());
+                break;
+
+
+            case R.id.via6:
+                LayoutInflater lii7 = LayoutInflater.from(mActivity);
+                View promptsVieww6 = lii7.inflate(R.layout.edittext_dialog, null);
+                AlertDialog.Builder alertDialogBuilderr6 = new AlertDialog.Builder(mActivity);
+                alertDialogBuilderr6.setView(promptsVieww6);
+                final EditText userInputt6 =  promptsVieww6.findViewById(R.id.editTextDialogUserInput);
+                alertDialogBuilderr6.setCancelable(false).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int id)
+                    {
+
+                        list_sou_des.add(""+userInputt6.getText().toString().trim());
+                        if(list_sou_des.size()==1){
+                            tv2.setText(""+list_sou_des.get(0));
+                        }else{
+                            tv2.setText(""+list_sou_des.get(0));
+                            tv3.setText(""+list_sou_des.get(1));
+                        }
+                    }
+                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface diialog, int i) {
+                        diialog.cancel();
+                    }
+                });
+
+                AlertDialog alertDialog116=alertDialogBuilderr6.create();
+                alertDialog116.show();
+
+                tv1.setText(""+start.getText().toString().trim());
+                tv4.setText(""+end.getText().toString().trim());
+                // Log.e("List pro list",""+list_sou_des.size());
+                break;
+
+            case R.id.via7:
+                LayoutInflater lii8 = LayoutInflater.from(mActivity);
+                View promptsVieww7 = lii8.inflate(R.layout.edittext_dialog, null);
+                AlertDialog.Builder alertDialogBuilderr7 = new AlertDialog.Builder(mActivity);
+                alertDialogBuilderr7.setView(promptsVieww7);
+                final EditText userInputt7 =  promptsVieww7.findViewById(R.id.editTextDialogUserInput);
+                alertDialogBuilderr7.setCancelable(false).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int id)
+                    {
+
+                        list_sou_des.add(""+userInputt7.getText().toString().trim());
+                        if(list_sou_des.size()==1){
+                            tv2.setText(""+list_sou_des.get(0));
+                        }else{
+                            tv2.setText(""+list_sou_des.get(0));
+                            tv3.setText(""+list_sou_des.get(1));
+                        }
+                    }
+                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface diialog, int i) {
+                        diialog.cancel();
+                    }
+                });
+
+                AlertDialog alertDialog117=alertDialogBuilderr7.create();
+                alertDialog117.show();
+
+                tv1.setText(""+start.getText().toString().trim());
+                tv4.setText(""+end.getText().toString().trim());
+                // Log.e("List pro list",""+list_sou_des.size());
+                break;
+
+
+            // plus 1
             case R.id.plus:
 //                travelCountingPojo.setDate(tvDate.getText().toString().trim());
 //                travelCountingPojo.setDestination(tv_select_dest.getText().toString().trim());
 //                travelCountingPojo.setSpValue(facilities.getSelectedItem().toString().trim());
 //                travelCountingPojos.add(travelCountingPojo);
 //                Log.e("Travel Pojo List",""+travelCountingPojos.size());
+                String date=tvDate.getText().toString().trim();
+                String[] item=date.split("-");
+                String d1=item[0];
+                String d2=item[1];
+                String d3=item[2];
+
+                int d = Integer.parseInt(d1);
+                int m = Integer.parseInt(d2);
+                int y = Integer.parseInt(d3);
+
+                tvDate_2.setText(d+1+"-"+m+"-"+y);
                 ll_1.setVisibility(View.VISIBLE);
                 break;
 
-            case R.id.tvDate2:
-                dateDialog2();
-                break;
+         /*   case R.id.tvDate2:
+
+               // dateDialog2();
+                break;*/
             case R.id.des_selection2:
                 dialogDestination(tv_select_dest2);
                 break;
@@ -551,11 +976,14 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
             // plus 2
 
             case R.id.plus2:
-                ll_2.setVisibility(view.VISIBLE);
+
+                tvDate_3.setText((tvDate_2).getText().toString().trim());
+                ll_2.setVisibility(View.VISIBLE);
+
                 break;
-            case R.id.tvDate3:
-                dateDialog2();
-                break;
+          /*  case R.id.tvDate3:
+               // dateDialog2();
+                break;*/
             case R.id.des_selection3:
                 dialogDestination(tv_select_dest3);
                 break;
@@ -563,48 +991,74 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
 
             // plus 3
             case R.id.plus3:
+                tvDate_4.setText(tvDate_3.getText().toString().trim());
                 ll_3.setVisibility(view.VISIBLE);
                 break;
-            case R.id.tvDate4:
-                dateDialog2();
-            break;
+         /*   case R.id.tvDate4:
+                //dateDialog2();
+            break;*/
             case R.id.des_selection4:
                 dialogDestination(tv_select_dest4);
 
                 // plus 4
 
             case R.id.plus4:
+                tvDate_5.setText(tvDate_4.getText().toString().trim());
                 ll_4.setVisibility(view.VISIBLE);
                 break;
-            case R.id.tvDate5:
-                dateDialog2();
-                break;
+          /*  case R.id.tvDate5:
+               // dateDialog2();
+                break;*/
             case R.id.des_selection5:
                 dialogDestination(tv_select_dest5);
 
                 // plus 5
 
             case R.id.plus5:
+                tvDate_6.setText(tvDate_5.getText().toString().trim());
                 ll_5.setVisibility(view.VISIBLE);
                 break;
-            case R.id.tvDate6:
-                dateDialog2();
-                break;
+          /*  case R.id.tvDate6:
+               // dateDialog2();
+                break;*/
             case R.id.des_selection6:
                 dialogDestination(tv_select_dest5);
 
                 // / plus 6
 
             case R.id.plus6:
+                tvDate_7.setText(tvDate_6.getText().toString().trim());
                 ll_6.setVisibility(view.VISIBLE);
                 break;
-            case R.id.tvDate7:
-                dateDialog2();
-                break;
+           /* case R.id.tvDate7:
+               // dateDialog2();
+                break;*/
             case R.id.des_selection7:
                 dialogDestination(tv_select_dest5);
                 break;
+            case R.id.minus:
+                ll_1.setVisibility(view.GONE);
+                break;
+            case R.id.minus2:
+                ll_2.setVisibility(view.GONE);
+                break;
 
+            case R.id.minus3:
+                ll_3.setVisibility(view.GONE);
+                break;
+
+            case R.id.minus4:
+                ll_4.setVisibility(view.GONE);
+                break;
+
+            case R.id.minus5:
+                ll_5.setVisibility(view.GONE);
+                break;
+
+            case R.id.minus6:
+                ll_6.setVisibility(view.GONE);
+                break;
+/*
         // plus 7
             case R.id.plus7:
                 ll_7.setVisibility(view.VISIBLE);
@@ -614,11 +1068,11 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
                 break;
             case R.id.des_selection8:
                 dialogDestination(tv_select_dest6);
-                break;
+                break;*/
 
                 // plus 8
 
-            case R.id.plus8:
+   /*         case R.id.plus8:
                 ll_8.setVisibility(view.VISIBLE);
                 break;
             case R.id.tvDate9:
@@ -636,8 +1090,7 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
                 break;
             case R.id.des_selection10:
                 dialogDestination(tv_select_dest7);
-                break;
-
+                break;*/
         }
     }
 

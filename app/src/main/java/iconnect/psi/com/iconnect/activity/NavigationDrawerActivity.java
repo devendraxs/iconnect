@@ -146,9 +146,7 @@ public class NavigationDrawerActivity extends BaseActivity implements View.OnCli
         Fragment fragment=this.getSupportFragmentManager().findFragmentById(R.id.ll_dashboard_container_fragment);
         if (fragment instanceof FragmentUserProfile){
             finish();
-        }else if (fragment instanceof FragmentMyTravel){
-            FragmentUserProfile fragmentUserProfile=new FragmentUserProfile();
-            this.replaceFragment(this, R.id.ll_dashboard_container_fragment,fragmentUserProfile,null,false);
+
         }else if (fragment instanceof FragmentItineary){
             FragmentUserProfile fragmentUserProfile=new FragmentUserProfile();
             this.replaceFragment(this,R.id.ll_dashboard_container_fragment,fragmentUserProfile,null,false);
@@ -156,6 +154,10 @@ public class NavigationDrawerActivity extends BaseActivity implements View.OnCli
             FragmentUserProfile fragmentUserProfile=new FragmentUserProfile();
             this.replaceFragment(this,R.id.ll_dashboard_container_fragment,fragmentUserProfile,null,false);
         }else if (fragment instanceof FragmentAdvance){
+            FragmentUserProfile fragmentUserProfile=new FragmentUserProfile();
+            this.replaceFragment(this,R.id.ll_dashboard_container_fragment,fragmentUserProfile,null,false);
+        }
+        else if (fragment instanceof FragmentMyTravel){
             FragmentUserProfile fragmentUserProfile=new FragmentUserProfile();
             this.replaceFragment(this,R.id.ll_dashboard_container_fragment,fragmentUserProfile,null,false);
         }

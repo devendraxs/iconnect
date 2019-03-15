@@ -58,7 +58,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/itinearySave"
+        android:id="@+id/goNextPurpose"
         android:layout_width="@dimen/dp_100"
         android:layout_height="@dimen/dp_40"
         android:background="@drawable/button_bg"

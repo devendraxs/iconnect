@@ -11,6 +11,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import iconnect.psi.com.iconnect.R;
@@ -25,6 +26,7 @@ public class FragmentCreateNewTravelRequest extends Fragment implements TabLayou
     private NewTravelRequestAdapter newTravelRequestAdapter;
     private TextView itineary,purpose,advance,expence;
     private String emp_name,Designation,CostCenter;
+    private Button goNextPurpose,goNextItineary,goNextAdvance;
 
         @Nullable
         @Override
@@ -38,7 +40,6 @@ public class FragmentCreateNewTravelRequest extends Fragment implements TabLayou
             emp_name=bundle.getString("emp_name");
             Designation=bundle.getString("Designation");
             CostCenter=bundle.getString("CostCenter");*/
-
 
             itineary=view.findViewById(R.id.itineary);
             purpose=view.findViewById(R.id.purpose);
@@ -68,14 +69,14 @@ public class FragmentCreateNewTravelRequest extends Fragment implements TabLayou
             purpose.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    pagerNewRequest.setCurrentItem(0);
+                    pagerNewRequest.setCurrentItem(0,true);
 
                 }
             });
             itineary.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    pagerNewRequest.setCurrentItem(1);
+                    pagerNewRequest.setCurrentItem(1,true);
 
                 }
             });
@@ -83,14 +84,14 @@ public class FragmentCreateNewTravelRequest extends Fragment implements TabLayou
             advance.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    pagerNewRequest.setCurrentItem(2);
+                    pagerNewRequest.setCurrentItem(2,true);
 
                 }
             });
             expence.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    pagerNewRequest.setCurrentItem(3);
+                    pagerNewRequest.setCurrentItem(3,true);
 
 
                 }
