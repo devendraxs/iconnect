@@ -1,16 +1,13 @@
 package iconnect.psi.com.iconnect.fragment;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -18,7 +15,7 @@ import iconnect.psi.com.iconnect.R;
 import iconnect.psi.com.iconnect.adapter.NewTravelRequestAdapter;
 
 
-public class FragmentCreateNewTravelRequest extends Fragment implements TabLayout.OnTabSelectedListener {
+public class FragmentCreateNewTravelRequest extends AppCompatActivity implements FragmentPurpose.OnButtonClickListener {
 
     private TabLayout tabLayoutNewRequest;
     private ViewPager pagerNewRequest;
@@ -28,26 +25,26 @@ public class FragmentCreateNewTravelRequest extends Fragment implements TabLayou
     private String emp_name,Designation,CostCenter;
     private Button goNextPurpose,goNextItineary,goNextAdvance;
 
-        @Nullable
-        @Override
-        public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-            View view=inflater.inflate(R.layout.fragment_create_newtravel_request,container,false);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_create_newtravel_request);
 
-            pagerNewRequest =view.findViewById(R.id.pagerNewRequest);
-            mActivity= (FragmentMyTravelRequest) getActivity();
+        pagerNewRequest =findViewById(R.id.pagerNewRequest);
+            //mActivity= (FragmentMyTravelRequest) getActivity();
 
-          /*  Bundle bundle=getArguments();
-            emp_name=bundle.getString("emp_name");
-            Designation=bundle.getString("Designation");
-            CostCenter=bundle.getString("CostCenter");*/
+        Intent intent=getIntent();
+        emp_name=intent.getStringExtra("emp_name");
+        Designation=intent.getStringExtra("Designation");
+        CostCenter=intent.getStringExtra("CostCenter");
 
-            itineary=view.findViewById(R.id.itineary);
-            purpose=view.findViewById(R.id.purpose);
-            advance=view.findViewById(R.id.advance);
-            expence=view.findViewById(R.id.expence);
+            itineary=findViewById(R.id.itineary);
+            purpose=findViewById(R.id.purpose);
+            advance=findViewById(R.id.advance);
+            expence=findViewById(R.id.expence);
 
             // tabLayoutNewRequest = (TabLayout) view.findViewById(R.id.tabLayoutNewRequest);
-            pagerNewRequest=(ViewPager)view.findViewById(R.id.pagerNewRequest);
+            pagerNewRequest=(ViewPager)findViewById(R.id.pagerNewRequest);
 
        /* tabLayoutNewRequest.addTab(tabLayoutNewRequest.newTab().setText("Itineary"));
         tabLayoutNewRequest.addTab(tabLayoutNewRequest.newTab().setText("Purpose"));
@@ -64,38 +61,46 @@ public class FragmentCreateNewTravelRequest extends Fragment implements TabLayou
                 }
             });
     */
-            newTravelRequestAdapter=new  NewTravelRequestAdapter(mActivity.getSupportFragmentManager());
+            newTravelRequestAdapter=new  NewTravelRequestAdapter(getSupportFragmentManager());
             pagerNewRequest.setAdapter(newTravelRequestAdapter);
+/*
             purpose.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    pagerNewRequest.setCurrentItem(0,true);
+                    pagerNewRequest.setCurrentItem(0,false);
 
                 }
             });
+*/
+/*
             itineary.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    pagerNewRequest.setCurrentItem(1,true);
+                    pagerNewRequest.setCurrentItem(1,false);
 
                 }
             });
+*/
 
+/*
             advance.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    pagerNewRequest.setCurrentItem(2,true);
+                    pagerNewRequest.setCurrentItem(2,false);
 
                 }
             });
+*/
+/*
             expence.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    pagerNewRequest.setCurrentItem(3,true);
+                    pagerNewRequest.setCurrentItem(3,false);
 
 
                 }
             });
+*/
 
 
             pagerNewRequest.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -119,7 +124,7 @@ public class FragmentCreateNewTravelRequest extends Fragment implements TabLayou
             new setAdapterTask().execute();
 
 
-            return view;
+           // return view;
         }
 
         private void onChangeTab(int position) {
@@ -165,20 +170,21 @@ public class FragmentCreateNewTravelRequest extends Fragment implements TabLayou
             }
         }
 
-        @Override
-        public void onTabSelected(TabLayout.Tab tab) {
+
+
+    @Override
+    public void onButtonClicked(View view) {
+        int currPos=pagerNewRequest.getCurrentItem();
+        switch (view.getId()) {
+            case R.id.goNextPurpose:
+                //handle currPos is zero
+                pagerNewRequest.setCurrentItem(currPos);
+                break;
+
         }
+    }
 
-        @Override
-        public void onTabUnselected(TabLayout.Tab tab) {
-
-        }
-
-        @Override
-        public void onTabReselected(TabLayout.Tab tab) {
-
-        }
-        class setAdapterTask extends AsyncTask<Void,Void,Void> {
+    class setAdapterTask extends AsyncTask<Void,Void,Void> {
             @Override
             protected Void doInBackground(Void... voids) {
                 return null;

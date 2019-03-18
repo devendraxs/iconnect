@@ -32,10 +32,10 @@ public class FragmentMyTravelRequest extends BaseActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_mytravel_request);
 
-     /*    Intent intent=getIntent();
+        Intent intent=getIntent();
         emp_name=intent.getStringExtra("emp_name");
         Designation=intent.getStringExtra("Designation");
-        CostCenter=intent.getStringExtra("CostCenter");*/
+        CostCenter=intent.getStringExtra("CostCenter");
 
 
         toolbar =  findViewById(R.id.toolbar);
@@ -87,13 +87,15 @@ public class FragmentMyTravelRequest extends BaseActivity implements View.OnClic
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.newTravelRequest:
-                FragmentCreateNewTravelRequest fragmentCreateNewTravelRequest=new FragmentCreateNewTravelRequest();
+               // FragmentCreateNewTravelRequest fragmentCreateNewTravelRequest=new FragmentCreateNewTravelRequest();
 
-                Bundle bundle=new Bundle();
+            /*    Bundle bundle=new Bundle();
                 bundle.putString("emp_name",emp_name);
                 bundle.putString("Designation",Designation);
-                bundle.putString("CostCenter",CostCenter);
-                replaceFragment(FragmentMyTravelRequest.this,R.id.main_layout,fragmentCreateNewTravelRequest,bundle,true);
+                bundle.putString("CostCenter",CostCenter);*/
+                Intent intent=new Intent(this,FragmentCreateNewTravelRequest.class);
+                startActivity(intent);
+               // replaceFragment(FragmentMyTravelRequest.this,R.id.main_layout,fragmentCreateNewTravelRequest,bundle,true);
                // this.replaceFragment(this,R.id.ll_dashboard_container_fragment,fragmentCreateNewTravelRequest,null,false);
                 }
     }

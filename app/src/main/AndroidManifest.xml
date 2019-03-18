@@ -44,6 +44,9 @@
 
         <activity android:name=".fragment.FragmentMyTravelRequest"
             android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+
+        <activity android:name=".fragment.FragmentCreateNewTravelRequest"
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
     </application>
 
 

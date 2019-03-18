@@ -16,6 +16,7 @@ import iconnect.psi.com.iconnect.activity.NavigationDrawerActivity;
 public class FragmentMyTravel extends Fragment implements View.OnClickListener {
     private Button travelRequest,approvedRequest;
     private NavigationDrawerActivity mActivity;
+    private String emp_name,Designation,CostCenter;
 
     @Nullable
     @Override
@@ -23,6 +24,10 @@ public class FragmentMyTravel extends Fragment implements View.OnClickListener {
         View view=inflater.inflate(R.layout.fragment_mytravel,container,false);
         mActivity= (NavigationDrawerActivity)getActivity();
         setViews(view);
+        Bundle bundle=getArguments();
+        emp_name=bundle.getString("emp_name");
+        Designation=bundle.getString("Designation");
+        CostCenter=bundle.getString("CostCenter");
         return view;
     }
 
@@ -39,7 +44,13 @@ public class FragmentMyTravel extends Fragment implements View.OnClickListener {
             case R.id.travelRequest:
 //                FragmentMyTravelRequest fragmentMyTravelRequest=new FragmentMyTravelRequest();
 //                mActivity.replaceFragment(mActivity,R.id.ll_dashboard_container_fragment,fragmentMyTravelRequest,null,false);
-                startActivity(new Intent(mActivity,FragmentMyTravelRequest.class));
+
+
+                Intent intent=new Intent(mActivity,FragmentMyTravelRequest.class);
+                intent.putExtra("emp_name",emp_name);
+                intent.putExtra("Designation",Designation);
+                intent.putExtra("CostCenter",CostCenter);
+                startActivity(intent);
                 break;
             case R.id.approvedRequest:
                 FragmentApprovedTravelRequest fragmentApprovedTravelRequest=new FragmentApprovedTravelRequest();

@@ -5,4 +5,5 @@ public class AppConstant {
     public static String KEY_EMAIL = "email";
     public static String KEY_PASSWORD = "password";
     public static String KEY_MOBILE = "phone";
+    public static final String TEMP_PHOTO_FILE_NAME = "temp.jpg";
 }

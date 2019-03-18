@@ -18,7 +18,6 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -74,7 +73,7 @@ public class FragmentUserProfile extends Fragment implements View.OnClickListene
                     @Override
                     public void onClick(DialogInterface dialog, int media) {
                         if (media==0){
-                          //  Intent intent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                          // Intent intent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                             try {
                                 Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
                                 startActivityForResult(intent, CAMERA);
@@ -102,20 +101,16 @@ public class FragmentUserProfile extends Fragment implements View.OnClickListene
         try {
             if (requestCode == 1 && resultCode == getActivity().RESULT_OK) {
                 if (requestCode == FILE) {
-                    try {
-                        Uri selectedImage = data.getData();
-                        InputStream imageStream = getActivity().getContentResolver().openInputStream(selectedImage);
-                        bitmap = BitmapFactory.decodeStream(imageStream);
-                        ByteArrayOutputStream byteArrayBitmapStream = new ByteArrayOutputStream();
-                        bitmap.compress(Bitmap.CompressFormat.PNG, 0,
-                                byteArrayBitmapStream);
-                        byte[] b = byteArrayBitmapStream.toByteArray();
-                        userProfile.setImageBitmap(bitmap);
-                        encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
-
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
+                     Uri selectedImage = data.getData();
+                     InputStream imageStream = getActivity().getContentResolver().openInputStream(selectedImage);
+                     bitmap = BitmapFactory.decodeStream(imageStream);
+                     ByteArrayOutputStream byteArrayBitmapStream = new ByteArrayOutputStream();
+                     bitmap.compress(Bitmap.CompressFormat.PNG, 0,
+                             byteArrayBitmapStream);
+                     byte[] b = byteArrayBitmapStream.toByteArray();
+                    Bitmap bitmap=(Bitmap) data.getExtras().get("data");
+                    userProfile.setImageBitmap(bitmap);
+                    encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
 
                 }else {
                     try {

@@ -127,7 +127,13 @@ public class NavigationDrawerActivity extends BaseActivity implements View.OnCli
                     FragmentMyTravel fragmentMyTravel=new FragmentMyTravel();
                     manager=getSupportFragmentManager();
                     transaction=manager.beginTransaction();
-                    transaction.replace(R.id.ll_dashboard_container_fragment,fragmentMyTravel).commit();
+                    Bundle bundle=new Bundle();
+                    bundle.putString("emp_name",emp_name);
+                    bundle.putString("Designation",Designation);
+                    bundle.putString("CostCenter",CostCenter);
+
+                    replaceFragment(NavigationDrawerActivity.this,R.id.ll_dashboard_container_fragment,fragmentMyTravel,bundle,true);
+                    // transaction.replace(R.id.ll_dashboard_container_fragment,fragmentMyTravel).commit();
                     mDrawerLayout.closeDrawers();
 
                     break;

@@ -1,7 +1,9 @@
 package iconnect.psi.com.iconnect.fragment;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -35,6 +37,8 @@ public class FragmentPurpose extends Fragment implements View.OnClickListener {
     private Bitmap bitmap;
     private String encodedImage=null;
     private Button goNextPurpose;
+    private OnButtonClickListener mOnButtonClickListener;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -47,6 +51,16 @@ public class FragmentPurpose extends Fragment implements View.OnClickListener {
         goNextPurpose=view.findViewById(R.id.goNextPurpose);
         goNextPurpose.setOnClickListener(this);
         return view;
+    }
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            mOnButtonClickListener = (OnButtonClickListener)getActivity() ;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(((Activity) context).getLocalClassName()
+                    + " must implement OnButtonClickListener");
+        }
     }
 
     @Override
@@ -107,7 +121,14 @@ public class FragmentPurpose extends Fragment implements View.OnClickListener {
                     // Instruct the user to install a PDF reader here, or something
                 }
                 break;
+            case R.id.goNextPurpose:
+                mOnButtonClickListener.onButtonClicked(getView());
+
         }
+    }
+
+    interface OnButtonClickListener{
+        void onButtonClicked(View view);
 
     }
     @Override

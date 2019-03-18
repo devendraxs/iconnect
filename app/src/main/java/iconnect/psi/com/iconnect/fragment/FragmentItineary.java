@@ -951,6 +951,12 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
 //                travelCountingPojo.setSpValue(facilities.getSelectedItem().toString().trim());
 //                travelCountingPojos.add(travelCountingPojo);
 //                Log.e("Travel Pojo List",""+travelCountingPojos.size());
+
+/*                Date dt=new Date();
+                Calendar c=Calendar.getInstance();
+                c.setTime(dt);
+                c.add(Calendar.DATE,1);
+                dt=c.getTime();*/
                 String date=tvDate.getText().toString().trim();
                 String[] item=date.split("-");
                 String d1=item[0];
@@ -961,6 +967,7 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
                 int m = Integer.parseInt(d2);
                 int y = Integer.parseInt(d3);
 
+               // tvDate_2.setText(""+dt);
                 tvDate_2.setText(d+1+"-"+m+"-"+y);
                 ll_1.setVisibility(View.VISIBLE);
                 break;
@@ -1259,6 +1266,27 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
         datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis()-1000);
         datePickerDialog.show();
     }
+
     }
+/*
+     class Text{
+         public static void main(String[] args) {
+            */
+/* String str="2019-03-20";
+             Date dt=new Date(str);
+             Calendar c=Calendar.getInstance(TimeZone.getTimeZone(""+dt));
+             c.add();*//*
+
+             LocalDate lastAprilDay = LocalDate.of(2014, Month.APRIL, 30);
+             System.out.println("last april day: " + lastAprilDay);
+             LocalDate firstMay = lastAprilDay.plusDays(1);
+             System.out.println("should be first may day: " + firstMay);
+             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd");
+             String formatDate = formatter.format(firstMay);
+             System.out.println("formatted date: " + formatDate);
+
+         }
+     }
+*/
 
 
