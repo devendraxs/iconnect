@@ -115,7 +115,6 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
             }
         });
 
-
         SpinnerAdapter spinnerAdapter2=new iconnect.psi.com.iconnect.adapter.SpinnerAdapter(getActivity(),name,images);
         facilities3.setAdapter(spinnerAdapter2);
         facilities3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -384,9 +383,9 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
 
     /*    facilities=view.findViewById(R.id.facilities);
         facilities.setOnClickListener(this);*/
-        mActivity=(FragmentMyTravelRequest) getActivity();
+       // mActivity=(FragmentMyTravelRequest) getActivity();
 
-        mActivity.newTravelRequest.setVisibility(View.GONE);
+       // mActivity.newTravelRequest.setVisibility(View.GONE);
 
        // start=view.findViewById(R.id.start);
         end=view.findViewById(R.id.end);

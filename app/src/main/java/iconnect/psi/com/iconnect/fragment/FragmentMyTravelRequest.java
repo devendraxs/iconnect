@@ -31,17 +31,16 @@ public class FragmentMyTravelRequest extends BaseActivity implements View.OnClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_mytravel_request);
+       // onBackPressed();
 
-        Intent intent=getIntent();
+     /*   Intent intent=getIntent();
         emp_name=intent.getStringExtra("emp_name");
         Designation=intent.getStringExtra("Designation");
-        CostCenter=intent.getStringExtra("CostCenter");
-
+        CostCenter=intent.getStringExtra("CostCenter");*/
 
         toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
         viewPager =  findViewById(R.id.viewpager);
         setupViewPager(viewPager);
@@ -54,8 +53,6 @@ public class FragmentMyTravelRequest extends BaseActivity implements View.OnClic
         tabLayout.setupWithViewPager(viewPager);
         setupTabIcons();
     }
-
-
 
         private void setupTabIcons(){
             int[] tabIcons = {R.drawable.save,

@@ -14,6 +14,10 @@ import iconnect.psi.com.iconnect.R;
 import iconnect.psi.com.iconnect.model.NavigationModel;
 
 public class DrawerItemNavigationAdapter extends ArrayAdapter<NavigationModel> {
+
+
+
+
     private Context mContext;
     private int layoutResourceId;
     private NavigationModel data[] = null;

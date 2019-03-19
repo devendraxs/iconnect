@@ -37,7 +37,7 @@
         android:layout_weight="1"
         android:textColor="@color/white"/>
     <TextView
-        android:id="@+id/expence"
+        android:id="@+id/summary"
         android:layout_width="0dp"
         android:layout_height="@dimen/dp_50"
         android:text="@string/summary"

@@ -166,7 +166,7 @@
             android:paddingLeft="@dimen/dp_1"
             android:layout_weight=".1"
             android:paddingRight="@dimen/dp_1"
-            android:background="@drawable/plus"
+            android:background="@drawable/facilities"
             android:id="@+id/facilities"/>
 
        <!-- <ImageView
@@ -1043,7 +1043,7 @@
         android:layout_gravity="center|right"
         android:layout_marginRight="@dimen/dp_6"
         android:paddingRight="@dimen/dp_10"
-        android:layout_marginTop="@dimen/dp_200"/>
+        android:layout_marginTop="@dimen/dp_50"/>
 
 <!--
     <LinearLayout

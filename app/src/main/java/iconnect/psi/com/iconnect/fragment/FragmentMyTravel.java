@@ -47,15 +47,17 @@ public class FragmentMyTravel extends Fragment implements View.OnClickListener {
 
 
                 Intent intent=new Intent(mActivity,FragmentMyTravelRequest.class);
-                intent.putExtra("emp_name",emp_name);
+              /*  intent.putExtra("emp_name",emp_name);
                 intent.putExtra("Designation",Designation);
-                intent.putExtra("CostCenter",CostCenter);
+                intent.putExtra("CostCenter",CostCenter);*/
                 startActivity(intent);
                 break;
+/*
             case R.id.approvedRequest:
                 FragmentApprovedTravelRequest fragmentApprovedTravelRequest=new FragmentApprovedTravelRequest();
                 mActivity.replaceFragment(mActivity,R.id.ll_dashboard_container_fragment,fragmentApprovedTravelRequest,null,false);
                 break;
+*/
 
         }
 

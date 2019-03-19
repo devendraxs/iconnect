@@ -60,7 +60,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                 }
                 break;
         }
-
     }
 
     private void sendLoginData(String username, String password) {
@@ -80,7 +79,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                     Intent intent = new Intent(LoginActivity.this, NavigationDrawerActivity.class);
                     intent.putExtra("emp_name", response.body().getData().getEmpName());
                     intent.putExtra("Designation", response.body().getData().getDesignation());
-
                     intent.putExtra("CostCenter", response.body().getData().getCostCenter());
                     startActivity(intent);
                 }

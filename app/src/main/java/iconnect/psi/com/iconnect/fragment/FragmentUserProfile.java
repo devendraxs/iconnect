@@ -37,7 +37,6 @@ public class FragmentUserProfile extends Fragment implements View.OnClickListene
         super.onCreateOptionsMenu(menu, inflater);
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -47,7 +46,6 @@ public class FragmentUserProfile extends Fragment implements View.OnClickListene
         name=view.findViewById(R.id.name);
         designation=view.findViewById(R.id.designation);
         headQ=view.findViewById(R.id.headQ);
-
 
         Bundle bundle=getArguments();
         emp_name=bundle.getString("emp_name");

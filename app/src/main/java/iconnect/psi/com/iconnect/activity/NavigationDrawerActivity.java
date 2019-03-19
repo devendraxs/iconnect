@@ -20,12 +20,17 @@ import iconnect.psi.com.iconnect.R;
 import iconnect.psi.com.iconnect.adapter.DrawerItemNavigationAdapter;
 import iconnect.psi.com.iconnect.fragment.FragmentAdvance;
 import iconnect.psi.com.iconnect.fragment.FragmentItineary;
+import iconnect.psi.com.iconnect.fragment.FragmentMission;
 import iconnect.psi.com.iconnect.fragment.FragmentMyTravel;
 import iconnect.psi.com.iconnect.fragment.FragmentPurpose;
 import iconnect.psi.com.iconnect.fragment.FragmentUserProfile;
+import iconnect.psi.com.iconnect.fragment.FragmentValue;
+import iconnect.psi.com.iconnect.fragment.FragmentVission;
 import iconnect.psi.com.iconnect.model.NavigationModel;
 
-public class NavigationDrawerActivity extends BaseActivity implements View.OnClickListener  {
+public class NavigationDrawerActivity extends BaseActivity implements View.OnClickListener
+{
+
     private String[] mNavigationDrawerItemTitle;
     private ListView mDrawerList;
     public DrawerLayout mDrawerLayout;
@@ -39,6 +44,7 @@ public class NavigationDrawerActivity extends BaseActivity implements View.OnCli
     private LinearLayout llLeftDrawer;
     private MainActivity mActivity;
     private ExpandableListView mExpandableListView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,11 +62,13 @@ public class NavigationDrawerActivity extends BaseActivity implements View.OnCli
         mDrawerList = findViewById(R.id.left_drawer);
         llLeftDrawer = findViewById(R.id.ll_left_drawer);
 
-        NavigationModel[] navigationDrawer = new NavigationModel[4];
+        NavigationModel[] navigationDrawer = new NavigationModel[6];
         navigationDrawer[0]  = new NavigationModel(R.drawable.ic_profile, mNavigationDrawerItemTitle[0]);
         navigationDrawer[1]  = new NavigationModel(R.drawable.ic_profile, mNavigationDrawerItemTitle[1]);
         navigationDrawer[2]  = new NavigationModel(R.drawable.ic_profile, mNavigationDrawerItemTitle[2]);
         navigationDrawer[3]  = new NavigationModel(R.drawable.ic_profile, mNavigationDrawerItemTitle[3]);
+        navigationDrawer[4]  = new NavigationModel(R.drawable.ic_profile, mNavigationDrawerItemTitle[4]);
+        navigationDrawer[5]  = new NavigationModel(R.drawable.ic_profile, mNavigationDrawerItemTitle[5]);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         DrawerItemNavigationAdapter navigationAdapter=new DrawerItemNavigationAdapter(this,R.layout.nav_list_row,navigationDrawer);
@@ -86,9 +94,7 @@ public class NavigationDrawerActivity extends BaseActivity implements View.OnCli
         bundle.putString("Designation",Designation);
         bundle.putString("CostCenter",CostCenter);
         replaceFragment(NavigationDrawerActivity.this,R.id.ll_dashboard_container_fragment,fragmentUserProfile,bundle,true);
-
     }
-
     private void setUpToolbar() {
         mToolbar = findViewById(R.id.toolbar);
         ivLogo = mToolbar.findViewById(R.id.iv_logo);
@@ -96,19 +102,15 @@ public class NavigationDrawerActivity extends BaseActivity implements View.OnCli
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
-
     @Override
     public void onClick(View view) {
-
     }
 
     private class DrawerItemClickListener implements android.widget.AdapterView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             selectItem(position);
-
         }
-
         private void selectItem(int position) {
             Fragment fragment=null;
             FragmentManager manager=null;
@@ -120,10 +122,29 @@ public class NavigationDrawerActivity extends BaseActivity implements View.OnCli
 
                     break;
                 case 1:
+                    FragmentMission fragmentMission=new FragmentMission();
+                    manager=getSupportFragmentManager();
+                    transaction=manager.beginTransaction();
+                    replaceFragment(NavigationDrawerActivity.this,R.id.ll_dashboard_container_fragment,fragmentMission,null,true);
+                    mDrawerLayout.closeDrawers();
 
                     break;
-
                 case 2:
+                    FragmentVission fragmentVission=new FragmentVission();
+                    manager=getSupportFragmentManager();
+                    transaction=manager.beginTransaction();
+                    replaceFragment(NavigationDrawerActivity.this,R.id.ll_dashboard_container_fragment,fragmentVission,null,true);
+                    mDrawerLayout.closeDrawers();
+                    break;
+                case 3:
+                    FragmentValue fragmentValue=new FragmentValue();
+                    manager=getSupportFragmentManager();
+                    transaction=manager.beginTransaction();
+                    replaceFragment(NavigationDrawerActivity.this,R.id.ll_dashboard_container_fragment,fragmentValue,null,false);
+                    mDrawerLayout.closeDrawers();
+                    break;
+
+                case 4:
                     FragmentMyTravel fragmentMyTravel=new FragmentMyTravel();
                     manager=getSupportFragmentManager();
                     transaction=manager.beginTransaction();
@@ -131,17 +152,18 @@ public class NavigationDrawerActivity extends BaseActivity implements View.OnCli
                     bundle.putString("emp_name",emp_name);
                     bundle.putString("Designation",Designation);
                     bundle.putString("CostCenter",CostCenter);
-
                     replaceFragment(NavigationDrawerActivity.this,R.id.ll_dashboard_container_fragment,fragmentMyTravel,bundle,true);
                     // transaction.replace(R.id.ll_dashboard_container_fragment,fragmentMyTravel).commit();
                     mDrawerLayout.closeDrawers();
-
                     break;
-                case 3:
+
+                case 5:
                     signOut();
                     break;
             }
         }
+
+
     }
     private void signOut() {
         startActivity(new Intent(this,LoginActivity.class));
@@ -163,10 +185,12 @@ public class NavigationDrawerActivity extends BaseActivity implements View.OnCli
             FragmentUserProfile fragmentUserProfile=new FragmentUserProfile();
             this.replaceFragment(this,R.id.ll_dashboard_container_fragment,fragmentUserProfile,null,false);
         }
-        else if (fragment instanceof FragmentMyTravel){
+       /* else if (fragment instanceof FragmentMyTravel){
             FragmentUserProfile fragmentUserProfile=new FragmentUserProfile();
             this.replaceFragment(this,R.id.ll_dashboard_container_fragment,fragmentUserProfile,null,false);
-        }
+        }*/
         super.onBackPressed();
     }
 }
+
+

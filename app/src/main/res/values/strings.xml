@@ -87,7 +87,10 @@
 
     <string-array name="navigation_drawer_items_array">
         <item>My Profile</item>
-        <item>Know PSI</item>
+        <item>Our Mission</item>
+        <item>Our Vision</item>
+        <item>Our Value</item>
+        <!--<item>Know PSI</item>-->
         <item>My Travel</item>
         <item>SignOut</item>
     </string-array>

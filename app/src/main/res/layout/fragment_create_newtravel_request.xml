@@ -3,10 +3,10 @@
     android:id="@+id/main_layout"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent">
+
 
     <include layout="@layout/tab_bar"/>
 
@@ -22,43 +22,69 @@
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
     -->
 
-<!--
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
-
-        &lt;!&ndash; our tablayout to display tabs  &ndash;&gt;
-&lt;!&ndash;
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tabLayoutNewRequest"
+    <!--
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_40"
-            android:background="@color/c_blue"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
-&ndash;&gt;
-
-        &lt;!&ndash; View pager to swipe views &ndash;&gt;
-        <android.support.v4.view.ViewPager
-            android:id="@+id/pagerNewRequest"
-            android:layout_width="match_parent"
-            android:background="@color/white"
             android:layout_height="match_parent"
-           />
+            android:orientation="vertical"
+            >
+
+            &lt;!&ndash; our tablayout to display tabs  &ndash;&gt;
+    &lt;!&ndash;
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tabLayoutNewRequest"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_40"
+                android:background="@color/c_blue"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    &ndash;&gt;
+
+            &lt;!&ndash; View pager to swipe views &ndash;&gt;
+            <android.support.v4.view.ViewPager
+                android:id="@+id/pagerNewRequest"
+                android:layout_width="match_parent"
+                android:background="@color/white"
+                android:layout_height="match_parent"
+               />
 
 
-    </LinearLayout>
--->
+        </LinearLayout>
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/pagerNewRequest"
+
+    -->
+    <!-- <LinearLayout
+         android:fitsSystemWindows="true"
+         android:id="@+id/ll_dashboard_container_fragment"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:orientation="vertical" >
+
+     </LinearLayout>-->
+    <ViewFlipper
+        android:id="@+id/viewflipper"
         android:layout_width="match_parent"
-        android:background="@color/white"
         android:layout_height="match_parent"
-         />
+        >
+        <include
+            layout="@layout/fragment_purpose">
+        </include>
+        <include
+            layout="@layout/fragment_itineary">
+        </include>
+        <include
+            layout="@layout/fragment_advance">
+        </include>
+        <include
+            layout="@layout/fragment_expenses">
+        </include>
 
+    </ViewFlipper>
 
-
+    <!--  <android.support.v4.view.ViewPager
+          android:id="@+id/pagerNewRequest"
+          android:layout_width="match_parent"
+          android:background="@color/white"
+          android:layout_height="match_parent"
+           />-->
 </LinearLayout>
