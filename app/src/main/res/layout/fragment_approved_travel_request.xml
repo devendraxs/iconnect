@@ -1,6 +1,213 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/dp_20"
+    android:paddingRight="@dimen/dp_20"
+  android:paddingTop="@dimen/dp_20">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".5"
+            android:text="Name"
+            android:textColor="@color/c_blue"/>
 
-</android.support.constraint.ConstraintLayout>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".5"
+            android:text="name"
+            android:textColor="@color/c_blue"/>
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            >
+        <TextView
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_40"
+        android:layout_weight=".5"
+        android:text="Purpose"
+            android:textColor="@color/c_blue"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".5"
+            android:text="meeting"
+            android:textColor="@color/c_blue"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".5"
+            android:text="Start Date"
+            android:textColor="@color/c_blue"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".5"
+            android:text="25/03/19"
+            android:textColor="@color/c_blue"/>
+    </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".5"
+            android:text="End Date"
+            android:textColor="@color/c_blue"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".5"
+            android:text="25/03/19"
+            android:textColor="@color/c_blue"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".5"
+            android:text="Project Name"
+            android:textColor="@color/c_blue"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".5"
+            android:text="xyz"
+            android:textColor="@color/c_blue"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".5"
+            android:text="Location"
+            android:textColor="@color/c_blue"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".5"
+            android:text="Lucknow"
+            android:textColor="@color/c_blue"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".5"
+            android:text="Amount"
+            android:textColor="@color/c_blue"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight=".5"
+            android:text="800"
+            android:textColor="@color/c_blue"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            >
+
+          <RadioGroup
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal"
+              android:id="@+id/rgGroup">
+              <RadioButton
+                  android:layout_width="0dp"
+                  android:layout_height="@dimen/dp_40"
+                  android:buttonTint="@color/c_blue"
+                  android:text="Accept"
+                  android:textColor="@color/c_blue"
+                  android:layout_weight=".5"
+                  android:id="@+id/accept"
+                  />
+
+              <RadioButton
+                  android:layout_width="0dp"
+                  android:layout_height="@dimen/dp_40"
+                  android:buttonTint="@color/c_blue"
+                  android:text="Reject"
+                  android:textColor="@color/c_blue"
+                  android:layout_weight=".5"
+                  android:id="@+id/reject"/>
+          </RadioGroup>
+        </LinearLayout>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_70"
+        android:hint="Please enter comment"
+        android:id="@+id/comment"
+        android:background="@drawable/edit_bg"
+        android:textColorHint="@color/c_blue"
+        android:textColor="@color/c_blue"
+        android:visibility="gone"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OK"
+        android:background="@color/color_button"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dp_20"
+        />
+
+    </LinearLayout>

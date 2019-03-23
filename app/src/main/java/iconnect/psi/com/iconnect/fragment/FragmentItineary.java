@@ -28,6 +28,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import iconnect.psi.com.iconnect.R;
+import iconnect.psi.com.iconnect.activity.MyTravelRequestActivity;
 import iconnect.psi.com.iconnect.model.ItinearyDatabase;
 
 public class FragmentItineary extends Fragment implements View.OnClickListener {
@@ -42,7 +43,7 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
     private String date1;
     private TextView start,end,destination,end1;
     private String[] listItems,startList,endList;
-    private FragmentMyTravelRequest mActivity;
+    private MyTravelRequestActivity mActivity;
     boolean[] checkedItem;
     ArrayList<Integer> mUserItem=new ArrayList<>();
     ArrayList<Integer> startItem=new ArrayList<>();
@@ -190,8 +191,8 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
 
         final  CheckBox checkboxSameday=view.findViewById(R.id.checkboxSameday);
         llPlusMinus=view.findViewById(R.id.llPlusMinus);
-        tvDate1=view.findViewById(R.id.tvDate1);
-        end1=view.findViewById(R.id.end1);
+       // tvDate1=view.findViewById(R.id.tvDate1);
+       // end1=view.findViewById(R.id.end1);
         tv1=view.findViewById(R.id.tv_start);
         tv2=view.findViewById(R.id.tv_mid1);
         tv3=view.findViewById(R.id.tv_mid2);
@@ -250,8 +251,8 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
 
         plus7=view.findViewById(R.id.plus7);
         plus7.setOnClickListener(this);
-        minus=view.findViewById(R.id.minus);
-        minus.setOnClickListener(this);
+       /* minus=view.findViewById(R.id.minus);*/
+      /*  minus.setOnClickListener(this);*/
         minus2=view.findViewById(R.id.minus2);
         minus2.setOnClickListener(this);
         minus3=view.findViewById(R.id.minus3);
@@ -270,7 +271,7 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
         destination=view.findViewById(R.id.destination);
         destination.setOnClickListener(this);
         editTextDialogUserInput=view.findViewById(R.id.editTextDialogUserInput);
-        llReturn=view.findViewById(R.id.llReturn);
+       // llReturn=view.findViewById(R.id.llReturn);
 
         ll_1=view.findViewById(R.id.ll_1);
         ll_2=view.findViewById(R.id.ll_2);
@@ -359,7 +360,7 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
        // button =view.findViewById(R.id.editTextDialogUserInput);
       //  result =view.findViewById(R.id.editTextDialogUserInput);
 
-        minus=view.findViewById(R.id.minus);
+       /* minus=view.findViewById(R.id.minus);*/
         minus.setOnClickListener(this);
         via=view.findViewById(R.id.via);
         via.setOnClickListener(this);
@@ -383,7 +384,7 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
 
     /*    facilities=view.findViewById(R.id.facilities);
         facilities.setOnClickListener(this);*/
-       // mActivity=(FragmentMyTravelRequest) getActivity();
+       // mActivity=(MyTravelRequestActivity) getActivity();
 
        // mActivity.newTravelRequest.setVisibility(View.GONE);
 
@@ -1042,9 +1043,9 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
             case R.id.des_selection7:
                 dialogDestination(tv_select_dest5);
                 break;
-            case R.id.minus:
+            /*case R.id.minus:
                 ll_1.setVisibility(view.GONE);
-                break;
+                break;*/
             case R.id.minus2:
                 ll_2.setVisibility(view.GONE);
                 break;

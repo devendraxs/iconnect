@@ -91,7 +91,6 @@ public class FragmentUserProfile extends Fragment implements View.OnClickListene
                 final AlertDialog dialog=builder.create();
                 dialog.show();
         }
-
     }
 
     @Override

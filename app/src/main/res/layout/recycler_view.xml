@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:weightSum="1">
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="TId"
+        android:id="@+id/tId"
+        android:textColor="@color/c_blue"
+        android:layout_weight=".1" />
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="From date"
+        android:id="@+id/fDate"
+        android:textColor="@color/c_blue"
+        android:layout_weight=".2" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="To date"
+        android:id="@+id/tDate"
+        android:textColor="@color/c_blue"
+        android:layout_weight=".2" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:textColor="@color/c_blue"
+        android:id="@+id/name"
+        android:layout_weight=".2" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Route"
+        android:textColor="@color/c_blue"
+        android:id="@+id/route"
+        android:layout_weight=".2"
+        />
+
+</LinearLayout>

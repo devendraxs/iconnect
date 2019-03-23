@@ -185,6 +185,10 @@ public class NavigationDrawerActivity extends BaseActivity implements View.OnCli
             FragmentUserProfile fragmentUserProfile=new FragmentUserProfile();
             this.replaceFragment(this,R.id.ll_dashboard_container_fragment,fragmentUserProfile,null,false);
         }
+        else if (fragment instanceof FragmentMyTravel){
+            FragmentUserProfile fragmentUserProfile=new FragmentUserProfile();
+            this.replaceFragment(this,R.id.ll_dashboard_container_fragment,fragmentUserProfile,null,false);
+        }
        /* else if (fragment instanceof FragmentMyTravel){
             FragmentUserProfile fragmentUserProfile=new FragmentUserProfile();
             this.replaceFragment(this,R.id.ll_dashboard_container_fragment,fragmentUserProfile,null,false);

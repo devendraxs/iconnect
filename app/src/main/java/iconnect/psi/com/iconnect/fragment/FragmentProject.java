@@ -29,6 +29,7 @@ public class FragmentProject extends DialogFragment implements View.OnClickListe
     private Button cancle,ok;
     private List<ProjectResponse.Datum> projectSelected=new ArrayList<ProjectResponse.Datum>();
     private List<ProjectResponse.Datum> projectName=new ArrayList<ProjectResponse.Datum>();
+    
 
 
     @Override

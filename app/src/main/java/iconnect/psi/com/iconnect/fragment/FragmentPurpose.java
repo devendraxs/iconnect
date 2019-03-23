@@ -39,6 +39,7 @@ public class FragmentPurpose extends Fragment implements View.OnClickListener {
     private Button goNextPurpose;
     private OnButtonClickListener mOnButtonClickListener;
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

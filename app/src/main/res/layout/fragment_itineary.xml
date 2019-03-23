@@ -39,7 +39,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="@dimen/dp_10"
-                android:weightSum="1">
+                android:weightSum="1"
+                android:id="@+id/startEnd">
 
 <!--
             <TextView
@@ -55,7 +56,7 @@
                     android:id="@+id/start"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dp_30"
-                    android:text="Start: Delhi"
+
                     android:gravity="center"
                     android:layout_weight="1"
                     android:textColor="@color/c_grey"
@@ -86,7 +87,6 @@
                     android:id="@+id/end"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dp_30"
-                    android:text="End: Delhi"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:background="@drawable/tv_bg"
@@ -191,13 +191,13 @@
                 android:paddingRight="@dimen/dp_1"
                 android:src="@drawable/plus"
                 android:id="@+id/plus"/>
-            <ImageView
+            <!--<ImageView
                 android:layout_width="0dp"
                 android:layout_height="@dimen/dp_40"
                 android:layout_weight=".1"
                 android:paddingRight="@dimen/dp_1"
                 android:src="@drawable/minus"
-                android:id="@+id/minus"/>
+                android:id="@+id/minus"/>-->
 
         </LinearLayout>
 
@@ -236,6 +236,7 @@
             android:id="@+id/via"/>
     </LinearLayout>
 
+<!--
     <LinearLayout
         android:layout_width="@dimen/dp_180"
         android:layout_height="@dimen/dp_40"
@@ -265,6 +266,7 @@
             android:background="@drawable/tv_bg"/>
 
     </LinearLayout>
+-->
 
 
 
@@ -1032,18 +1034,37 @@
             android:layout_height="0dp" />
     </LinearLayout>
 
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:weightSum="1">
 
     <Button
+        android:id="@+id/itinearyPrevious"
+        android:layout_width="0dp"
+        android:layout_weight=".5"
+        android:layout_height="@dimen/dp_40"
+        android:background="@drawable/button_bg"
+        android:text="@string/previous"
+        android:layout_marginRight="@dimen/dp_30"
+        android:layout_marginLeft="@dimen/dp_30"
+        android:paddingRight="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_50"/>
+    <Button
         android:id="@+id/itinearySave"
-        android:layout_width="@dimen/dp_100"
+        android:layout_width="0dp"
+        android:layout_weight=".5"
         android:layout_height="@dimen/dp_40"
         android:background="@drawable/button_bg"
         android:text="@string/go_next"
-        android:layout_gravity="center|right"
-        android:layout_marginRight="@dimen/dp_6"
+        android:layout_marginRight="@dimen/dp_30"
+        android:layout_marginLeft="@dimen/dp_30"
         android:paddingRight="@dimen/dp_10"
-        android:layout_marginTop="@dimen/dp_50"/>
+        android:layout_marginTop="@dimen/dp_50"
+        />
+
+</LinearLayout>
 
 <!--
     <LinearLayout

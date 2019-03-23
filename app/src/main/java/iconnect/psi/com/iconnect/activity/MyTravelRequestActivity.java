@@ -1,4 +1,4 @@
-package iconnect.psi.com.iconnect.fragment;
+package iconnect.psi.com.iconnect.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,10 +15,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import iconnect.psi.com.iconnect.R;
-import iconnect.psi.com.iconnect.activity.BaseActivity;
-import iconnect.psi.com.iconnect.activity.NavigationDrawerActivity;
+import iconnect.psi.com.iconnect.fragment.FragmentApproved;
+import iconnect.psi.com.iconnect.fragment.FragmentComplete;
+import iconnect.psi.com.iconnect.fragment.FragmentReject;
+import iconnect.psi.com.iconnect.fragment.FragmentSave;
+import iconnect.psi.com.iconnect.fragment.FragmentSubmit;
 
-public class FragmentMyTravelRequest extends BaseActivity implements View.OnClickListener {
+public class MyTravelRequestActivity extends BaseActivity implements View.OnClickListener {
     //This is our tablayout
     private Toolbar toolbar;
     private TabLayout tabLayout;
@@ -30,13 +33,12 @@ public class FragmentMyTravelRequest extends BaseActivity implements View.OnClic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_mytravel_request);
-       // onBackPressed();
+        setContentView(R.layout.mytravel_request_activity);
 
-     /*   Intent intent=getIntent();
+        Intent intent=getIntent();
         emp_name=intent.getStringExtra("emp_name");
         Designation=intent.getStringExtra("Designation");
-        CostCenter=intent.getStringExtra("CostCenter");*/
+        CostCenter=intent.getStringExtra("CostCenter");
 
         toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -60,9 +62,7 @@ public class FragmentMyTravelRequest extends BaseActivity implements View.OnClic
                     R.drawable.thumb_down,
                     R.drawable.thumbs_up,
                     R.drawable.complete
-
             };
-
             tabLayout.getTabAt(0).setIcon(tabIcons[0]);
             tabLayout.getTabAt(1).setIcon(tabIcons[1]);
             tabLayout.getTabAt(2).setIcon(tabIcons[2]);
@@ -84,16 +84,12 @@ public class FragmentMyTravelRequest extends BaseActivity implements View.OnClic
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.newTravelRequest:
-               // FragmentCreateNewTravelRequest fragmentCreateNewTravelRequest=new FragmentCreateNewTravelRequest();
 
-            /*    Bundle bundle=new Bundle();
-                bundle.putString("emp_name",emp_name);
-                bundle.putString("Designation",Designation);
-                bundle.putString("CostCenter",CostCenter);*/
-                Intent intent=new Intent(this,FragmentCreateNewTravelRequest.class);
+                Intent intent=new Intent(this,CreateNewTravelRequestActivity.class);
+                intent.putExtra("emp_name",emp_name);
+                intent.putExtra("Designation",Designation);
+                intent.putExtra("CostCenter",CostCenter);
                 startActivity(intent);
-               // replaceFragment(FragmentMyTravelRequest.this,R.id.main_layout,fragmentCreateNewTravelRequest,bundle,true);
-               // this.replaceFragment(this,R.id.ll_dashboard_container_fragment,fragmentCreateNewTravelRequest,null,false);
                 }
     }
 
@@ -154,7 +150,7 @@ public class FragmentMyTravelRequest extends BaseActivity implements View.OnClic
         newTravelRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              FragmentCreateNewTravelRequest fragmentCreateNewTravelRequest=new FragmentCreateNewTravelRequest();
+              CreateNewTravelRequestActivity fragmentCreateNewTravelRequest=new CreateNewTravelRequestActivity();
               mActivity.replaceFragment(mActivity,R.id.ll_dashboard_container_fragment,fragmentCreateNewTravelRequest,null,false);
 
 

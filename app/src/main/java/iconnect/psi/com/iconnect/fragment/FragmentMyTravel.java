@@ -11,10 +11,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import iconnect.psi.com.iconnect.R;
+import iconnect.psi.com.iconnect.activity.MyTravelRequestActivity;
 import iconnect.psi.com.iconnect.activity.NavigationDrawerActivity;
 
 public class FragmentMyTravel extends Fragment implements View.OnClickListener {
-    private Button travelRequest,approvedRequest;
+    private Button travelRequest,pendingRequest;
     private NavigationDrawerActivity mActivity;
     private String emp_name,Designation,CostCenter;
 
@@ -33,31 +34,28 @@ public class FragmentMyTravel extends Fragment implements View.OnClickListener {
 
     private void setViews(View view) {
         travelRequest=view.findViewById(R.id.travelRequest);
-        approvedRequest=view.findViewById(R.id.approvedRequest);
+        pendingRequest=view.findViewById(R.id.pendingRequest);
         travelRequest.setOnClickListener(this);
-        approvedRequest.setOnClickListener(this);
+        pendingRequest.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.travelRequest:
-//                FragmentMyTravelRequest fragmentMyTravelRequest=new FragmentMyTravelRequest();
+//                MyTravelRequestActivity fragmentMyTravelRequest=new MyTravelRequestActivity();
 //                mActivity.replaceFragment(mActivity,R.id.ll_dashboard_container_fragment,fragmentMyTravelRequest,null,false);
 
-
-                Intent intent=new Intent(mActivity,FragmentMyTravelRequest.class);
-              /*  intent.putExtra("emp_name",emp_name);
+                Intent intent=new Intent(mActivity,MyTravelRequestActivity.class);
+                intent.putExtra("emp_name",emp_name);
                 intent.putExtra("Designation",Designation);
-                intent.putExtra("CostCenter",CostCenter);*/
+                intent.putExtra("CostCenter",CostCenter);
                 startActivity(intent);
                 break;
-/*
-            case R.id.approvedRequest:
+            case R.id.pendingRequest:
                 FragmentApprovedTravelRequest fragmentApprovedTravelRequest=new FragmentApprovedTravelRequest();
                 mActivity.replaceFragment(mActivity,R.id.ll_dashboard_container_fragment,fragmentApprovedTravelRequest,null,false);
                 break;
-*/
 
         }
 

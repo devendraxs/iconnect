@@ -42,10 +42,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
 
-        <activity android:name=".fragment.FragmentMyTravelRequest"
+        <activity android:name=".activity.MyTravelRequestActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
 
-        <activity android:name=".fragment.FragmentCreateNewTravelRequest"
+        <activity android:name=".activity.CreateNewTravelRequestActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
     </application>
 

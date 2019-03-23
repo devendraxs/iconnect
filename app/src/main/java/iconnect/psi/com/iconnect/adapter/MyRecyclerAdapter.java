@@ -76,7 +76,8 @@ public class MyRecyclerAdapter  extends RecyclerView.Adapter<MyRecyclerAdapter.M
                     }
                 }catch (IndexOutOfBoundsException e){
                     Log.e("Error", "" +e);
-                    e.printStackTrace();}
+                    e.printStackTrace();
+                }
             }
         });
 
