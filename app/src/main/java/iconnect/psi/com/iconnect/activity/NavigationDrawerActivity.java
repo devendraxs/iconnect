@@ -19,7 +19,7 @@ import android.widget.TextView;
 import iconnect.psi.com.iconnect.R;
 import iconnect.psi.com.iconnect.adapter.DrawerItemNavigationAdapter;
 import iconnect.psi.com.iconnect.fragment.FragmentAdvance;
-import iconnect.psi.com.iconnect.fragment.FragmentItineary;
+
 import iconnect.psi.com.iconnect.fragment.FragmentMission;
 import iconnect.psi.com.iconnect.fragment.FragmentMyTravel;
 import iconnect.psi.com.iconnect.fragment.FragmentPurpose;
@@ -175,10 +175,7 @@ public class NavigationDrawerActivity extends BaseActivity implements View.OnCli
         if (fragment instanceof FragmentUserProfile){
             finish();
 
-        }else if (fragment instanceof FragmentItineary){
-            FragmentUserProfile fragmentUserProfile=new FragmentUserProfile();
-            this.replaceFragment(this,R.id.ll_dashboard_container_fragment,fragmentUserProfile,null,false);
-        }else if (fragment instanceof FragmentPurpose){
+        } else if (fragment instanceof FragmentPurpose){
             FragmentUserProfile fragmentUserProfile=new FragmentUserProfile();
             this.replaceFragment(this,R.id.ll_dashboard_container_fragment,fragmentUserProfile,null,false);
         }else if (fragment instanceof FragmentAdvance){

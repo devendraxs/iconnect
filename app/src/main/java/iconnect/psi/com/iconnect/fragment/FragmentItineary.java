@@ -1,3 +1,4 @@
+/*
 package iconnect.psi.com.iconnect.fragment;
 
 import android.app.AlertDialog;
@@ -72,10 +73,12 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_itineary,container,false);
 
-        /*Bundle bundle=getArguments();
+        */
+/*Bundle bundle=getArguments();
         emp_name=bundle.getString("emp_name");
         Designation=bundle.getString("Designation");
-        CostCenter=bundle.getString("CostCenter");*/
+        CostCenter=bundle.getString("CostCenter");*//*
+
 
         passItinearyDatabase=new ArrayList<ItinearyDatabase>();
 
@@ -251,8 +254,12 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
 
         plus7=view.findViewById(R.id.plus7);
         plus7.setOnClickListener(this);
-       /* minus=view.findViewById(R.id.minus);*/
-      /*  minus.setOnClickListener(this);*/
+       */
+/* minus=view.findViewById(R.id.minus);*//*
+
+      */
+/*  minus.setOnClickListener(this);*//*
+
         minus2=view.findViewById(R.id.minus2);
         minus2.setOnClickListener(this);
         minus3=view.findViewById(R.id.minus3);
@@ -333,7 +340,8 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
                 }
             }
         });
-      /*  checkboxSameday.setOnClickListener(new View.OnClickListener() {
+      */
+/*  checkboxSameday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (((CheckBox)view).isChecked()){
@@ -342,7 +350,9 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
                     llPlusMinus.setVisibility(view.VISIBLE);
                 }
             }
-        });*/
+        });*//*
+
+*/
 /*
         checkboxSameday.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -355,12 +365,15 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
 
             }
         });
-*/
+*//*
+
         ;
        // button =view.findViewById(R.id.editTextDialogUserInput);
       //  result =view.findViewById(R.id.editTextDialogUserInput);
 
-       /* minus=view.findViewById(R.id.minus);*/
+       */
+/* minus=view.findViewById(R.id.minus);*//*
+
         minus.setOnClickListener(this);
         via=view.findViewById(R.id.via);
         via.setOnClickListener(this);
@@ -382,16 +395,20 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
         via7.setOnClickListener(this);
 
 
-    /*    facilities=view.findViewById(R.id.facilities);
-        facilities.setOnClickListener(this);*/
+    */
+/*    facilities=view.findViewById(R.id.facilities);
+        facilities.setOnClickListener(this);*//*
+
        // mActivity=(MyTravelRequestActivity) getActivity();
 
        // mActivity.newTravelRequest.setVisibility(View.GONE);
 
        // start=view.findViewById(R.id.start);
         end=view.findViewById(R.id.end);
-      /*  start.setText(CostCenter);
-        end.setText(CostCenter);*/
+      */
+/*  start.setText(CostCenter);
+        end.setText(CostCenter);*//*
+
         }
 
     @Override
@@ -404,17 +421,24 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
 
                 dialog.show(mActivity.getSupportFragmentManager(), "MyDialogFragment");
 
-             /* /  *//*FragmentProject dialog = new FragmentProject(getContext());
+             */
+/* /  *//*
+*/
+/*FragmentProject dialog = new FragmentProject(getContext());
                 //dialog.setTitle("Select project");
                 dialog.setContentView(R.layout.dialog_layout);*//*
+*/
+/*
                 RecyclerView recyclerView=view.findViewById(R.id.projectRecyclerview);
                 RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
                 recyclerView.setLayoutManager(layoutManager);
                 recyclerView.setHasFixedSize(true);
-                dialog.show()*/;
+                dialog.show()*//*
+;
              // openDialog(view);
 
-              /*  final AlertDialog.Builder mBuider=new AlertDialog.Builder(getActivity());
+              */
+/*  final AlertDialog.Builder mBuider=new AlertDialog.Builder(getActivity());
                 mBuider.setTitle("Projets List");
                 mBuider.setMultiChoiceItems(listItems, checkedItem, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
@@ -464,10 +488,12 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
                     }
                 });
                 AlertDialog mDialog=mBuider.create();
-                mDialog.show();*/
+                mDialog.show();*//*
+
                 break;
              case R.id.start:
-                /*final AlertDialog.Builder mBuider1=new AlertDialog.Builder(getActivity());
+                */
+/*final AlertDialog.Builder mBuider1=new AlertDialog.Builder(getActivity());
                 mBuider1.setTitle("Source Station");
 
                 mBuider1.setMultiChoiceItems(startList, checkedItem, new DialogInterface.OnMultiChoiceClickListener() {
@@ -491,11 +517,15 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
                         for (int i=0;i<startItem.size();i++){
                             item=item+startList[startItem.get(i)];
 *//*
+*/
+/*
                             if (i!=startItem.size()-1){
                                 item=item+",";
 
                             }
 *//*
+*/
+/*
                         }
                         start.setText("Start: "+item);
 
@@ -518,7 +548,8 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
                     }
                 });
                 AlertDialog mDialog1=mBuider1.create();
-                mDialog1.show();*/
+                mDialog1.show();*//*
+
 
                  LayoutInflater li = LayoutInflater.from(mActivity);
                  View promptsView = li.inflate(R.layout.edittext_dialog, null);
@@ -614,9 +645,11 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
                  tvDate1.setText(date);
                 break;
 
-        /*    case R.id.tvDate1:
+        */
+/*    case R.id.tvDate1:
                 date1=date;
-                break;*/
+                break;*//*
+
 
             case R.id.official:
                 if (flag){
@@ -687,10 +720,12 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
                     flag=true;
                 }
                 break;
-              /*  official.setImageResource(R.drawable.personal);
+              */
+/*  official.setImageResource(R.drawable.personal);
                 Toast.makeText(mActivity, "This travel require special approval" +
                         "", Toast.LENGTH_SHORT).show();
-                break;*/
+                break;*//*
+
 
             case R.id.itinearySave:
                 itinearyDatabase=new ItinearyDatabase();
@@ -952,11 +987,13 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
 //                travelCountingPojos.add(travelCountingPojo);
 //                Log.e("Travel Pojo List",""+travelCountingPojos.size());
 
+*/
 /*                Date dt=new Date();
                 Calendar c=Calendar.getInstance();
                 c.setTime(dt);
                 c.add(Calendar.DATE,1);
-                dt=c.getTime();*/
+                dt=c.getTime();*//*
+
                 String date=tvDate.getText().toString().trim();
                 String[] item=date.split("-");
                 String d1=item[0];
@@ -972,10 +1009,12 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
                 ll_1.setVisibility(View.VISIBLE);
                 break;
 
-         /*   case R.id.tvDate2:
+         */
+/*   case R.id.tvDate2:
 
                // dateDialog2();
-                break;*/
+                break;*//*
+
             case R.id.des_selection2:
                 dialogDestination(tv_select_dest2);
                 break;
@@ -988,9 +1027,11 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
                 ll_2.setVisibility(View.VISIBLE);
 
                 break;
-          /*  case R.id.tvDate3:
+          */
+/*  case R.id.tvDate3:
                // dateDialog2();
-                break;*/
+                break;*//*
+
             case R.id.des_selection3:
                 dialogDestination(tv_select_dest3);
                 break;
@@ -1001,9 +1042,11 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
                 tvDate_4.setText(tvDate_3.getText().toString().trim());
                 ll_3.setVisibility(view.VISIBLE);
                 break;
-         /*   case R.id.tvDate4:
+         */
+/*   case R.id.tvDate4:
                 //dateDialog2();
-            break;*/
+            break;*//*
+
             case R.id.des_selection4:
                 dialogDestination(tv_select_dest4);
 
@@ -1013,9 +1056,11 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
                 tvDate_5.setText(tvDate_4.getText().toString().trim());
                 ll_4.setVisibility(view.VISIBLE);
                 break;
-          /*  case R.id.tvDate5:
+          */
+/*  case R.id.tvDate5:
                // dateDialog2();
-                break;*/
+                break;*//*
+
             case R.id.des_selection5:
                 dialogDestination(tv_select_dest5);
 
@@ -1025,9 +1070,11 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
                 tvDate_6.setText(tvDate_5.getText().toString().trim());
                 ll_5.setVisibility(view.VISIBLE);
                 break;
-          /*  case R.id.tvDate6:
+          */
+/*  case R.id.tvDate6:
                // dateDialog2();
-                break;*/
+                break;*//*
+
             case R.id.des_selection6:
                 dialogDestination(tv_select_dest5);
 
@@ -1037,15 +1084,19 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
                 tvDate_7.setText(tvDate_6.getText().toString().trim());
                 ll_6.setVisibility(view.VISIBLE);
                 break;
-           /* case R.id.tvDate7:
+           */
+/* case R.id.tvDate7:
                // dateDialog2();
-                break;*/
+                break;*//*
+
             case R.id.des_selection7:
                 dialogDestination(tv_select_dest5);
                 break;
-            /*case R.id.minus:
+            */
+/*case R.id.minus:
                 ll_1.setVisibility(view.GONE);
-                break;*/
+                break;*//*
+
             case R.id.minus2:
                 ll_2.setVisibility(view.GONE);
                 break;
@@ -1065,6 +1116,7 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
             case R.id.minus6:
                 ll_6.setVisibility(view.GONE);
                 break;
+*/
 /*
         // plus 7
             case R.id.plus7:
@@ -1075,11 +1127,13 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
                 break;
             case R.id.des_selection8:
                 dialogDestination(tv_select_dest6);
-                break;*/
+                break;*//*
+
 
                 // plus 8
 
-   /*         case R.id.plus8:
+   */
+/*         case R.id.plus8:
                 ll_8.setVisibility(view.VISIBLE);
                 break;
             case R.id.tvDate9:
@@ -1097,7 +1151,8 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
                 break;
             case R.id.des_selection10:
                 dialogDestination(tv_select_dest7);
-                break;*/
+                break;*//*
+
         }
     }
 
@@ -1120,6 +1175,7 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
         datePickerDialog.show();
 
     }
+*/
 /*
     public void openDialog(View view){
         final String[] items = {"Apple", "Banana", "Orange", "Grapes"};
@@ -1154,10 +1210,12 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
         builder.show();
 
     }
-*/
+*//*
 
 
-       /* final ArrayList<Integer> alreadySelectedCountries = new ArrayList<>();
+
+       */
+/* final ArrayList<Integer> alreadySelectedCountries = new ArrayList<>();
         alreadySelectedCountries.add(1);
         alreadySelectedCountries.add(3);
         alreadySelectedCountries.add(4);
@@ -1206,7 +1264,8 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
 
                 });
 
-        multiSelectDialog.show(getFragmentManager(), "multiSelectDialog");*/
+        multiSelectDialog.show(getFragmentManager(), "multiSelectDialog");*//*
+
 
     @Override
     public void onStart() {
@@ -1268,14 +1327,19 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
     }
 
     }
+*/
 /*
      class Text{
          public static void main(String[] args) {
-            */
+            *//*
+
+*/
 /* String str="2019-03-20";
              Date dt=new Date(str);
              Calendar c=Calendar.getInstance(TimeZone.getTimeZone(""+dt));
              c.add();*//*
+*/
+/*
 
              LocalDate lastAprilDay = LocalDate.of(2014, Month.APRIL, 30);
              System.out.println("last april day: " + lastAprilDay);
@@ -1287,6 +1351,8 @@ public class FragmentItineary extends Fragment implements View.OnClickListener {
 
          }
      }
+*//*
+
+
+
 */
-
-

@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import iconnect.psi.com.iconnect.fragment.FragmentAdvance;
 import iconnect.psi.com.iconnect.fragment.FragmentSummary;
-import iconnect.psi.com.iconnect.fragment.FragmentItineary;
+
 import iconnect.psi.com.iconnect.fragment.FragmentPurpose;
 
 public class NewTravelRequestAdapter extends FragmentPagerAdapter {
@@ -25,8 +25,6 @@ public class NewTravelRequestAdapter extends FragmentPagerAdapter {
                 break;
             case 1:
 
-                fragment=new FragmentItineary();
-                break;
             case 2:
                 fragment=new FragmentAdvance();
                 break;

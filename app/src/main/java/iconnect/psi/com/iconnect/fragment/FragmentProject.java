@@ -1,5 +1,8 @@
 package iconnect.psi.com.iconnect.fragment;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -14,7 +17,10 @@ import android.widget.Button;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
 import iconnect.psi.com.iconnect.R;
+import iconnect.psi.com.iconnect.activity.CallBackResult;
+import iconnect.psi.com.iconnect.activity.CreateNewTravelRequestActivity;
 import iconnect.psi.com.iconnect.adapter.MyRecyclerAdapter;
 import iconnect.psi.com.iconnect.interfaces.ApiInterface;
 import iconnect.psi.com.iconnect.model.ProjectResponse;
@@ -24,12 +30,26 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class FragmentProject extends DialogFragment implements View.OnClickListener{
+    Context context;
+    CallBackResult callBackResult;
+/*
+    public FragmentProject(CreateNewTravelRequestActivity createNewTravelRequestActivity){
+    }
+*/
+    @SuppressLint("ValidFragment")
+    public FragmentProject(Context context, CallBackResult callBackResult){
+        this.context=context;
+        this.callBackResult=callBackResult;
+    }
     private RecyclerView mRecyclerView;
     private MyRecyclerAdapter adapter;
     private Button cancle,ok;
     private List<ProjectResponse.Datum> projectSelected=new ArrayList<ProjectResponse.Datum>();
     private List<ProjectResponse.Datum> projectName=new ArrayList<ProjectResponse.Datum>();
-    
+
+    @SuppressLint("ValidFragment")
+    public FragmentProject(CreateNewTravelRequestActivity createNewTravelRequestActivity) {
+    }
 
 
     @Override
@@ -44,7 +64,7 @@ public class FragmentProject extends DialogFragment implements View.OnClickListe
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         getProjectData();
-        return view;
+              return view;
     }
 
      private  void getProjectData(){
@@ -77,6 +97,8 @@ public class FragmentProject extends DialogFragment implements View.OnClickListe
         adapter.setClickListener(new MyRecyclerAdapter.OnClickListener() {
             @Override
             public void onItemClickListener(int position, View view, List<ProjectResponse.Datum> projectlist) {
+
+//                callBackResult.getResult(String.valueOf(projectlist.size()));
                 Log.e("Selected List", "" + projectlist.size());
                 projectSelected = projectlist;
 //                if(projectlist.size()==0){
@@ -89,21 +111,31 @@ public class FragmentProject extends DialogFragment implements View.OnClickListe
         mRecyclerView.setAdapter(adapter);
     }
 
+/*
     public static FragmentProject newInstance() {
         FragmentProject f = new FragmentProject();
         return f;
     }
+*/
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ok:
                 if (projectSelected.size() > -1) {
-                    FragmentItineary fragmentItineary = new FragmentItineary();
-                    Bundle b = new Bundle();
+                    //FragmentItineary fragmentItineary = new FragmentItineary();
+                    Intent intent=new Intent(getActivity(), CreateNewTravelRequestActivity.class);
+                    intent.putExtra("select_project",projectSelected.size());
+                    intent.putExtra("projact_name", projectSelected.get(0).getProjectName());
+                    startActivity(intent);
+                    getActivity().finish();
+                    //dismiss();
+                   /* Bundle b = new Bundle();
                     b.putInt("select_project", projectSelected.size());
-                    fragmentItineary.setArguments(b);
-                    dismiss();
+                    b.putString("projact_name", projectSelected.get(0).getProjectName());
+                    fragmentItineary.setArguments(b);*/
+
+                   // callBackResult.getResult(String.valueOf(projectSelected.size()));
                 } else {
 
                 }

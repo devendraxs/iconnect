@@ -90,7 +90,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
     private ImageView upload,camera;
     private TextView project,tvDate,tvDate1;
     private LinearLayout llReturn,llPlusMinus;
-    private Button itinearySave;
+    private Button itinearyGoNext;
     ItinearyDatabase itinearyDatabase;
     private ImageView official,official2,official3,official4,official5,official6,official7;
     private int day, month, year;
@@ -123,12 +123,21 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
     private LinearLayout ll_1,ll_2,ll_3,ll_4,ll_5,ll_6,ll_7,ll_8,ll_9;
     private TextView tvDate_2,tvDate_3,tvDate_4,tvDate_5,tvDate_6,tvDate_7;
     boolean flag=true;
+    boolean samedaychecked=false;
+    String dest="";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_newtravel_request_activity);
+/*
+       Bundle dataintent= getIntent().getExtras();
+        int datasize=dataintent.getInt("select_project");
+        String dataname=dataintent.getString("projact_name");*/
+
+
         Intent intent=getIntent();
         emp_name=intent.getStringExtra("emp_name");
         Designation=intent.getStringExtra("Designation");
@@ -159,7 +168,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
 
         flipper=(ViewFlipper)findViewById(R.id.viewflipper) ;
         next = findViewById(R.id.goNextPurpose);
-        nex1= findViewById(R.id.itinearySave) ;
+        nex1= findViewById(R.id.itinearyGoNext) ;
         next2= findViewById(R.id.goNextAdvance);
         next3=findViewById(R.id.finalSubmit);
         next3.setOnClickListener(this);
@@ -225,7 +234,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
         facilities7= findViewById(R.id.facilities7);
         tvDate=findViewById(R.id.tvDate);
 
-        itinearySave=findViewById(R.id.itinearySave);
+       // itinearySave=findViewById(R.id.itinearySave);
         /*  itinearySave.setOnClickListener(this);*/
         official=findViewById(R.id.official);
           official.setOnClickListener(this);
@@ -312,12 +321,14 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
         tv_select_dest6=findViewById(R.id.des_selection6);
         tv_select_dest7=findViewById(R.id.des_selection7);
 
+/*
         destination.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 hitCityApi();
             }
         });
+*/
 
 
 
@@ -722,7 +733,16 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
         project.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentProject dialog = FragmentProject.newInstance();
+                FragmentProject dialog=new FragmentProject(CreateNewTravelRequestActivity.this);
+/*
+                FragmentProject dialog = new FragmentProject(getApplicationContext(), new CallBackResult() {
+                    @Override
+                    public void getResult(String data) {
+
+                        Log.d("data",data.toString());
+                    }
+                });
+*/
 
                 dialog.show(getSupportFragmentManager(), "MyDialogFragment");
 
@@ -778,6 +798,12 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                             @Override
                             public void onClick(DialogInterface dialogInterface, int id) {
                                 end.setText("End: "+userInput1.getText().toString().trim());
+                                if (samedaychecked){
+                                    dest=end.getText().toString().trim().substring(4);
+                                    destination.setText(dest);
+
+                                }
+
 
                             }
                         }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -925,7 +951,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                 }
             }
         });
-        itinearySave.setOnClickListener(new View.OnClickListener() {
+        itinearyGoNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 itinearyDatabase=new ItinearyDatabase();
@@ -967,6 +993,15 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
 
                 tv1.setText(""+start.getText().toString().trim());
                 tv4.setText(""+end.getText().toString().trim());
+            }
+        });
+
+        checkboxSameday.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                samedaychecked=true;
+                dest=end.getText().toString().trim().substring(4);
+                destination.setText(dest);
             }
         });
         via2.setOnClickListener(new View.OnClickListener() {
@@ -1299,14 +1334,19 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                 onChangeTab(1);
             }
         });
-        nex1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                flipper.showNext();
-                onChangeTab(2);
+       /* if (end.getText().toString().trim().substring(4)==dest) {
+            itinearyGoNext.setEnabled(true);*/
+            nex1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    flipper.showNext();
+                    onChangeTab(2);
 
-            }
-        });
+                }
+            });
+       // }
+
+
         next2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -1564,19 +1604,6 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
     }
 
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        checkboxSameday.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                if (isChecked){
-                    String dest=end.getText().toString().trim().substring(4);
-                    destination.setText(dest);
-                }
-            }
-        });
-    }
     private void hitAsyncCityApi() {
 
         class GetState extends AsyncTask<Void, Void, Integer> {
@@ -1625,9 +1652,18 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
 
             }
         });
-
-
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Intent intent=getIntent();
+       /* int datasize=intent.getInt("select_project");
+        String dataname=dataintent.getString("projact_name");*/
+        //String size=intent.getStringExtra("select_project");
+        String name=intent.getStringExtra("projact_name");
+       project.setText(name);
 
     }
+
 
 }

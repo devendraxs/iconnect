@@ -37,7 +37,6 @@ public class MyRecyclerAdapter  extends RecyclerView.Adapter<MyRecyclerAdapter.M
         this.mContext=activity;
     }
 
-
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.project_view, parent, false);
@@ -81,6 +80,9 @@ public class MyRecyclerAdapter  extends RecyclerView.Adapter<MyRecyclerAdapter.M
             }
         });
 
+    }
+    public List<ProjectResponse.Datum>checkedData(){
+        return  projectList;
     }
 
     @Override
