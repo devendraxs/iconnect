@@ -1052,7 +1052,7 @@
         android:paddingRight="@dimen/dp_10"
         android:layout_marginTop="@dimen/dp_50"/>
     <Button
-        android:id="@+id/itinearyGoNext"
+        android:id="@+id/itinearySave"
         android:layout_width="0dp"
         android:layout_weight=".5"
         android:layout_height="@dimen/dp_40"
@@ -1061,8 +1061,8 @@
         android:layout_marginRight="@dimen/dp_30"
         android:layout_marginLeft="@dimen/dp_30"
         android:paddingRight="@dimen/dp_10"
-        android:enabled="false"
         android:layout_marginTop="@dimen/dp_50"
+        android:enabled="false"
         />
 
 </LinearLayout>

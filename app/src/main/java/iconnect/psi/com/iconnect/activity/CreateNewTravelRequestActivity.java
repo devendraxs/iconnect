@@ -1,5 +1,6 @@
 package iconnect.psi.com.iconnect.activity;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -7,23 +8,22 @@ import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Base64;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -41,7 +41,8 @@ import android.widget.ViewFlipper;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.InputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -59,12 +60,15 @@ import iconnect.psi.com.iconnect.model.CityResponse;
 import iconnect.psi.com.iconnect.model.ItinearyDatabase;
 import iconnect.psi.com.iconnect.model.MyTravelRequestBean;
 import iconnect.psi.com.iconnect.networkclient.ApiClient;
+import iconnect.psi.com.iconnect.utils.Utility;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 
 public class CreateNewTravelRequestActivity extends BaseActivity implements View.OnClickListener {
+    final static  int SELECT_FILE=1;
+    final static int REQUEST_CAMERA=2;
     private Dialog mDialog;
     CheckBox checkboxSameday;
     private LinearLayout startEnd;
@@ -90,7 +94,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
     private ImageView upload,camera;
     private TextView project,tvDate,tvDate1;
     private LinearLayout llReturn,llPlusMinus;
-    private Button itinearyGoNext;
+    private Button itinearySave;
     ItinearyDatabase itinearyDatabase;
     private ImageView official,official2,official3,official4,official5,official6,official7;
     private int day, month, year;
@@ -110,6 +114,9 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
     private TextView tv1,tv2,tv3,tv4,tv_select_dest,tv_select_dest2,tv_select_dest3,tv_select_dest4,tv_select_dest5,tv_select_dest6,tv_select_dest7;
     private String[] name={" ", "Nothing", "Hotel", "Flight", "Flight & Hotel"};
     int[] images={R.drawable.facilities,R.drawable.new_none,R.drawable.new_hotel,R.drawable.new_flight,R.drawable.new_travel_fh};
+
+   // private String[] nameChecked={" ", "Nothing","Flight"};
+   // int[] imagesChecked={R.drawable.facilities,R.drawable.new_none,R.drawable.new_hotel,R.drawable.new_flight};
 
     private List<ItinearyDatabase> passItinearyDatabase;
     private ImageView plus,plus2,plus3,plus4,plus5,plus6,plus7;
@@ -151,13 +158,17 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
         plusPurpose=findViewById(R.id.plusPurpose);
         plusPurpose.setOnClickListener(this);
 
-        minusPurpose=findViewById(R.id.minusPurpose);
-        minusPurpose.setOnClickListener(this);
+       /* minusPurpose=findViewById(R.id.minusPurpose);
+        minusPurpose.setOnClickListener(this);*/
         upload1=findViewById(R.id.upload1);
+        camera=findViewById(R.id.camera);
+        camera.setOnClickListener(this);
         camera1=findViewById(R.id.camera1);
+        camera1.setOnClickListener(this);
         plusPurpose1=findViewById(R.id.plusPurpose1);
         plusPurpose1.setOnClickListener(this);
         minusPurpose1=findViewById(R.id.minusPurpose1);
+        minusPurpose1.setOnClickListener(this);
         upload2=findViewById(R.id.upload2);
         camera2=findViewById(R.id.camera2);
         plusPurpose2=findViewById(R.id.plusPurpose2);
@@ -168,7 +179,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
 
         flipper=(ViewFlipper)findViewById(R.id.viewflipper) ;
         next = findViewById(R.id.goNextPurpose);
-        nex1= findViewById(R.id.itinearyGoNext) ;
+        nex1= findViewById(R.id.itinearySave) ;
         next2= findViewById(R.id.goNextAdvance);
         next3=findViewById(R.id.finalSubmit);
         next3.setOnClickListener(this);
@@ -234,7 +245,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
         facilities7= findViewById(R.id.facilities7);
         tvDate=findViewById(R.id.tvDate);
 
-       // itinearySave=findViewById(R.id.itinearySave);
+        itinearySave=findViewById(R.id.itinearySave);
         /*  itinearySave.setOnClickListener(this);*/
         official=findViewById(R.id.official);
           official.setOnClickListener(this);
@@ -502,8 +513,10 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
             }
         });
 */
-        SpinnerAdapter spinnerAdapter=new iconnect.psi.com.iconnect.adapter.SpinnerAdapter(this,name,images);
-        facilities.setAdapter(spinnerAdapter);
+            SpinnerAdapter spinnerAdapter=new iconnect.psi.com.iconnect.adapter.SpinnerAdapter(this,name,images);
+            facilities.setAdapter(spinnerAdapter);
+
+
         facilities.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -579,11 +592,9 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
             }
         });
-
-
+/*
         camera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -604,11 +615,16 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                             }
                             dialog.cancel();
                         }else if (media==1){
-                            Intent intent=new Intent();
-                            intent.addCategory(Intent.CATEGORY_OPENABLE);
-                            intent.setType("image/*");
-                            intent.setAction(Intent.ACTION_GET_CONTENT);
-                            startActivityForResult(Intent.createChooser(intent,"media"),FILE);
+                            try {
+                                Intent intent=new Intent();
+                                //intent.addCategory(Intent.CATEGORY_OPENABLE);
+                                intent.setType("image/*");
+                                intent.setAction(Intent.ACTION_GET_CONTENT);
+                                startActivityForResult(Intent.createChooser(intent,"media"),FILE    );
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
+
                         }
                     }
                 });
@@ -616,6 +632,8 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                 dialog.show();
             }
         });
+*/
+/*
         camera1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -648,6 +666,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                 dialog.show();
             }
         });
+*/
 
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -951,7 +970,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                 }
             }
         });
-        itinearyGoNext.setOnClickListener(new View.OnClickListener() {
+        itinearySave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 itinearyDatabase=new ItinearyDatabase();
@@ -1002,6 +1021,20 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                 samedaychecked=true;
                 dest=end.getText().toString().trim().substring(4);
                 destination.setText(dest);
+                if (end.getText().toString().trim().substring(4).equalsIgnoreCase(dest))
+                {
+                    itinearySave.setEnabled(true);
+                    nex1.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            flipper.showNext();
+                            onChangeTab(2);
+                        }
+                    });
+                }else {
+                    itinearySave.setEnabled(false);
+                }
+
             }
         });
         via2.setOnClickListener(new View.OnClickListener() {
@@ -1334,18 +1367,6 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                 onChangeTab(1);
             }
         });
-       /* if (end.getText().toString().trim().substring(4)==dest) {
-            itinearyGoNext.setEnabled(true);*/
-            nex1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    flipper.showNext();
-                    onChangeTab(2);
-
-                }
-            });
-       // }
-
 
         next2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1390,7 +1411,6 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
             next.setEnabled(false);
         }
     }
-
     public static Date addDays(Date date, int days)
         {
             Calendar cal = Calendar.getInstance();
@@ -1530,7 +1550,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
             @Override
             public void onResponse(Call<MyTravelRequestBean> call, Response<MyTravelRequestBean> response) {
                 Toast.makeText(CreateNewTravelRequestActivity.this, "Booking inserted Succesfully!", Toast.LENGTH_SHORT).show();
-                
+
             }
 
             @Override
@@ -1538,7 +1558,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
 
             }
         });
-  
+
     }
 
     @Override
@@ -1563,30 +1583,39 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                 llPurpose.setVisibility(view.VISIBLE);
                 break;
             case R.id.minusPurpose1:
+                llPurpose.setVisibility(view.GONE);
+                break;
+            case R.id.plusPurpose1:
+                llPurpose1.setVisibility(view.VISIBLE);
+                break;
+            case R.id.minusPurpose2:
                 llPurpose1.setVisibility(view.GONE);
+                break;
+            case R.id.camera:
+                selectImage();
+                break;
+            case R.id.camera1:
+                selectImage();
         }
     }
+/*
      public void onActivityResult(int requestCode, int resultCode, Intent data) {
         try {
-            if (requestCode == 1 && resultCode == this.RESULT_OK) {
-                if (requestCode == FILE) {
-                    try {
-                        Uri selectedImage = data.getData();
-                        InputStream imageStream = this.getContentResolver().openInputStream(selectedImage);
-                        bitmap = BitmapFactory.decodeStream(imageStream);
-                        ByteArrayOutputStream byteArrayBitmapStream = new ByteArrayOutputStream();
-                        bitmap.compress(Bitmap.CompressFormat.PNG, 0,
-                                byteArrayBitmapStream);
-                        byte[] b = byteArrayBitmapStream.toByteArray();
-                        camera.setImageBitmap(bitmap);
-                        encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
+            if (requestCode == 1  && resultCode == this.RESULT_OK) {
+                if (requestCode == FILE  && resultCode == RESULT_OK && null != data ) {
+                    Uri selectedImage = data.getData();
+                    String[] filePathColumn = { MediaStore.Images.Media.DATA };
 
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
+                    Cursor cursor = getContentResolver().query(selectedImage,
+                            filePathColumn, null, null, null);
+                    cursor.moveToFirst();
 
-                }else {
-                    try {
+                    int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                    String picturePath = cursor.getString(columnIndex);
+                    cursor.close();
+                    camera.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+
+                }                try {
                         bitmap = (Bitmap) data.getExtras().get("data");
                         camera.setImageBitmap(bitmap);
                         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -1597,11 +1626,51 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                         e.printStackTrace();
                     }
                 }
-            }
+
         }catch (Exception e){
             e.printStackTrace();
         }
-    }
+*/
+/*
+         try {
+             if (requestCode == 2  && resultCode == this.RESULT_OK) {
+                 if (requestCode == FILE) {
+                     try {
+                         Uri selectedImage = data.getData();
+                         InputStream imageStream = this.getContentResolver().openInputStream(selectedImage);
+                         bitmap = BitmapFactory.decodeStream(imageStream);
+                         ByteArrayOutputStream byteArrayBitmapStream = new ByteArrayOutputStream();
+                         bitmap.compress(Bitmap.CompressFormat.PNG, 0,
+                                 byteArrayBitmapStream);
+                         byte[] b = byteArrayBitmapStream.toByteArray();
+                         camera.setImageBitmap(bitmap);
+                         encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
+
+                     } catch (FileNotFoundException e) {
+                         e.printStackTrace();
+                     }
+
+                 }else {
+                     try {
+                         bitmap = (Bitmap) data.getExtras().get("data");
+                         camera.setImageBitmap(bitmap);
+                         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                         bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+                         byte[] byteArray = byteArrayOutputStream.toByteArray();
+                         encodedImage = Base64.encodeToString(byteArray, Base64.DEFAULT);
+                     }catch (Exception e){
+                         e.printStackTrace();
+                     }
+                 }
+             }
+         }catch (Exception e){
+             e.printStackTrace();
+         }
+*//*
+
+
+     }
+*/
 
 
     private void hitAsyncCityApi() {
@@ -1649,7 +1718,6 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
             @Override
             public void onFailure(Call<CityResponse> call, Throwable t) {
                 Log.e("Login Failed", "" + t.getMessage());
-
             }
         });
     }
@@ -1664,6 +1732,84 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
        project.setText(name);
 
     }
-
-
+    private void selectImage(){
+    final CharSequence[] items = { "Take Photo", "Choose from Library",
+            "Cancel" };
+    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    builder.setTitle("Add Photo!");
+    builder.setItems(items, new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int item) {
+            boolean result= Utility.checkPermission(CreateNewTravelRequestActivity.this);
+            String userChoosenTask;
+            if (items[item].equals("Take Photo")) {
+                userChoosenTask="Take Photo";
+                if(result)
+                    cameraIntent();
+            } else if (items[item].equals("Choose from Library")) {
+                userChoosenTask="Choose from Library";
+                if(result)
+                    galleryIntent();
+            } else if (items[item].equals("Cancel")) {
+                dialog.dismiss();
+            }
+        }
+    });
+    builder.show();
 }
+    private void galleryIntent() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);//
+        startActivityForResult(Intent.createChooser(intent, "Select File"),SELECT_FILE);
+    }
+
+    private void cameraIntent() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent, REQUEST_CAMERA);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == SELECT_FILE)
+                onSelectFromGalleryResult(data);
+            else if (requestCode == REQUEST_CAMERA)
+                onCaptureImageResult(data);
+        }
+    }
+
+    private void onCaptureImageResult(Intent data) {
+        Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
+        File destination = new File(Environment.getExternalStorageDirectory(),
+                System.currentTimeMillis() + ".jpg");
+        FileOutputStream fo;
+        try {
+            destination.createNewFile();
+            fo = new FileOutputStream(destination);
+            fo.write(bytes.toByteArray());
+            fo.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        camera.setImageBitmap(thumbnail);
+    }
+
+    private void onSelectFromGalleryResult(Intent data) {
+        Bitmap bm=null;
+        if (data != null) {
+            try {
+                bm = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), data.getData());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        camera.setImageBitmap(bm);
+    }
+}
+

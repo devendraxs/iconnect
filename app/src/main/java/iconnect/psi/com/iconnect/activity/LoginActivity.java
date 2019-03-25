@@ -15,7 +15,7 @@ import iconnect.psi.com.iconnect.interfaces.ApiInterface;
 import iconnect.psi.com.iconnect.model.LoginResponse;
 import iconnect.psi.com.iconnect.networkclient.ApiClient;
 import iconnect.psi.com.iconnect.sharedprefs.SharedPrefs;
-import iconnect.psi.com.iconnect.utils.Utility;
+import iconnect.psi.com.iconnect.utils.Utility1;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -45,7 +45,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
             case R.id.login:
                /* Intent intent=new Intent(LoginActivity.this,NavigationDrawerActivity.class);
                startActivity(intent);*/
-                if (Utility.isNetworkConnected(LoginActivity.this)){
+                if (Utility1.isNetworkConnected(LoginActivity.this)){
                     if (et_userName.getText().toString().equalsIgnoreCase("")){
                         et_userName.setError("Please enter username");
                         et_userName.requestFocus();

@@ -26,7 +26,7 @@
           />
 
       <EditText
-
+          android:text="rosily@psi.org.in"
           android:id="@+id/et_userName"
           android:layout_width="match_parent"
           android:layout_height="@dimen/dp_40"
@@ -41,7 +41,7 @@
           android:drawableLeft="@drawable/ic_user"/>
 
       <EditText
-
+          android:text="rose*2014"
           android:id="@+id/et_password"
           android:layout_marginTop="@dimen/dp_10"
           android:layout_width="match_parent"
@@ -64,8 +64,5 @@
           android:layout_marginTop="@dimen/dp_40"
           android:text="@string/login"
           />
-
    </LinearLayout>
-
-
 </RelativeLayout>
