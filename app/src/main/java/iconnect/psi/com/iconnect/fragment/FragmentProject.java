@@ -29,6 +29,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+@SuppressLint("ValidFragment")
 public class FragmentProject extends DialogFragment implements View.OnClickListener{
     Context context;
     CallBackResult callBackResult;
@@ -36,6 +37,7 @@ public class FragmentProject extends DialogFragment implements View.OnClickListe
     public FragmentProject(CreateNewTravelRequestActivity createNewTravelRequestActivity){
     }
 */
+
     @SuppressLint("ValidFragment")
     public FragmentProject(Context context, CallBackResult callBackResult){
         this.context=context;
@@ -50,8 +52,6 @@ public class FragmentProject extends DialogFragment implements View.OnClickListe
     @SuppressLint("ValidFragment")
     public FragmentProject(CreateNewTravelRequestActivity createNewTravelRequestActivity) {
     }
-
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,  Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.project_dialog,container,false);
@@ -83,8 +83,7 @@ public class FragmentProject extends DialogFragment implements View.OnClickListe
                      }
                  }
 
-
-             @Override
+                 @Override
              public void onFailure(Call<ProjectResponse> call, Throwable t) {
 
              }

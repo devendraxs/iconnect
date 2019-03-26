@@ -191,13 +191,13 @@
                 android:paddingRight="@dimen/dp_1"
                 android:src="@drawable/plus"
                 android:id="@+id/plus"/>
-            <!--<ImageView
+            <ImageView
                 android:layout_width="0dp"
                 android:layout_height="@dimen/dp_40"
                 android:layout_weight=".1"
                 android:paddingRight="@dimen/dp_1"
                 android:src="@drawable/minus"
-                android:id="@+id/minus"/>-->
+                android:id="@+id/minus"/>
 
         </LinearLayout>
 

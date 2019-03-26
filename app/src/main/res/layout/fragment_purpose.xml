@@ -18,6 +18,15 @@
        android:hint="Please enter purpose"
        android:id="@+id/ed_purpose"
        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/sp_10"
+        android:text="@string/purpose_min"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:textColor="@color/color_button"
+        />
 
     <TextView
         android:layout_width="match_parent"

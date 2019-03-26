@@ -12,7 +12,7 @@
     <string name="multi_select_dialog_title">Select Project</string>
     <string name="designation">Designation</string>
     <string name="headquarter">Headquarter</string>
-    <string name="mytravel_request">My Team Travel Request</string>
+    <string name="mytravel_request">My Travel Plan</string>
     <string name="approvedtravel_request">Pending Approval for team</string>
     <string name="create_new_travel_request">Create New Travel Request</string>
     <string name="same_day_return">Same Day Return</string>
@@ -47,6 +47,7 @@
     <string name="any_other_advance">Any Other Advance</string>
     <string name="summary">Summary</string>
     <string name="attach_agenda">Attach Agenda</string>
+    <string name="purpose_min">Note: Please enter purpose minimum 10 chracters</string>
     <string name="request">Request</string>
     <string name="day">Day</string>
     <string name="per_diam">Per Diam</string>

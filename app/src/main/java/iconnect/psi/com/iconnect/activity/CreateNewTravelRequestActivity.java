@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -90,7 +91,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
     private String emp_name,Designation,CostCenter;
     private Button next,nex1,next2,next3,itinearyPrevious,advancePrevious,summaryPrevious;
     private ViewFlipper flipper;
-    private RecyclerView mRecyclerView;
+    private RecyclerView mRecyclerView,mCityRecyclerView;
     private ImageView upload,camera;
     private TextView project,tvDate,tvDate1;
     private LinearLayout llReturn,llPlusMinus;
@@ -105,6 +106,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
     private TextView start,end,destination,end1;
     private String[] listItems,startList,endList;
     private Date date2,date3;
+    private ArrayList<String> list=new ArrayList<>();
 
     boolean[] checkedItem;
     ArrayList<Integer> mUserItem=new ArrayList<>();
@@ -194,11 +196,10 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
         purpose= findViewById(R.id.purpose);
         startEnd=findViewById(R.id.startEnd);
 
-
-
         final MyTravelRequestBean myTravelRequestBean=new MyTravelRequestBean();
 
         mRecyclerView = findViewById(R.id.projectRecyclerview);
+        mCityRecyclerView = findViewById(R.id.cityRecyclerview);
         passItinearyDatabase=new ArrayList<ItinearyDatabase>();
 
         listItems=getResources().getStringArray(R.array.poject_name);
@@ -1404,7 +1405,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
     // Enable or disable and change button text by EditText text length.
     private void processButtonByTextLength() {
         String inputText=ed_purpose.getText().toString();
-        if (inputText.length()>10){
+        if (inputText.length()>=10){
             next.setText("GO NEXT");
             next.setEnabled(true);
             }else {
@@ -1591,11 +1592,15 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
             case R.id.minusPurpose2:
                 llPurpose1.setVisibility(view.GONE);
                 break;
+            case R.id.destination:
+                    hitCityApi();
+                    break;
             case R.id.camera:
                 selectImage();
                 break;
             case R.id.camera1:
                 selectImage();
+                break;
         }
     }
 /*
@@ -1680,7 +1685,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
             @Override
             protected Integer doInBackground(Void... voids) {
 
-                hitCityApi();
+              //  hitCityApi();
                 return 0;
             }
 
@@ -1712,7 +1717,15 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
             @Override
             public void onResponse(Call<CityResponse> call, Response<CityResponse> response) {
                 Log.e("Sign in Url", "" + call.request().url());
-
+                for (int i=0;i<response.body().getData().size();i++) {
+                    String city=response.body().getData().get(i).getCityName();
+                    list.add(city);
+                    Dialog dialog=new Dialog(CreateNewTravelRequestActivity.this);
+                    LayoutInflater li = (LayoutInflater) CreateNewTravelRequestActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    View view=li.inflate(R.layout.row_city,null,false);
+                    dialog.setContentView(view);
+                    dialog.show();
+                }
             }
 
             @Override
@@ -1798,6 +1811,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
             e.printStackTrace();
         }
         camera.setImageBitmap(thumbnail);
+        camera1.setImageBitmap(thumbnail);
     }
 
     private void onSelectFromGalleryResult(Intent data) {
@@ -1810,6 +1824,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
             }
         }
         camera.setImageBitmap(bm);
+
     }
 }
 
