@@ -55,6 +55,7 @@ import java.util.List;
 import iconnect.psi.com.iconnect.R;
 import iconnect.psi.com.iconnect.adapter.CityAdapter;
 import iconnect.psi.com.iconnect.adapter.SpinnerAdapter;
+import iconnect.psi.com.iconnect.fragment.FragmentCity;
 import iconnect.psi.com.iconnect.fragment.FragmentProject;
 import iconnect.psi.com.iconnect.interfaces.ApiInterface;
 import iconnect.psi.com.iconnect.model.CityResponse;
@@ -768,6 +769,17 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
 
             }
         });
+
+        destination.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentCity fragmentCity=new FragmentCity(CreateNewTravelRequestActivity.this);
+
+                fragmentCity.show(getSupportFragmentManager(), "MyDialogFragment");
+
+            }
+        });
+
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -1593,7 +1605,10 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                 llPurpose1.setVisibility(view.GONE);
                 break;
             case R.id.destination:
-                    hitCityApi();
+                    //hitCityApi();
+               /* FragmentCity fragmentCity=new FragmentCity(CreateNewTravelRequestActivity.this);
+                fragmentCity.show(getSupportFragmentManager(),"City dialog");
+*/
                     break;
             case R.id.camera:
                 selectImage();

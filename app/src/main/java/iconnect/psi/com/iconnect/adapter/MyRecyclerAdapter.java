@@ -90,7 +90,7 @@ public class MyRecyclerAdapter  extends RecyclerView.Adapter<MyRecyclerAdapter.M
         return projectList.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView project, percentage;
         public CheckBox projectCheckbox;
         public MyViewHolder(View view)
