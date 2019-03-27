@@ -68,7 +68,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class CreateNewTravelRequestActivity extends BaseActivity implements View.OnClickListener {
+public class CreateNewTravelRequestActivity extends BaseActivity implements View.OnClickListener,FragmentCity.MyDialogFragmentListener {
+    private ImageView viaFlight,viaOfficial;
+    private TextView  tv_flight,tv_personal,tv_personal1,tv_flight1,tv_flight2,tv_personal2;
+    private CreateNewTravelRequestActivity context;
     final static  int SELECT_FILE=1;
     final static int REQUEST_CAMERA=2;
     private Dialog mDialog;
@@ -114,7 +117,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
     ArrayList<Integer> startItem=new ArrayList<>();
     ArrayList<Integer> endItem=new ArrayList<>();
     private Spinner facilities,facilities2,facilities3,facilities4,facilities5,facilities6,facilities7;
-    private TextView tv1,tv2,tv3,tv4,tv_select_dest,tv_select_dest2,tv_select_dest3,tv_select_dest4,tv_select_dest5,tv_select_dest6,tv_select_dest7;
+    private TextView tv1,tv2,tv3,tv4,tv5,tv6,tv_select_dest,tv_select_dest2,tv_select_dest3,tv_select_dest4,tv_select_dest5,tv_select_dest6,tv_select_dest7;
     private String[] name={" ", "Nothing", "Hotel", "Flight", "Flight & Hotel"};
     int[] images={R.drawable.facilities,R.drawable.new_none,R.drawable.new_hotel,R.drawable.new_flight,R.drawable.new_travel_fh};
 
@@ -153,6 +156,16 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
         Designation=intent.getStringExtra("Designation");
         CostCenter=intent.getStringExtra("CostCenter");
         ed_purpose=findViewById(R.id.ed_purpose);
+
+        viaOfficial=findViewById(R.id.viaOfficial);
+        viaFlight=findViewById(R.id.viaFlight);
+
+        tv_personal=findViewById(R.id.tv_personal);
+        tv_flight=findViewById(R.id.tv_flight);
+        tv_personal1=findViewById(R.id.tv_personal1);
+        tv_flight1=findViewById(R.id.tv_flight1);
+        tv_flight2=findViewById(R.id.tv_flight2);
+        tv_personal2=findViewById(R.id.tv_personal2);
 
         llPurpose=findViewById(R.id.llPurpose);
 
@@ -200,7 +213,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
         final MyTravelRequestBean myTravelRequestBean=new MyTravelRequestBean();
 
         mRecyclerView = findViewById(R.id.projectRecyclerview);
-        mCityRecyclerView = findViewById(R.id.cityRecyclerview);
+      //  mCityRecyclerView = findViewById(R.id.cityRecyclerview);
         passItinearyDatabase=new ArrayList<ItinearyDatabase>();
 
         listItems=getResources().getStringArray(R.array.poject_name);
@@ -216,8 +229,10 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
        end1= findViewById(R.id.end1);*/
         tv1= findViewById(R.id.tv_start);
         tv2= findViewById(R.id.tv_mid1);
-        tv3= findViewById(R.id.tv_mid2);
+        tv3= findViewById(R.id.tv_mid3);
         tv4= findViewById(R.id.tv_dest);
+        tv5=findViewById(R.id.tv_mid2);
+        tv6=findViewById(R.id.tv_dest_last);
 
 
         seekbar=findViewById(R.id.seekbar);
@@ -234,8 +249,10 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
         destination=findViewById(R.id.destination);
 
         start= findViewById(R.id.start);
+        start.setOnClickListener(this);
         start.setText("Start: "+CostCenter);
         end= findViewById(R.id.end);
+        end.setOnClickListener(this);
         end.setText("End: "+CostCenter);
 
         facilities= findViewById(R.id.facilities);
@@ -483,7 +500,6 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
             @Override
             public void onStartTrackingTouch(SeekBar bar) {
                 int value=bar.getProgress();
-
             }
 
             @Override
@@ -496,12 +512,33 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
             @Override
             public void onClick(View view) {
                 if (((CheckBox)view).isChecked()){
-                    llPlusMinus.setVisibility(View.INVISIBLE);
+                    plus.setEnabled(false);
                 }else {
-                    llPlusMinus.setVisibility(view.VISIBLE);
+                    plus.setEnabled(true);
                 }
             }
         });
+        checkboxSameday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (((CheckBox)view).isChecked()){
+                    official.setEnabled(false);
+                }else {
+                    plus.setEnabled(true);
+                }
+            }
+        });
+        checkboxSameday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (((CheckBox)view).isChecked()){
+                    facilities.setEnabled(false);
+                }else {
+                    facilities.setEnabled(true);
+                }
+            }
+        });
+
 /*
         checkboxSameday.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -773,13 +810,17 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
         destination.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentCity fragmentCity=new FragmentCity(CreateNewTravelRequestActivity.this);
-
-                fragmentCity.show(getSupportFragmentManager(), "MyDialogFragment");
-
+                FragmentCity fragmentCity=new FragmentCity(CreateNewTravelRequestActivity.this,CreateNewTravelRequestActivity.this,1);
+                fragmentCity.show();
             }
         });
 
+
+
+
+
+
+/*
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -809,9 +850,10 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
 
                 AlertDialog alertDialog=alertDialogBuilder.create();
                 alertDialog.show();
-
             }
         });
+*/
+/*
         end.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -849,6 +891,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                 alertDialog1.show();
             }
         });
+*/
 /*
         destination.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1008,10 +1051,20 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                         list_sou_des.add(""+userInputt.getText().toString().trim());
                         if(list_sou_des.size()==1){
                             tv2.setText(""+list_sou_des.get(0));
-                        }else{
-                            tv2.setText(""+list_sou_des.get(0));
-                            tv3.setText(""+list_sou_des.get(1));
+                            tv_personal.setText("P");
+
+                        }else if (list_sou_des.size()==2){
+                            tv3.setText(tv2.getText().toString().trim());
+                            tv4.setText(""+list_sou_des.get(1));
+                            tv_personal1.setText("P");
+
+                            tv5.setText(tv4.getText().toString().trim());
+                            tv_personal2.setText("P");
                         }
+                        /*else if (list_sou_des.size()==3){
+                            tv5.setText(tv4.getText().toString().trim());
+                            tv_personal2.setText("P");
+                        }*/
                     }
                 }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
@@ -1024,32 +1077,39 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                 alertDialog11.show();
 
                 tv1.setText(""+start.getText().toString().trim());
-                tv4.setText(""+end.getText().toString().trim());
+               // tv4.setText(""+destination.getText().toString().trim());
+                tv6.setText(""+destination.getText().toString().trim());
             }
         });
 
         checkboxSameday.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                samedaychecked=true;
+               //samedaychecked=true;
+
+
                 dest=end.getText().toString().trim().substring(4);
                 destination.setText(dest);
                 if (end.getText().toString().trim().substring(4).equalsIgnoreCase(dest))
                 {
-                    itinearySave.setEnabled(true);
+
+                   // itinearySave.setEnabled(true);
                     nex1.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             flipper.showNext();
                             onChangeTab(2);
+
                         }
                     });
+
                 }else {
-                    itinearySave.setEnabled(false);
+                   // itinearySave.setEnabled(false);
                 }
 
             }
         });
+
         via2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
@@ -1066,9 +1126,15 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                         list_sou_des.add(""+userInputt2.getText().toString().trim());
                         if(list_sou_des.size()==1){
                             tv2.setText(""+list_sou_des.get(0));
-                        }else{
+
+                        }else if (list_sou_des.size()==2){
                             tv2.setText(""+list_sou_des.get(0));
                             tv3.setText(""+list_sou_des.get(1));
+
+                        }
+                        else{
+                            tv3.setText(""+list_sou_des.get(1));
+                            tv5.setText(""+list_sou_des.get(1));
                         }
                     }
                 }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -1082,7 +1148,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                 alertDialog112.show();
 
                 tv1.setText(""+start.getText().toString().trim());
-                tv4.setText(""+end.getText().toString().trim());
+                tv6.setText("End:"+end.getText().toString().trim());
             }
         });
 
@@ -1098,7 +1164,6 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                     @Override
                     public void onClick(DialogInterface dialogInterface, int id)
                     {
-
                         list_sou_des.add(""+userInputt3.getText().toString().trim());
                         if(list_sou_des.size()==1){
                             tv2.setText(""+list_sou_des.get(0));
@@ -1512,14 +1577,29 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                 tvDate.setVisibility(View.VISIBLE);
                 tvDate.setText(i2 + "-" + (i1 + 1) + "-" + i);
                 date=tvDate.getText().toString();
+
                 Calendar calendar=Calendar.getInstance();
                 SimpleDateFormat sdf=new SimpleDateFormat("dd/mm/yyyy");
                 getCurentDate=sdf.format(calendar.getTime());
                 date2 = new GregorianCalendar(i, i1, i2).getTime();
+                if (tvDate.getText().toString().contains(""+date) && destination.getText().toString().contains("")){
+                    itinearySave.setEnabled(true);
+                    nex1.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            flipper.showNext();
+                            onChangeTab(2);
+                        }
+                    });
+
+                }else {
+                    itinearySave.setEnabled(false);
+                }
             }
         };
         DatePickerDialog datePickerDialog=new DatePickerDialog(CreateNewTravelRequestActivity.this,listener,day,month,year);
         datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis()-1000);
+
         datePickerDialog.show();
     }
 
@@ -1605,11 +1685,25 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                 llPurpose1.setVisibility(view.GONE);
                 break;
             case R.id.destination:
+
+                FragmentCity fragmentCity=new FragmentCity(CreateNewTravelRequestActivity.this,CreateNewTravelRequestActivity.this,1);
+                fragmentCity.show();
                     //hitCityApi();
                /* FragmentCity fragmentCity=new FragmentCity(CreateNewTravelRequestActivity.this);
                 fragmentCity.show(getSupportFragmentManager(),"City dialog");
 */
                     break;
+            case R.id.end:
+
+                FragmentCity fragmentCity1=new FragmentCity(CreateNewTravelRequestActivity.this,CreateNewTravelRequestActivity.this,2);
+                fragmentCity1.show();
+               /* FragmentCity fragmentCity=new FragmentCity(CreateNewTravelRequestActivity.this);
+                fragmentCity.show(getSupportFragmentManager(), "MyDialogFragment");*/
+                break;
+            case R.id.start:
+                FragmentCity fragmentCity2=new FragmentCity(CreateNewTravelRequestActivity.this,CreateNewTravelRequestActivity.this,3);
+                fragmentCity2.show();
+                break;
             case R.id.camera:
                 selectImage();
                 break;
@@ -1839,7 +1933,35 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
             }
         }
         camera.setImageBitmap(bm);
-
     }
+
+    @Override
+    public void onReturnValue(String foo, int postions) {
+        if(postions== 1){
+            destination.setText(foo);
+        }
+        else if(postions==2){
+            end.setText(foo);
+        }
+        else if(postions==3){
+            start.setText(foo);
+        }
+    }
+/*
+    @Override
+    public void onReturnValue(String foo) {
+        if(start.getText().toString().contains("")){
+            start.setText(foo);
+        }
+
+        else if(end.getText().toString().contains("")) {
+
+            end.setText(foo);
+        }
+       else if(destination.getText().toString().contains("")) {
+            destination.setText(foo);
+        }
+
+    }*/
 }
 

@@ -93,6 +93,7 @@ public class FragmentProject extends DialogFragment implements View.OnClickListe
     private void setAdapter(List<ProjectResponse.Datum> projectName) {
         adapter = new MyRecyclerAdapter(getActivity(),projectName);
         mRecyclerView.setHasFixedSize(true);
+
         adapter.setClickListener(new MyRecyclerAdapter.OnClickListener() {
             @Override
             public void onItemClickListener(int position, View view, List<ProjectResponse.Datum> projectlist) {

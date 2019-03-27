@@ -28,6 +28,7 @@ dependencies {
     implementation 'com.basgeekball:awesome-validation:2.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
+    implementation 'com.github.ajithvgiri:SearchDialog:v1.0'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     def room_version = "1.1.1"
     implementation "android.arch.persistence.room:runtime:$room_version"

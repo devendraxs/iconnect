@@ -999,7 +999,14 @@
         android:weightSum=".8"
         android:layout_marginTop="@dimen/dp_10"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/dp_150">
+        android:layout_height="@dimen/dp_120">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight=".3">
+
         <TextView
             android:hint="start_dest"
             android:textColor="@color/c_black"
@@ -1007,23 +1014,54 @@
             android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_weight=".2"
-            android:layout_height="0dp" />
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".2"
+            android:orientation="horizontal">
         <TextView
             android:hint="first_dest"
             android:textColor="@color/c_black"
             android:id="@+id/tv_mid1"
             android:gravity="center"
             android:layout_width="wrap_content"
-            android:layout_weight=".2"
-            android:layout_height="0dp" />
+            android:layout_weight=".1"
+            android:layout_height="wrap_content" />
+            <TextView
+                android:hint="flight"
+                android:textColor="@color/c_black"
+                android:id="@+id/tv_flight"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_weight=".1"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_2"/>
+            <TextView
+                android:hint="hotel"
+                android:textColor="@color/c_black"
+                android:id="@+id/tv_personal"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_weight=".1"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_2"/>
+        </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight=".3">
         <TextView
             android:hint="second_dest"
             android:textColor="@color/c_black"
-            android:id="@+id/tv_mid2"
+            android:id="@+id/tv_mid3"
             android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_weight=".2"
-            android:layout_height="0dp" />
+            android:layout_height="wrap_content" />
         <TextView
             android:hint="end_dest"
             android:textColor="@color/c_black"
@@ -1031,7 +1069,67 @@
             android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_weight=".2"
-            android:layout_height="0dp" />
+            android:layout_height="wrap_content" />
+            <TextView
+                android:hint="flight"
+                android:textColor="@color/c_black"
+                android:id="@+id/tv_flight1"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_weight=".1"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_2"/>
+            <TextView
+                android:hint="hotel"
+                android:textColor="@color/c_black"
+                android:id="@+id/tv_personal1"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_weight=".1"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_2"/>
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight=".2">
+            <TextView
+                android:hint="second_dest"
+                android:textColor="@color/c_black"
+                android:id="@+id/tv_mid2"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_weight=".2"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:hint="end_dest"
+                android:textColor="@color/c_black"
+                android:id="@+id/tv_dest_last"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_weight=".2"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:hint="flight"
+                android:textColor="@color/c_black"
+                android:id="@+id/tv_flight2"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_weight=".1"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_2"/>
+            <TextView
+                android:hint="hotel"
+                android:textColor="@color/c_black"
+                android:id="@+id/tv_personal2"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_weight=".1"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_2"/>
+        </LinearLayout>
+
     </LinearLayout>
 
 <LinearLayout

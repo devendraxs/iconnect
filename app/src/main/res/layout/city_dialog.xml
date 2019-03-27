@@ -6,13 +6,23 @@
     android:id="@+id/projectDialog"
     android:orientation="vertical">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/cityRecyclerview"
+    <EditText
+        android:id="@+id/EditBox"
+        android:maxLines="1"
+        android:hint="Select City"
+        android:layout_height="wrap_content"
+        android:layout_width="180dip"
+        android:gravity="left">
+    </EditText>
+
+    <ListView
+        android:id="@+id/List"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/dp_50"       >
+        android:layout_marginBottom="@dimen/dp_50"
+        android:layout_marginTop="@dimen/dp_40">
 
-    </android.support.v7.widget.RecyclerView>
+    </ListView>
 
 
 
