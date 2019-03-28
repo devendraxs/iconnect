@@ -17,11 +17,13 @@ import iconnect.psi.com.iconnect.R;
 import iconnect.psi.com.iconnect.model.ProjectResponse;
 
 public class MyRecyclerAdapter  extends RecyclerView.Adapter<MyRecyclerAdapter.MyViewHolder> {
+
     private CheckBox projectCheckbox;
     private OnClickListener mListener;
     List<ProjectResponse.Datum> projectList;
     private Context mContext;
     List<ProjectResponse.Datum> projectCounting=new ArrayList<>();
+
 
     public interface OnClickListener {
         void onItemClickListener(int position, View view, List<ProjectResponse.Datum> listdOrder);
@@ -34,6 +36,7 @@ public class MyRecyclerAdapter  extends RecyclerView.Adapter<MyRecyclerAdapter.M
     public MyRecyclerAdapter(FragmentActivity activity, List<ProjectResponse.Datum> projectName) {
         this.projectList=projectName;
         Log.e("Project Res",""+projectList.size());
+        this.mListener=mListener;
         this.mContext=activity;
     }
 
@@ -101,5 +104,6 @@ public class MyRecyclerAdapter  extends RecyclerView.Adapter<MyRecyclerAdapter.M
             projectCheckbox=view.findViewById(R.id.projectCheckbox);
         }
     }
+
 
 }

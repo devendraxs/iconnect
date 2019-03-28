@@ -74,9 +74,6 @@ public class FragmentCity extends Dialog implements View.OnClickListener {
                 cityName1=city.get(position).toString().trim();
                 listener.onReturnValue(cityName1,position1);
                 dismiss();
-
-
-
             }
         });
 

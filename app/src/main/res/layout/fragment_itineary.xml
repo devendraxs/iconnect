@@ -142,14 +142,14 @@
             android:background="@drawable/tv_bg"/>
 
         <TextView
+            android:id="@+id/destination"
             android:layout_width="0dp"
             android:layout_height="@dimen/dp_40"
             android:layout_weight=".3"
-            android:text="@string/destination"
+            android:background="@drawable/tv_bg"
             android:gravity="center"
-            android:id="@+id/destination"
-            android:textColor="@color/c_grey"
-            android:background="@drawable/tv_bg"/>
+            android:text="@string/destination"
+            android:textColor="@color/c_grey" />
 
       <!--  <Spinner
             android:layout_width="0dp"
@@ -1132,38 +1132,38 @@
 
     </LinearLayout>
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:weightSum="1">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1">
 
-    <Button
-        android:id="@+id/itinearyPrevious"
-        android:layout_width="0dp"
-        android:layout_weight=".5"
-        android:layout_height="@dimen/dp_40"
-        android:background="@drawable/button_bg"
-        android:text="@string/previous"
-        android:layout_marginRight="@dimen/dp_30"
-        android:layout_marginLeft="@dimen/dp_30"
-        android:paddingRight="@dimen/dp_10"
-        android:layout_marginTop="@dimen/dp_50"/>
-    <Button
-        android:id="@+id/itinearySave"
-        android:layout_width="0dp"
-        android:layout_weight=".5"
-        android:layout_height="@dimen/dp_40"
-        android:background="@drawable/button_bg"
-        android:text="@string/go_next"
-        android:layout_marginRight="@dimen/dp_30"
-        android:layout_marginLeft="@dimen/dp_30"
-        android:paddingRight="@dimen/dp_10"
-        android:layout_marginTop="@dimen/dp_50"
-        android:enabled="false"
-        />
+        <Button
+            android:id="@+id/itinearyPrevious"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_marginLeft="@dimen/dp_30"
+            android:layout_marginRight="@dimen/dp_30"
+            android:layout_marginTop="@dimen/dp_50"
+            android:layout_weight=".5"
+            android:background="@drawable/button_bg"
+            android:paddingRight="@dimen/dp_10"
+            android:text="@string/previous" />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/itinearySave"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_marginLeft="@dimen/dp_30"
+            android:layout_marginRight="@dimen/dp_30"
+            android:layout_marginTop="@dimen/dp_50"
+            android:layout_weight=".5"
+            android:background="@drawable/button_bg"
+            android:enabled="false"
+            android:paddingRight="@dimen/dp_10"
+            android:text="@string/go_next" />
+
+    </LinearLayout>
 
 <!--
     <LinearLayout

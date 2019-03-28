@@ -10,6 +10,7 @@ import iconnect.psi.com.iconnect.model.CompleteList;
 import iconnect.psi.com.iconnect.model.LoginResponse;
 import iconnect.psi.com.iconnect.model.MyTravelRequestBean;
 import iconnect.psi.com.iconnect.model.ProjectResponse;
+import iconnect.psi.com.iconnect.model.PurposeResponse;
 import iconnect.psi.com.iconnect.model.RejectList;
 import retrofit2.Call;
 import retrofit2.http.FieldMap;
@@ -53,7 +54,13 @@ public interface ApiInterface {
     @POST("airportList")
     public Call<CityResponse> sendCityResponse(@FieldMap HashMap<String, String> hashMap);
 
+    @FormUrlEncoded
+    @POST("purpose")
+    public Call<PurposeResponse> sendPurposeResponse(@FieldMap HashMap<String, String> hashMap);
 
+    @FormUrlEncoded
+    @POST("itenary")
+    public Call<PurposeResponse> sendItinearyResponse(@FieldMap HashMap<String, String> hashMap);
 
 
 

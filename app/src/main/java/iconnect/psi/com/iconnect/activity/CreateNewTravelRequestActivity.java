@@ -61,6 +61,7 @@ import iconnect.psi.com.iconnect.interfaces.ApiInterface;
 import iconnect.psi.com.iconnect.model.CityResponse;
 import iconnect.psi.com.iconnect.model.ItinearyDatabase;
 import iconnect.psi.com.iconnect.model.MyTravelRequestBean;
+import iconnect.psi.com.iconnect.model.PurposeResponse;
 import iconnect.psi.com.iconnect.networkclient.ApiClient;
 import iconnect.psi.com.iconnect.utils.Utility;
 import retrofit2.Call;
@@ -68,8 +69,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class CreateNewTravelRequestActivity extends BaseActivity implements View.OnClickListener,FragmentCity.MyDialogFragmentListener {
+public class CreateNewTravelRequestActivity extends BaseActivity implements View.OnClickListener,FragmentCity.MyDialogFragmentListener,FragmentProject.MyDialogFragmentListenerProject{
     private ImageView viaFlight,viaOfficial;
+    private String pur,itry;
+
     private TextView  tv_flight,tv_personal,tv_personal1,tv_flight1,tv_flight2,tv_personal2;
     private CreateNewTravelRequestActivity context;
     final static  int SELECT_FILE=1;
@@ -93,7 +96,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
     private static final int FILE=2;
     private TextView itineary,purpose,advance,summary;
     private String emp_name,Designation,CostCenter;
-    private Button next,nex1,next2,next3,itinearyPrevious,advancePrevious,summaryPrevious;
+    private Button next,next1,next2,next3,itinearyPrevious,advancePrevious,summaryPrevious;
     private ViewFlipper flipper;
     private RecyclerView mRecyclerView,mCityRecyclerView;
     private ImageView upload,camera;
@@ -195,7 +198,9 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
 
         flipper=(ViewFlipper)findViewById(R.id.viewflipper) ;
         next = findViewById(R.id.goNextPurpose);
-        nex1= findViewById(R.id.itinearySave) ;
+        next.setOnClickListener(this);
+        next1= findViewById(R.id.itinearySave) ;
+        next1.setOnClickListener(this);
         next2= findViewById(R.id.goNextAdvance);
         next3=findViewById(R.id.finalSubmit);
         next3.setOnClickListener(this);
@@ -265,7 +270,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
         tvDate=findViewById(R.id.tvDate);
 
         itinearySave=findViewById(R.id.itinearySave);
-        /*  itinearySave.setOnClickListener(this);*/
+          itinearySave.setOnClickListener(this);
         official=findViewById(R.id.official);
           official.setOnClickListener(this);
 
@@ -282,11 +287,6 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
         official7=findViewById(R.id.official7);
         /*  official7.setOnClickListener(this);*/
 
-        tv_select_dest3=findViewById(R.id.des_selection3);
-        tv_select_dest4=findViewById(R.id.des_selection4);
-        tv_select_dest5=findViewById(R.id.des_selection5);
-        tv_select_dest6=findViewById(R.id.des_selection6);
-        tv_select_dest7=findViewById(R.id.des_selection7);
 
         plus=findViewById(R.id.plus);
           plus.setOnClickListener(this);
@@ -345,11 +345,18 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
         tvDate_7=findViewById(R.id.tvDate7);
 
         tv_select_dest2=findViewById(R.id.des_selection2);
+
+
         tv_select_dest3=findViewById(R.id.des_selection3);
+
         tv_select_dest4=findViewById(R.id.des_selection4);
+
         tv_select_dest5=findViewById(R.id.des_selection5);
+
         tv_select_dest6=findViewById(R.id.des_selection6);
+
         tv_select_dest7=findViewById(R.id.des_selection7);
+
 
 /*
         destination.setOnClickListener(new View.OnClickListener() {
@@ -786,12 +793,11 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
 
         via7=findViewById(R.id.via7);
 
-
         end=findViewById(R.id.end);
         project.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentProject dialog=new FragmentProject(CreateNewTravelRequestActivity.this);
+                FragmentProject dialog=new FragmentProject();
 /*
                 FragmentProject dialog = new FragmentProject(getApplicationContext(), new CallBackResult() {
                     @Override
@@ -799,8 +805,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
 
                         Log.d("data",data.toString());
                     }
-                });
-*/
+                });*/
 
                 dialog.show(getSupportFragmentManager(), "MyDialogFragment");
 
@@ -814,12 +819,53 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                 fragmentCity.show();
             }
         });
+        tv_select_dest2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentCity fragmentCity1=new FragmentCity(CreateNewTravelRequestActivity.this,CreateNewTravelRequestActivity.this,1);
+                fragmentCity1.show();
+
+            }
+        });
 
 
+        tv_select_dest3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentCity fragmentCity2=new FragmentCity(CreateNewTravelRequestActivity.this,CreateNewTravelRequestActivity.this,1);
+                fragmentCity2.show();
 
+            }
+        });
+        tv_select_dest4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentCity fragmentCity3=new FragmentCity(CreateNewTravelRequestActivity.this,CreateNewTravelRequestActivity.this,1);
+                fragmentCity3.show();
 
-
-
+            }
+        });
+        tv_select_dest5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentCity fragmentCity4=new FragmentCity(CreateNewTravelRequestActivity.this,CreateNewTravelRequestActivity.this,1);
+                fragmentCity4.show();
+            }
+        });
+        tv_select_dest6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentCity fragmentCity5=new FragmentCity(CreateNewTravelRequestActivity.this,CreateNewTravelRequestActivity.this,1);
+                fragmentCity5.show();
+            }
+        });
+        tv_select_dest7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentCity fragmentCity6=new FragmentCity(CreateNewTravelRequestActivity.this,CreateNewTravelRequestActivity.this,1);
+                fragmentCity6.show();
+            }
+        });
 /*
         start.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1026,6 +1072,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                 }
             }
         });
+/*
         itinearySave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -1036,6 +1083,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                 passItinearyDatabase.add(itinearyDatabase);
             }
         });
+*/
         via.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -1082,29 +1130,32 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
             }
         });
 
-        checkboxSameday.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        checkboxSameday.setOnCheckedChangeListener(
+                new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                //samedaychecked=true;
-
-
                 dest=end.getText().toString().trim().substring(4);
                 destination.setText(dest);
                 if (end.getText().toString().trim().substring(4).equalsIgnoreCase(dest))
                 {
 
                    // itinearySave.setEnabled(true);
+/*
                     nex1.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             flipper.showNext();
                             onChangeTab(2);
-
                         }
                     });
+*/
 
                 }else {
-                   // itinearySave.setEnabled(false);
+                    /*nex1.setEnabled(false);*/
+
+                    //nex1.setEnabled(true);
+                    // itinearySave.setEnabled(false);
                 }
 
             }
@@ -1345,6 +1396,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
             }
         });
 
+/*
         tv_select_dest2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -1352,6 +1404,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                 dialogDestination(tv_select_dest2);
             }
         });
+*/
         plus2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -1365,12 +1418,14 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                 ll_2.setVisibility(View.VISIBLE);
                 }
         });
+/*
         tv_select_dest3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dialogDestination(tv_select_dest3);
             }
         });
+*/
        plus3.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
@@ -1379,12 +1434,14 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                ll_3.setVisibility(view.VISIBLE);
            }
        });
+/*
        tv_select_dest4.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
                dialogDestination(tv_select_dest4);
            }
        });
+*/
        plus4.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
@@ -1393,12 +1450,14 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                 ll_4.setVisibility(view.VISIBLE);
            }
        });
+/*
        tv_select_dest5.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
                dialogDestination(tv_select_dest5);
            }
        });
+*/
        plus5.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
@@ -1407,12 +1466,14 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                ll_5.setVisibility(view.VISIBLE);
            }
        });
+/*
        tv_select_dest6.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
                dialogDestination(tv_select_dest5);
            }
        });
+*/
        plus6.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
@@ -1421,18 +1482,21 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                 ll_6.setVisibility(view.VISIBLE);
            }
        });
+/*
        tv_select_dest7.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
                dialogDestination(tv_select_dest6);
            }
        });
+*/
         //getProjectData();
 
         final int positition=  flipper.getDisplayedChild();
 
         onChangeTab(positition);
 
+/*
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -1445,6 +1509,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                 onChangeTab(1);
             }
         });
+*/
 
         next2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1584,18 +1649,45 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                 date2 = new GregorianCalendar(i, i1, i2).getTime();
                 if (tvDate.getText().toString().contains(""+date) && destination.getText().toString().contains("")){
                     itinearySave.setEnabled(true);
+/*
                     nex1.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             flipper.showNext();
-                            onChangeTab(2);
+                            //onChangeTab(2);
                         }
                     });
-
-                }else {
+*/
+                }
+                 else if
+                  (tvDate.getText().toString().contains(""+date) && destination.getText().equals("Destination")){
+                        itinearySave.setEnabled(false);
+/*
+                        nex1.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                flipper.showNext();
+                                //onChangeTab(2);
+                            }
+                        });
+*/
+                    }else {
                     itinearySave.setEnabled(false);
                 }
-            }
+                    /*
+                    if (tvDate.getText().toString().contains(""+date) && destination.getText().toString().contains("")){
+                        nex1.setEnabled(false);
+                        nex1.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                flipper.showNext();
+                                onChangeTab(2);
+                            }
+                        });
+                    }
+*/
+                }
+
         };
         DatePickerDialog datePickerDialog=new DatePickerDialog(CreateNewTravelRequestActivity.this,listener,day,month,year);
         datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis()-1000);
@@ -1643,20 +1735,24 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
             @Override
             public void onResponse(Call<MyTravelRequestBean> call, Response<MyTravelRequestBean> response) {
                 Toast.makeText(CreateNewTravelRequestActivity.this, "Booking inserted Succesfully!", Toast.LENGTH_SHORT).show();
-
             }
-
             @Override
             public void onFailure(Call<MyTravelRequestBean> call, Throwable t) {
-
             }
         });
-
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()){
+
+            case R.id.goNextPurpose:
+                travePurposeDataSend();
+                break;
+            case R.id.itinearySave:
+                traveItinearyDataSend();
+                break;
+
             case R.id.finalSubmit:
                 onTravelDataSend();
                 break;
@@ -1692,17 +1788,17 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                /* FragmentCity fragmentCity=new FragmentCity(CreateNewTravelRequestActivity.this);
                 fragmentCity.show(getSupportFragmentManager(),"City dialog");
 */
-                    break;
+
             case R.id.end:
 
-                FragmentCity fragmentCity1=new FragmentCity(CreateNewTravelRequestActivity.this,CreateNewTravelRequestActivity.this,2);
-                fragmentCity1.show();
+                FragmentCity fragmentCityEnd=new FragmentCity(CreateNewTravelRequestActivity.this,CreateNewTravelRequestActivity.this,2);
+                fragmentCityEnd.show();
                /* FragmentCity fragmentCity=new FragmentCity(CreateNewTravelRequestActivity.this);
                 fragmentCity.show(getSupportFragmentManager(), "MyDialogFragment");*/
                 break;
             case R.id.start:
-                FragmentCity fragmentCity2=new FragmentCity(CreateNewTravelRequestActivity.this,CreateNewTravelRequestActivity.this,3);
-                fragmentCity2.show();
+                FragmentCity fragmentCityStart=new FragmentCity(CreateNewTravelRequestActivity.this,CreateNewTravelRequestActivity.this,3);
+                fragmentCityStart.show();
                 break;
             case R.id.camera:
                 selectImage();
@@ -1711,6 +1807,62 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                 selectImage();
                 break;
         }
+    }
+
+    private void traveItinearyDataSend() {
+        HashMap<String,String> hashMap=new HashMap();
+        hashMap.put("API_KEY", "72729a5129c69fc3b53ddf8d2790a5b0");
+        hashMap.put("start_location", start.getText().toString().trim());
+        hashMap.put("end_location", end.getText().toString().trim());
+        hashMap.put("start_date", tvDate.getText().toString().trim());
+        hashMap.put("emp_code", "PSI/0010");
+        ApiInterface apiInterface= ApiClient.getClientCI().create(ApiInterface.class);
+        apiInterface.sendItinearyResponse(hashMap).enqueue(new Callback<PurposeResponse>() {
+            @Override
+            public void onResponse(Call<PurposeResponse> call, Response<PurposeResponse> response) {
+                if (response.body().getErrorCode()==0){
+                    itry=response.body().getMessage();
+                    Toast.makeText(CreateNewTravelRequestActivity.this, ""+itry, Toast.LENGTH_SHORT).show();
+                    flipper.showNext();
+                    onChangeTab(2);
+                }else {
+                    Toast.makeText(CreateNewTravelRequestActivity.this, ""+itry, Toast.LENGTH_SHORT).show();
+                   /* flipper.showNext();
+                    onChangeTab(2);*/
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PurposeResponse> call, Throwable t) {
+
+            }
+        });
+
+    }
+
+    private void travePurposeDataSend() {
+        HashMap<String,String> hashMap=new HashMap();
+        hashMap.put("API_KEY", "72729a5129c69fc3b53ddf8d2790a5b0");
+        hashMap.put("purpose",ed_purpose.getText().toString().trim());
+        ApiInterface apiInterface= ApiClient.getClientCI().create(ApiInterface.class);
+        apiInterface.sendPurposeResponse(hashMap).enqueue(new Callback<PurposeResponse>() {
+            @Override
+            public void onResponse(Call<PurposeResponse> call, Response<PurposeResponse> response) {
+         if (response.body().getErrorCode()==1){
+             pur=response.body().getMessage();
+             Toast.makeText(CreateNewTravelRequestActivity.this, ""+pur, Toast.LENGTH_SHORT).show();
+             flipper.showNext();
+             onChangeTab(1);
+
+         }else {
+             Toast.makeText(CreateNewTravelRequestActivity.this, ""+pur, Toast.LENGTH_SHORT).show();
+         }
+            }
+            @Override
+            public void onFailure(Call<PurposeResponse> call, Throwable t) {
+
+            }
+        });
     }
 /*
      public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -1897,6 +2049,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == SELECT_FILE)
                 onSelectFromGalleryResult(data);
+
             else if (requestCode == REQUEST_CAMERA)
                 onCaptureImageResult(data);
         }
@@ -1939,7 +2092,17 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
     public void onReturnValue(String foo, int postions) {
         if(postions== 1){
             destination.setText(foo);
+          /*  tv_select_dest2.setText(foo);
+            tv_select_dest3.setText(foo);
+            tv_select_dest4.setText(foo);
+            tv_select_dest5.setText(foo);
+            tv_select_dest6.setText(foo);
+            tv_select_dest7.setText(foo);*/
+         }
+         else if (postions==4){
+            tv_select_dest2.setText(foo);
         }
+
         else if(postions==2){
             end.setText(foo);
         }
@@ -1947,7 +2110,14 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
             start.setText(foo);
         }
     }
-/*
+
+    @Override
+    public void onReturnValueProject(String fooProject) {
+        project.setText(fooProject);
+
+    }
+
+ /*
     @Override
     public void onReturnValue(String foo) {
         if(start.getText().toString().contains("")){
