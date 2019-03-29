@@ -56,6 +56,7 @@ public class FragmentSubmit extends Fragment
                 if (response.isSuccessful()) {
                     bookingList=response.body().getData();
                     setAdapter(bookingList);
+
                     Log.e("response size",""+bookingList.size());
                 }
             }

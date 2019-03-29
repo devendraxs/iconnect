@@ -1,5 +1,6 @@
 package iconnect.psi.com.iconnect.activity;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -12,10 +13,12 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -60,10 +63,14 @@ import iconnect.psi.com.iconnect.fragment.FragmentProject;
 import iconnect.psi.com.iconnect.interfaces.ApiInterface;
 import iconnect.psi.com.iconnect.model.CityResponse;
 import iconnect.psi.com.iconnect.model.ItinearyDatabase;
+import iconnect.psi.com.iconnect.model.ItinearyResponse;
 import iconnect.psi.com.iconnect.model.MyTravelRequestBean;
 import iconnect.psi.com.iconnect.model.PurposeResponse;
+import iconnect.psi.com.iconnect.model.TravelBooking;
 import iconnect.psi.com.iconnect.networkclient.ApiClient;
 import iconnect.psi.com.iconnect.utils.Utility;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -71,7 +78,14 @@ import retrofit2.Response;
 
 public class CreateNewTravelRequestActivity extends BaseActivity implements View.OnClickListener,FragmentCity.MyDialogFragmentListener,FragmentProject.MyDialogFragmentListenerProject{
     private ImageView viaFlight,viaOfficial;
+   public String data;
+    String bookRes;
+    String path = "";
+    private ArrayList<String> textviewdata=new ArrayList<>();
     private String pur,itry;
+    Bitmap thumbnail;
+    private TextView tvDateAdvance;
+    private String advanceDate;
 
     private TextView  tv_flight,tv_personal,tv_personal1,tv_flight1,tv_flight2,tv_personal2;
     private CreateNewTravelRequestActivity context;
@@ -142,12 +156,13 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
     boolean samedaychecked=false;
     String dest="";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_newtravel_request_activity);
+
+        //perDiam();
 /*
        Bundle dataintent= getIntent().getExtras();
         int datasize=dataintent.getInt("select_project");
@@ -160,6 +175,8 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
         CostCenter=intent.getStringExtra("CostCenter");
         ed_purpose=findViewById(R.id.ed_purpose);
 
+
+        tvDateAdvance=findViewById(R.id.tvDateAdvance);
         viaOfficial=findViewById(R.id.viaOfficial);
         viaFlight=findViewById(R.id.viaFlight);
 
@@ -455,8 +472,6 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                 if (isChecked){
                     calCheck2=(amount*15)/100;
                 }
-
-
             }
         });
         check3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -515,36 +530,24 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
             }
         });
 
+
+
         checkboxSameday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (((CheckBox)view).isChecked()){
                     plus.setEnabled(false);
-                }else {
-                    plus.setEnabled(true);
-                }
-            }
-        });
-        checkboxSameday.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (((CheckBox)view).isChecked()){
                     official.setEnabled(false);
+                    facilities.setEnabled(false);
+
                 }else {
+                    plus.setEnabled(true);
+                    facilities.setEnabled(true);
                     plus.setEnabled(true);
                 }
             }
         });
-        checkboxSameday.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (((CheckBox)view).isChecked()){
-                    facilities.setEnabled(false);
-                }else {
-                    facilities.setEnabled(true);
-                }
-            }
-        });
+
 
 /*
         checkboxSameday.setOnClickListener(new View.OnClickListener() {
@@ -1643,6 +1646,9 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                 tvDate.setText(i2 + "-" + (i1 + 1) + "-" + i);
                 date=tvDate.getText().toString();
 
+
+
+
                 Calendar calendar=Calendar.getInstance();
                 SimpleDateFormat sdf=new SimpleDateFormat("dd/mm/yyyy");
                 getCurentDate=sdf.format(calendar.getTime());
@@ -1723,25 +1729,72 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                 itineary.setTextColor(Color.WHITE);
                 advance.setTextColor(Color.WHITE);
                 purpose.setTextColor(Color.WHITE);
-                break;
-        }
+                break;        }
+
     }
+
     private void onTravelDataSend() {
         HashMap<String,String> hashMap=new HashMap();
+        textviewdata.add(tv2.getText().toString());
+        textviewdata.add(tv4.getText().toString().trim());
+        StringBuilder commaSepValueBuilder = new StringBuilder();
+        for ( int i = 0; i< textviewdata.size(); i++){
+            //append the value into the builder
+            commaSepValueBuilder.append(textviewdata.get(i));
+
+            //if the value is not the last element of the list
+            //then append the comma(,) as well
+            if ( i != textviewdata.size()-1){
+                commaSepValueBuilder.append(", ");
+            }
+        }
+        String data=commaSepValueBuilder.toString();
+
+       /* String csv =tv2.getText().toString().trim().concat(tv4.getText().toString().trim());*/
+        Log.e("via",commaSepValueBuilder.toString());
+       /* String[] numbers = {tv2.getText().toString(), tv4.getText().toString()};
+        StringBuilder buffer = new StringBuilder();
+        for (int i = 0; i < numbers.length; i++) {
+            if (i > 0) {
+                buffer.append(',');
+            }
+            buffer.append(numbers[i]);
+        }
+        data= Arrays.stream(numbers).collect(Collectors.joining(","));*/
         hashMap.put("API_KEY","72729a5129c69fc3b53ddf8d2790a5b0");
        hashMap.put("purpose",""+ed_purpose.getText().toString().trim());
+        hashMap.put("start_location", start.getText().toString().trim());
+        hashMap.put("end_location", end.getText().toString().trim());
+        hashMap.put("start_date", tvDate.getText().toString().trim());
+        hashMap.put("project_id",project.getText().toString().trim());
+        hashMap.put("destination",destination.getText().toString().trim());
+        hashMap.put("via_type",data);
+
+        hashMap.put("emp_code","PSI/0010");
+        hashMap.put("travel_type","p");
         ApiInterface apiInterface = ApiClient.getClientCI().create(ApiInterface.class);
-        apiInterface.sendTravelRequest(hashMap).enqueue(new Callback<MyTravelRequestBean>() {
+        apiInterface.sendTravelBookingResponse(hashMap).enqueue(new Callback<TravelBooking>() {
             @Override
-            public void onResponse(Call<MyTravelRequestBean> call, Response<MyTravelRequestBean> response) {
-                Toast.makeText(CreateNewTravelRequestActivity.this, "Booking inserted Succesfully!", Toast.LENGTH_SHORT).show();
+            public void onResponse(Call<TravelBooking> call, Response<TravelBooking> response) {
+                if (response.body().getErrorCode()==1){
+                  bookRes=response.body().getMessage();
+                  String bookId=response.body().getLastid();
+                    Toast.makeText(CreateNewTravelRequestActivity.this,  ""+bookRes, Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(CreateNewTravelRequestActivity.this,MyTravelRequestActivity.class);
+                    startActivity(intent);
+
+                }else {
+                    Toast.makeText(CreateNewTravelRequestActivity.this, "" + bookRes, Toast.LENGTH_SHORT).show();
+                }
             }
             @Override
-            public void onFailure(Call<MyTravelRequestBean> call, Throwable t) {
+            public void onFailure(Call<TravelBooking> call, Throwable t) {
             }
         });
     }
 
+    @TargetApi(Build.VERSION_CODES.N)
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onClick(View view) {
         switch (view.getId()){
@@ -1755,6 +1808,8 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
 
             case R.id.finalSubmit:
                 onTravelDataSend();
+                Intent intent=new Intent(CreateNewTravelRequestActivity.this,MyTravelRequestActivity.class);
+                startActivity(intent);
                 break;
             case R.id.itinearyPrevious:
                 flipper.showPrevious();
@@ -1809,26 +1864,27 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
         }
     }
 
-    private void traveItinearyDataSend() {
-        HashMap<String,String> hashMap=new HashMap();
-        hashMap.put("API_KEY", "72729a5129c69fc3b53ddf8d2790a5b0");
-        hashMap.put("start_location", start.getText().toString().trim());
-        hashMap.put("end_location", end.getText().toString().trim());
-        hashMap.put("start_date", tvDate.getText().toString().trim());
-        hashMap.put("emp_code", "PSI/0010");
-        ApiInterface apiInterface= ApiClient.getClientCI().create(ApiInterface.class);
-        apiInterface.sendItinearyResponse(hashMap).enqueue(new Callback<PurposeResponse>() {
+    private void travePurposeDataSend() {
+        File imagepath = new File(path);
+
+        // Map<String, ArrayList<StaticDataBeans>> addressMapList = new HashMap<>();
+        RequestBody empPurpose = RequestBody.create(MediaType.parse("text/plain"), ed_purpose.getText().toString().trim());
+        RequestBody image = RequestBody.create(MediaType.parse("text/plain"), thumbnail.toString());
+        RequestBody apiKey1 = RequestBody.create(MediaType.parse("text/plain"), "72729a5129c69fc3b53ddf8d2790a5b0");
+
+        ApiInterface apiInterface = ApiClient.getClientCI().create(ApiInterface.class);
+
+        Call<PurposeResponse> purposeResponseCall = apiInterface.sendPurposeResponse(apiKey1, empPurpose, image);
+
+        purposeResponseCall.enqueue(new Callback<PurposeResponse>() {
             @Override
-            public void onResponse(Call<PurposeResponse> call, Response<PurposeResponse> response) {
+            public void onResponse(Call<PurposeResponse> call,
+                                   Response<PurposeResponse> response) {
                 if (response.body().getErrorCode()==0){
-                    itry=response.body().getMessage();
-                    Toast.makeText(CreateNewTravelRequestActivity.this, ""+itry, Toast.LENGTH_SHORT).show();
+                    String pur=response.body().getMessage();
+                    Toast.makeText(CreateNewTravelRequestActivity.this, ""+pur, Toast.LENGTH_SHORT).show();
                     flipper.showNext();
-                    onChangeTab(2);
-                }else {
-                    Toast.makeText(CreateNewTravelRequestActivity.this, ""+itry, Toast.LENGTH_SHORT).show();
-                   /* flipper.showNext();
-                    onChangeTab(2);*/
+                    onChangeTab(1);
                 }
             }
 
@@ -1837,9 +1893,48 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
 
             }
         });
+    }
+
+    private void traveItinearyDataSend() {
+        HashMap<String,String> hashMap=new HashMap();
+        hashMap.put("API_KEY", "72729a5129c69fc3b53ddf8d2790a5b0");
+        hashMap.put("start_location", start.getText().toString().trim());
+        hashMap.put("end_location", end.getText().toString().trim());
+        hashMap.put("start_date", tvDate.getText().toString().trim());
+        hashMap.put("project_id",project.getText().toString().trim());
+        hashMap.put("destination",destination.getText().toString().trim());
+        hashMap.put("via",tv2.getText().toString().trim());
+        hashMap.put("via",tv2.getText().toString().trim());
+        hashMap.put("via", tv3.getText().toString());
+        ApiInterface apiInterface= ApiClient.getClientCI().create(ApiInterface.class);
+        apiInterface.sendItinearyResponse(hashMap).enqueue(new Callback<ItinearyResponse>() {
+            @Override
+            public void onResponse(Call<ItinearyResponse> call, Response<ItinearyResponse> response) {
+                if (response.body().getErrorCode()==0){
+                    itry=response.body().getMessage();
+                    Toast.makeText(CreateNewTravelRequestActivity.this, ""+itry, Toast.LENGTH_SHORT).show();
+                    advanceDate=tvDate.getText().toString();;
+                    tvDateAdvance.setText(advanceDate);
+                    flipper.showNext();
+                    onChangeTab(2);
+
+                }else {
+                    Toast.makeText(CreateNewTravelRequestActivity.this, ""+itry, Toast.LENGTH_SHORT).show();
+                   /* flipper.showNext();
+                    onChangeTab(2);*/
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ItinearyResponse> call, Throwable t) {
+
+            }
+
+         });
 
     }
 
+/*
     private void travePurposeDataSend() {
         HashMap<String,String> hashMap=new HashMap();
         hashMap.put("API_KEY", "72729a5129c69fc3b53ddf8d2790a5b0");
@@ -1864,6 +1959,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
             }
         });
     }
+*/
 /*
      public void onActivityResult(int requestCode, int resultCode, Intent data) {
         try {
@@ -2056,7 +2152,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
     }
 
     private void onCaptureImageResult(Intent data) {
-        Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+         thumbnail = (Bitmap) data.getExtras().get("data");
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
         File destination = new File(Environment.getExternalStorageDirectory(),

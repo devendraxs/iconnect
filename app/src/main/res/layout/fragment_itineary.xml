@@ -56,7 +56,6 @@
                     android:id="@+id/start"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dp_30"
-
                     android:gravity="center"
                     android:layout_weight="1"
                     android:textColor="@color/c_grey"
@@ -68,7 +67,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-
                 android:weightSum="1"
                 android:layout_marginTop="@dimen/dp_10">
 
@@ -115,13 +113,13 @@
             android:id="@+id/project"
             android:layout_width="0dp"
             android:layout_height="@dimen/dp_30"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_160"
             android:layout_weight=".6"
             android:background="@drawable/tv_bg"
-            android:textColor="@color/c_grey"
             android:gravity="center"
-            android:layout_marginLeft="@dimen/dp_30"
-           android:layout_marginRight="@dimen/dp_150"
-            android:text="@string/project"/>
+            android:text="Select Project"
+            android:textColor="@color/c_grey" />
 
     </LinearLayout>
 
