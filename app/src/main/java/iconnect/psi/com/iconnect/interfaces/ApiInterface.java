@@ -1,6 +1,7 @@
 package iconnect.psi.com.iconnect.interfaces;
 
 import java.util.HashMap;
+import java.util.List;
 
 import iconnect.psi.com.iconnect.model.ApprovedList;
 import iconnect.psi.com.iconnect.model.BookingList;
@@ -14,6 +15,7 @@ import iconnect.psi.com.iconnect.model.ProjectResponse;
 import iconnect.psi.com.iconnect.model.PurposeResponse;
 import iconnect.psi.com.iconnect.model.RejectList;
 import iconnect.psi.com.iconnect.model.TravelBooking;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.FieldMap;
@@ -61,7 +63,8 @@ public interface ApiInterface {
 
    @Multipart
     @POST("purpose")
-   Call<PurposeResponse>sendPurposeResponse(@Part("API_KEY") RequestBody apiKey, @Part("purpose") RequestBody purpose, @Part("attach_doc") RequestBody attachImage);
+  // Call<PurposeResponse>sendPurposeResponse(@Part("API_KEY") RequestBody apiKey, @Part("purpose") RequestBody purpose,@Part() MultipartBody.Part file );
+   Call<PurposeResponse>sendPurposeResponse(@Part("API_KEY") RequestBody apiKey, @Part("purpose") RequestBody purpose,@Part List<MultipartBody.Part> filesReq );
     //public Call<PurposeResponse> sendPurposeResponse(@FieldMap HashMap<String, String> hashMap);
 
     @FormUrlEncoded

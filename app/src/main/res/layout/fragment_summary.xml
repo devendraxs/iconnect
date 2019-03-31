@@ -27,7 +27,7 @@
              android:layout_height="@dimen/dp_40"
              android:layout_weight=".5"
              android:textColor="@color/c_grey"
-            android:text="5"/>
+            android:text=""/>
 
 
      </LinearLayout>
@@ -50,7 +50,7 @@
             android:layout_height="@dimen/dp_40"
             android:layout_weight=".5"
             android:textColor="@color/c_grey"
-           android:text="15/03/19"/>
+           android:text=""/>
 
 
     </LinearLayout>
@@ -73,7 +73,7 @@
             android:layout_height="@dimen/dp_40"
             android:layout_weight=".5"
             android:textColor="@color/c_grey"
-            android:text="15/03/19"/>
+            android:text=""/>
 
 
     </LinearLayout>

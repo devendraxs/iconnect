@@ -19,6 +19,8 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -42,6 +44,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import com.google.gson.Gson;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -57,6 +61,7 @@ import java.util.List;
 
 import iconnect.psi.com.iconnect.R;
 import iconnect.psi.com.iconnect.adapter.CityAdapter;
+import iconnect.psi.com.iconnect.adapter.DateParadimRecyclerview;
 import iconnect.psi.com.iconnect.adapter.SpinnerAdapter;
 import iconnect.psi.com.iconnect.fragment.FragmentCity;
 import iconnect.psi.com.iconnect.fragment.FragmentProject;
@@ -65,11 +70,13 @@ import iconnect.psi.com.iconnect.model.CityResponse;
 import iconnect.psi.com.iconnect.model.ItinearyDatabase;
 import iconnect.psi.com.iconnect.model.ItinearyResponse;
 import iconnect.psi.com.iconnect.model.MyTravelRequestBean;
+import iconnect.psi.com.iconnect.model.Perdiam;
 import iconnect.psi.com.iconnect.model.PurposeResponse;
 import iconnect.psi.com.iconnect.model.TravelBooking;
 import iconnect.psi.com.iconnect.networkclient.ApiClient;
 import iconnect.psi.com.iconnect.utils.Utility;
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -78,12 +85,20 @@ import retrofit2.Response;
 
 public class CreateNewTravelRequestActivity extends BaseActivity implements View.OnClickListener,FragmentCity.MyDialogFragmentListener,FragmentProject.MyDialogFragmentListenerProject{
     private ImageView viaFlight,viaOfficial;
+    LinearLayout llOtherAdv1,llOtherAdv2,llOtherAdv3;
+    String facility1;
+    DateParadimRecyclerview dateParadimRecyclerview;
+    String breakfast,lunch,dinner,none,incedental,estd_perdiam;
+
+    File destinationImage;
    public String data;
     String bookRes;
-    String path = "";
+    String path = "",sameDayCheckStatus="0";
     private ArrayList<String> textviewdata=new ArrayList<>();
     private String pur,itry;
     Bitmap thumbnail;
+    private  List<String> bitmaplist=new ArrayList<>();
+
     private TextView tvDateAdvance;
     private String advanceDate;
 
@@ -91,6 +106,8 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
     private CreateNewTravelRequestActivity context;
     final static  int SELECT_FILE=1;
     final static int REQUEST_CAMERA=2;
+    final static int REQUEST_CAMERA3=3;
+    final static int REQUEST_CAMERA4=4;
     private Dialog mDialog;
     CheckBox checkboxSameday;
     private LinearLayout startEnd;
@@ -105,7 +122,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
     private CheckBox check1,check2,check3,check4,check5;
     private int amount=1200;
     private int  calCheck2,calcheck3,calcheck4,calcheck5;
-    private   int checkBoxAmount;
+    private volatile  int checkBoxAmount;
     private static final int CAMERA=1;
     private static final int FILE=2;
     private TextView itineary,purpose,advance,summary;
@@ -118,6 +135,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
     private LinearLayout llReturn,llPlusMinus;
     private Button itinearySave;
     ItinearyDatabase itinearyDatabase;
+    private ArrayList<String>dateList=new ArrayList<>();
     private ImageView official,official2,official3,official4,official5,official6,official7;
     private int day, month, year;
     private String date,newDate;
@@ -144,11 +162,14 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
     private List<ItinearyDatabase> passItinearyDatabase;
     private ImageView plus,plus2,plus3,plus4,plus5,plus6,plus7;
     private ImageView minus,minus2,minus3,minus4,minus5,minus6,minus7;
+
+    private ImageView advPlus1,advPlus2,advPlus3;
     private ImageView via,via2,via3,via4,via5,via6,via7;
     private ImageView plusPurpose,minusPurpose,upload1,camera1,plusPurpose1,minusPurpose1,upload2,camera2,plusPurpose2,minusPurpose2,upload3,camera3,llPlusMinusPurpose3,plusPurpose3,minusPurpose3;
     LinearLayout llPurpose,llPurpose1,llPurpose2,llPurpose3;
 
     private EditText editTextDialogUserInput;
+    private RecyclerView dateParadime;
     private List<String> list_sou_des;
     private LinearLayout ll_1,ll_2,ll_3,ll_4,ll_5,ll_6,ll_7,ll_8,ll_9;
     private TextView tvDate_2,tvDate_3,tvDate_4,tvDate_5,tvDate_6,tvDate_7;
@@ -161,19 +182,38 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_newtravel_request_activity);
+        perDiam();
 
-        //perDiam();
+
 /*
        Bundle dataintent= getIntent().getExtras();
         int datasize=dataintent.getInt("select_project");
         String dataname=dataintent.getString("projact_name");*/
 
 
+    /*    Intent intent=getIntent();
+        breakfast=intent.getStringExtra("breakfast");
+        lunch=intent.getStringExtra("lunch");
+        dinner=intent.getStringExtra("dinner");
+        none=intent.getStringExtra("none");
+        incedental=intent.getStringExtra("incedental");
+        estd_perdiam=intent.getStringExtra("estd_perdiam");
+        estd_perdiam=intent.getStringExtra("estd_perdiam");*/
+
         Intent intent=getIntent();
         emp_name=intent.getStringExtra("emp_name");
         Designation=intent.getStringExtra("Designation");
         CostCenter=intent.getStringExtra("CostCenter");
         ed_purpose=findViewById(R.id.ed_purpose);
+        dateParadime=findViewById(R.id.dateParadim);
+        llOtherAdv1=findViewById(R.id.llOtherAdv1);
+        llOtherAdv2=findViewById(R.id.llOtherAdv2);
+        //llOtherAdv3=findViewById(R.id.llOtherAdv3);
+
+     //  advPlus1=findViewById(R.id.advPlus1);
+
+        advPlus2=findViewById(R.id.advPlus2);
+        //advPlus3=findViewById(R.id.advPlus3);
 
 
         tvDateAdvance=findViewById(R.id.tvDateAdvance);
@@ -201,16 +241,17 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
         camera.setOnClickListener(this);
         camera1=findViewById(R.id.camera1);
         camera1.setOnClickListener(this);
+        camera2=findViewById(R.id.camera2);
+        camera2.setOnClickListener(this);
         plusPurpose1=findViewById(R.id.plusPurpose1);
         plusPurpose1.setOnClickListener(this);
         minusPurpose1=findViewById(R.id.minusPurpose1);
         minusPurpose1.setOnClickListener(this);
         upload2=findViewById(R.id.upload2);
-        camera2=findViewById(R.id.camera2);
-        plusPurpose2=findViewById(R.id.plusPurpose2);
+         plusPurpose2=findViewById(R.id.plusPurpose2);
         plusPurpose2.setOnClickListener(this);
         minusPurpose2=findViewById(R.id.minusPurpose2);
-        minusPurpose2.setOnClickListener(this);
+            minusPurpose2.setOnClickListener(this);
         camera3=findViewById(R.id.camera3);
 
         flipper=(ViewFlipper)findViewById(R.id.viewflipper) ;
@@ -272,10 +313,10 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
 
         start= findViewById(R.id.start);
         start.setOnClickListener(this);
-        start.setText("Start: "+CostCenter);
+        start.setText(CostCenter);
         end= findViewById(R.id.end);
         end.setOnClickListener(this);
-        end.setText("End: "+CostCenter);
+        end.setText(CostCenter);
 
         facilities= findViewById(R.id.facilities);
         facilities2= findViewById(R.id.facilities2);
@@ -384,12 +425,12 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
         });
 */
 
-
-
         itineary=findViewById(R.id.itineary);
         purpose=findViewById(R.id.purpose);
         advance=findViewById(R.id.advance);
         summary=findViewById(R.id.summary);
+
+
         ed_purpose.addTextChangedListener(new TextWatcher() {
             // Before EditText text change
             @Override
@@ -451,6 +492,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
 
 
 
+/*
         check1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -466,47 +508,71 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                 }
             }
         });
+*/
+/*
         check2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if (isChecked){
-                    calCheck2=(amount*15)/100;
+                    double b1=Double.valueOf(estd_perdiam);
+                    double b2=Double.valueOf(breakfast);
+                    calCheck2= (int) ((b1*b2)/100);
                 }
             }
         });
+*/
+/*
         check3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if (isChecked){
-                    calcheck3=(amount*25)/100;
-                }
 
+                    double l1=Double.valueOf(estd_perdiam);
+                    double l2=Double.valueOf(lunch);
+                    calcheck3=((int)(l1*l2)/100);
+                }
             }
         });
+*/
+/*
         check3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                double l1=Double.valueOf(estd_perdiam);
+                double l2=Double.valueOf(lunch);
+                calCheck2= (int) ((l1*l2)/100);
+                calcheck3=((int)(l1*l2)/100);
+
                 calcheck3=(amount*25)/100;
             }
         });
+*/
+/*
         check4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                calcheck4=(amount*40)/100;
+                double d1=Double.valueOf(estd_perdiam);
+                double d2=Double.valueOf(dinner);
+                calcheck4= (int) ((d1*d2)/100);
 
             }
         });
+*/
+/*
         check5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                calcheck5=(1200*20)/100;
+                double i1=Double.valueOf(estd_perdiam);
+                double i2=Double.valueOf(incedental);
+                calcheck5= (int) ((i1*i2)/100);
             }
         });
+*/
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar bar, int progress, boolean fromUser) {
-                checkBoxAmount= calCheck2+calcheck3+calcheck4+calcheck5;
+               // checkBoxAmount= calCheck2+calcheck3+calcheck4+calcheck5;
                 totalAmount.setText(""+checkBoxAmount);
 
                 progress=(progress/stepSize)*stepSize;
@@ -535,15 +601,18 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
         checkboxSameday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (((CheckBox)view).isChecked()){
+                if (((CheckBox)view).isChecked())
+                {
                     plus.setEnabled(false);
                     official.setEnabled(false);
                     facilities.setEnabled(false);
+                    sameDayCheckStatus="1";
 
                 }else {
                     plus.setEnabled(true);
                     facilities.setEnabled(true);
                     plus.setEnabled(true);
+                    sameDayCheckStatus="0";
                 }
             }
         });
@@ -565,11 +634,11 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
             SpinnerAdapter spinnerAdapter=new iconnect.psi.com.iconnect.adapter.SpinnerAdapter(this,name,images);
             facilities.setAdapter(spinnerAdapter);
 
-
         facilities.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 // Toast.makeText(mActivity, ""+name, Toast.LENGTH_SHORT).show();
+                facility1=facilities.getItemAtPosition(i).toString();
             }
 
             @Override
@@ -775,6 +844,30 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                 ll_6.setVisibility(view.GONE);
             }
         });
+/*
+        advPlus1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                llOtherAdv1.setVisibility(view.VISIBLE);
+            }
+        });
+*/
+/*
+        advPlus2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                llOtherAdv2.setVisibility(view.VISIBLE);
+            }
+        });
+*/
+/*
+        advPlus3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                llOtherAdv3.setVisibility(view.VISIBLE);
+            }
+        });
+*/
 
       /*  minus=findViewById(R.id.minus);*/
         /*   minus.setOnClickListener(this);*/
@@ -811,7 +904,6 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                 });*/
 
                 dialog.show(getSupportFragmentManager(), "MyDialogFragment");
-
             }
         });
 
@@ -825,7 +917,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
         tv_select_dest2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentCity fragmentCity1=new FragmentCity(CreateNewTravelRequestActivity.this,CreateNewTravelRequestActivity.this,1);
+                FragmentCity fragmentCity1=new FragmentCity(CreateNewTravelRequestActivity.this,CreateNewTravelRequestActivity.this,4);
                 fragmentCity1.show();
 
             }
@@ -835,7 +927,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
         tv_select_dest3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentCity fragmentCity2=new FragmentCity(CreateNewTravelRequestActivity.this,CreateNewTravelRequestActivity.this,1);
+                FragmentCity fragmentCity2=new FragmentCity(CreateNewTravelRequestActivity.this,CreateNewTravelRequestActivity.this,5);
                 fragmentCity2.show();
 
             }
@@ -843,7 +935,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
         tv_select_dest4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentCity fragmentCity3=new FragmentCity(CreateNewTravelRequestActivity.this,CreateNewTravelRequestActivity.this,1);
+                FragmentCity fragmentCity3=new FragmentCity(CreateNewTravelRequestActivity.this,CreateNewTravelRequestActivity.this,6);
                 fragmentCity3.show();
 
             }
@@ -851,21 +943,21 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
         tv_select_dest5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentCity fragmentCity4=new FragmentCity(CreateNewTravelRequestActivity.this,CreateNewTravelRequestActivity.this,1);
+                FragmentCity fragmentCity4=new FragmentCity(CreateNewTravelRequestActivity.this,CreateNewTravelRequestActivity.this,7);
                 fragmentCity4.show();
             }
         });
         tv_select_dest6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentCity fragmentCity5=new FragmentCity(CreateNewTravelRequestActivity.this,CreateNewTravelRequestActivity.this,1);
+                FragmentCity fragmentCity5=new FragmentCity(CreateNewTravelRequestActivity.this,CreateNewTravelRequestActivity.this,8);
                 fragmentCity5.show();
             }
         });
         tv_select_dest7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentCity fragmentCity6=new FragmentCity(CreateNewTravelRequestActivity.this,CreateNewTravelRequestActivity.this,1);
+                FragmentCity fragmentCity6=new FragmentCity(CreateNewTravelRequestActivity.this,CreateNewTravelRequestActivity.this,9);
                 fragmentCity6.show();
             }
         });
@@ -1394,6 +1486,9 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
 
                         // tvDate_2.setText(""+dt);
                         tvDate_2.setText(date1);
+                        dateList.add(date1);
+
+
 
                 ll_1.setVisibility(View.VISIBLE);
             }
@@ -1417,6 +1512,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
 
               date6=incrementDateByTwo(date2);
               tvDate_3.setText(date6);
+              dateList.add(date6);
 
                 ll_2.setVisibility(View.VISIBLE);
                 }
@@ -1434,6 +1530,8 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
            public void onClick(View view) {
                date7=incrementDateByThree(date2);
                tvDate_4.setText(date7);
+               dateList.add(date7);
+
                ll_3.setVisibility(view.VISIBLE);
            }
        });
@@ -1450,6 +1548,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
            public void onClick(View view) {
                date8=incrementDateByFour(date2);
                tvDate_5.setText(date8);
+               dateList.add(date8);
                 ll_4.setVisibility(view.VISIBLE);
            }
        });
@@ -1466,6 +1565,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
            public void onClick(View view) {
                date9=incrementDateByFive(date2);
                tvDate_6.setText(date9);
+               dateList.add(date9);
                ll_5.setVisibility(view.VISIBLE);
            }
        });
@@ -1519,6 +1619,43 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
             public void onClick(View view) {
                 flipper.showNext();
                 onChangeTab(3);
+            }
+        });
+
+    }
+
+    private void perDiam() {
+        HashMap<String,String> hashMap=new HashMap();
+        hashMap.put("API_KEY", "72729a5129c69fc3b53ddf8d2790a5b0");
+        ApiInterface apiInterface= ApiClient.getClientCI().create(ApiInterface.class);
+        apiInterface.perDiam(hashMap).enqueue(new Callback<Perdiam>() {
+            @Override
+            public void onResponse(Call<Perdiam> call, Response<Perdiam> response) {
+                if (response.isSuccessful()){
+                  //  for(int i=0;i<response.body().getData().size();i++) {
+                         breakfast = response.body().getData().get(0).getBreakFast();
+                         Log.e("breakfast","====="+breakfast);
+                         lunch=response.body().getData().get(0).getLunch();
+                         dinner=response.body().getData().get(0).getDinner();
+                         none= response.body().getData().get(0).getNones();
+                         incedental=response.body().getData().get(0).getIncedental();
+                        estd_perdiam=response.body().getData().get(0).getEstimatedPerdiam();
+
+                        dateParadimRecyclerview=new DateParadimRecyclerview(CreateNewTravelRequestActivity.
+                                this,dateList,breakfast,lunch,dinner,none,incedental,estd_perdiam);
+                        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+                        dateParadime.setLayoutManager(mLayoutManager);
+                        dateParadime.setItemAnimator(new DefaultItemAnimator());
+                        dateParadime.setAdapter(dateParadimRecyclerview);
+
+                 //   }
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Perdiam> call, Throwable t) {
 
             }
         });
@@ -1645,6 +1782,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                 tvDate.setVisibility(View.VISIBLE);
                 tvDate.setText(i2 + "-" + (i1 + 1) + "-" + i);
                 date=tvDate.getText().toString();
+                dateList.add(date);
 
 
 
@@ -1768,7 +1906,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
         hashMap.put("start_date", tvDate.getText().toString().trim());
         hashMap.put("project_id",project.getText().toString().trim());
         hashMap.put("destination",destination.getText().toString().trim());
-        hashMap.put("via_type",data);
+        hashMap.put("via",data);
 
         hashMap.put("emp_code","PSI/0010");
         hashMap.put("travel_type","p");
@@ -1804,6 +1942,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                 break;
             case R.id.itinearySave:
                 traveItinearyDataSend();
+                dateParadimRecyclerview.notifyDataSetChanged();
                 break;
 
             case R.id.finalSubmit:
@@ -1841,8 +1980,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                 fragmentCity.show();
                     //hitCityApi();
                /* FragmentCity fragmentCity=new FragmentCity(CreateNewTravelRequestActivity.this);
-                fragmentCity.show(getSupportFragmentManager(),"City dialog");
-*/
+                fragmentCity.show(getSupportFragmentManager(),"City dialog");*/
 
             case R.id.end:
 
@@ -1856,10 +1994,13 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                 fragmentCityStart.show();
                 break;
             case R.id.camera:
-                selectImage();
+                selectImage(REQUEST_CAMERA);
                 break;
             case R.id.camera1:
-                selectImage();
+                selectImage(REQUEST_CAMERA3);
+                break;
+            case R.id.camera2:
+                selectImage(REQUEST_CAMERA4);
                 break;
         }
     }
@@ -1869,18 +2010,31 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
 
         // Map<String, ArrayList<StaticDataBeans>> addressMapList = new HashMap<>();
         RequestBody empPurpose = RequestBody.create(MediaType.parse("text/plain"), ed_purpose.getText().toString().trim());
-        RequestBody image = RequestBody.create(MediaType.parse("text/plain"), thumbnail.toString());
+     //   RequestBody image = RequestBody.create(MediaType.parse("text/plain"), thumbnail.toString());
+       /* File file = new File(destinationImage.getAbsolutePath());
+        RequestBody requestFile = RequestBody.create(MediaType.parse("Multipart/form-data"), file);
+        Log.e("Image.....", "" + file.getName());
+        MultipartBody.Part fileData = MultipartBody.Part.createFormData("attach_doc", file.getName(), requestFile);*/
+        List<MultipartBody.Part> filesDataList = new ArrayList<>();
+        for (String filePath : bitmaplist) {
+            File file = new File(filePath);
+            RequestBody requestFile = RequestBody.create(MediaType.parse("Multipart/form-data"), file);
+            MultipartBody.Part fileData = MultipartBody.Part.createFormData("attach_doc[]", file.getName(), requestFile);
+            filesDataList.add(fileData);
+        }
+
+
         RequestBody apiKey1 = RequestBody.create(MediaType.parse("text/plain"), "72729a5129c69fc3b53ddf8d2790a5b0");
 
         ApiInterface apiInterface = ApiClient.getClientCI().create(ApiInterface.class);
 
-        Call<PurposeResponse> purposeResponseCall = apiInterface.sendPurposeResponse(apiKey1, empPurpose, image);
+        Call<PurposeResponse> purposeResponseCall = apiInterface.sendPurposeResponse(apiKey1, empPurpose, filesDataList);
 
         purposeResponseCall.enqueue(new Callback<PurposeResponse>() {
             @Override
-            public void onResponse(Call<PurposeResponse> call,
-                                   Response<PurposeResponse> response) {
-                if (response.body().getErrorCode()==0){
+            public void onResponse(Call<PurposeResponse> call, Response<PurposeResponse> response) {
+                if (response.isSuccessful()){
+                    Log.e("Request Url","==="+call.request().url());
                     String pur=response.body().getMessage();
                     Toast.makeText(CreateNewTravelRequestActivity.this, ""+pur, Toast.LENGTH_SHORT).show();
                     flipper.showNext();
@@ -1895,28 +2049,76 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
         });
     }
 
+  /*  String input = "123456789";     //input string
+    String firstFourChars = "";     //subsctring containing first 4 characters
+
+if (input.length() > 4)
+    {
+        firstFourChars = input.substring(0, 4);
+    }
+else
+    {
+        firstFourChars = input;
+    }
+
+System.out.println(firstFourChars);*/
+
+   // String endLoc= end.getText().toString().trim().substring(0,4);
+   // Log.e("sub string",""+endLoc);
     private void traveItinearyDataSend() {
+
+        textviewdata.add(tv2.getText().toString());
+        textviewdata.add(tv4.getText().toString().trim());
+        StringBuilder commaSepValueBuilder = new StringBuilder();
+        for ( int i = 0; i< textviewdata.size(); i++)
+        {
+            commaSepValueBuilder.append(textviewdata.get(i));
+            if ( i != textviewdata.size()-1){
+                commaSepValueBuilder.append(", ");
+            }
+        }
+        String data=commaSepValueBuilder.toString();
+        Log.e("via",commaSepValueBuilder.toString());
         HashMap<String,String> hashMap=new HashMap();
         hashMap.put("API_KEY", "72729a5129c69fc3b53ddf8d2790a5b0");
-        hashMap.put("start_location", start.getText().toString().trim());
-        hashMap.put("end_location", end.getText().toString().trim());
-        hashMap.put("start_date", tvDate.getText().toString().trim());
+        hashMap.put("same_day", sameDayCheckStatus);
+       /* if(start.getText().toString().trim().equalsIgnoreCase("")) {
+            hashMap.put("start_location", start.getText().toString().trim());
+        }else{
+            //Toast.makeText("")
+        }*/
+        hashMap.put("end_location", end.getText().toString());
         hashMap.put("project_id",project.getText().toString().trim());
+        hashMap.put("project_percent",project.getText().toString().trim());
+        hashMap.put("dates",tvDate.getText().toString().trim());
+        hashMap.put("facility",facilities.getSelectedItem().toString().trim());
         hashMap.put("destination",destination.getText().toString().trim());
-        hashMap.put("via",tv2.getText().toString().trim());
-        hashMap.put("via",tv2.getText().toString().trim());
-        hashMap.put("via", tv3.getText().toString());
+        hashMap.put("via",data);
+        hashMap.put("type","p");
+        hashMap.put("user_id","PSI/0010");
+        Log.e("Travel Req Json",new Gson().toJson(hashMap));
         ApiInterface apiInterface= ApiClient.getClientCI().create(ApiInterface.class);
         apiInterface.sendItinearyResponse(hashMap).enqueue(new Callback<ItinearyResponse>() {
             @Override
             public void onResponse(Call<ItinearyResponse> call, Response<ItinearyResponse> response) {
-                if (response.body().getErrorCode()==0){
+                if (response.isSuccessful()){
+
+                   // Log.e("Itineart URL","==="+call.request().url());
                     itry=response.body().getMessage();
-                    Toast.makeText(CreateNewTravelRequestActivity.this, ""+itry, Toast.LENGTH_SHORT).show();
-                    advanceDate=tvDate.getText().toString();;
-                    tvDateAdvance.setText(advanceDate);
                     flipper.showNext();
                     onChangeTab(2);
+                    Toast.makeText(CreateNewTravelRequestActivity.this, ""+itry, Toast.LENGTH_SHORT).show();
+
+                    if (response.body().equals("Itneary Complete! Go Next"))
+                    {
+                        advanceDate = tvDate.getText().toString();
+                        tvDateAdvance.setText(advanceDate);
+
+
+                    }
+                    else {
+
+                    }
 
                 }else {
                     Toast.makeText(CreateNewTravelRequestActivity.this, ""+itry, Toast.LENGTH_SHORT).show();
@@ -1927,7 +2129,6 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
 
             @Override
             public void onFailure(Call<ItinearyResponse> call, Throwable t) {
-
             }
 
          });
@@ -1976,7 +2177,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
                     String picturePath = cursor.getString(columnIndex);
                     cursor.close();
                     camera.setImageBitmap(BitmapFactory.decodeFile(picturePath));
-
+case
                 }                try {
                         bitmap = (Bitmap) data.getExtras().get("data");
                         camera.setImageBitmap(bitmap);
@@ -2058,16 +2259,12 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
 
             }
         }
-
         GetState getCount = new GetState();
         getCount.execute();
     }
 
     private void hitCityApi() {
-        // login_btn.setClickable(false);
-
         HashMap<String, String> hashMap = new HashMap<>();
-
         hashMap.put("API_KEY", "72729a5129c69fc3b53ddf8d2790a5b0");
         ApiInterface apiInterface=ApiClient.getClientCI().create(ApiInterface.class);
         apiInterface.sendCityResponse(hashMap).enqueue(new Callback<CityResponse>() {
@@ -2102,7 +2299,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
        project.setText(name);
 
     }
-    private void selectImage(){
+    private void selectImage(final int requestCamera){
     final CharSequence[] items = { "Take Photo", "Choose from Library",
             "Cancel" };
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -2115,7 +2312,7 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
             if (items[item].equals("Take Photo")) {
                 userChoosenTask="Take Photo";
                 if(result)
-                    cameraIntent();
+                    cameraIntent(requestCamera);
             } else if (items[item].equals("Choose from Library")) {
                 userChoosenTask="Choose from Library";
                 if(result)
@@ -2134,33 +2331,49 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
         startActivityForResult(Intent.createChooser(intent, "Select File"),SELECT_FILE);
     }
 
-    private void cameraIntent() {
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(intent, REQUEST_CAMERA);
+    private void cameraIntent(int requestCamera) {
+        if(requestCamera==REQUEST_CAMERA) {
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(intent, REQUEST_CAMERA);
+        }else if(requestCamera==REQUEST_CAMERA3){
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(intent, REQUEST_CAMERA3);
+        }else if(requestCamera==REQUEST_CAMERA4){
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(intent, REQUEST_CAMERA4);
+        }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK) {
+        if (resultCode == Activity.RESULT_OK)
+        {
             if (requestCode == SELECT_FILE)
                 onSelectFromGalleryResult(data);
-
-            else if (requestCode == REQUEST_CAMERA)
+            else if (requestCode == REQUEST_CAMERA) {
                 onCaptureImageResult(data);
+            }else if(requestCode == REQUEST_CAMERA3){
+                onCaptureImageResult(data);
+            }else if(requestCode == REQUEST_CAMERA4){
+                onCaptureImageResult(data);
+            }
+
         }
     }
 
     private void onCaptureImageResult(Intent data) {
-         thumbnail = (Bitmap) data.getExtras().get("data");
+        thumbnail = (Bitmap) data.getExtras().get("data");
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
-        File destination = new File(Environment.getExternalStorageDirectory(),
-                System.currentTimeMillis() + ".jpg");
+        destinationImage = new File(Environment.getExternalStorageDirectory(), System.currentTimeMillis() + ".jpg");
+        Log.e("Capture Imagee Url","=="+destinationImage.getAbsolutePath());
+        bitmaplist.add(destinationImage.getAbsolutePath());
+        Log.e("bitmap List Size","==============="+bitmaplist.size());
         FileOutputStream fo;
         try {
-            destination.createNewFile();
-            fo = new FileOutputStream(destination);
+            destinationImage.createNewFile();
+            fo = new FileOutputStream(destinationImage);
             fo.write(bytes.toByteArray());
             fo.close();
         } catch (FileNotFoundException e) {
@@ -2169,7 +2382,10 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
             e.printStackTrace();
         }
         camera.setImageBitmap(thumbnail);
-        camera1.setImageBitmap(thumbnail);
+       // camera1.setImageBitmap(thumbnail);
+      //  camera2.setImageBitmap(thumbnail);
+
+
     }
 
     private void onSelectFromGalleryResult(Intent data) {
@@ -2182,23 +2398,27 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
             }
         }
         camera.setImageBitmap(bm);
+        camera1.setImageBitmap(bm);
+        camera2.setImageBitmap(bm);
     }
 
     @Override
     public void onReturnValue(String foo, int postions) {
         if(postions== 1){
             destination.setText(foo);
-          /*  tv_select_dest2.setText(foo);
-            tv_select_dest3.setText(foo);
-            tv_select_dest4.setText(foo);
-            tv_select_dest5.setText(foo);
-            tv_select_dest6.setText(foo);
-            tv_select_dest7.setText(foo);*/
          }
          else if (postions==4){
             tv_select_dest2.setText(foo);
-        }
+        }else if (postions==5){
+            tv_select_dest3.setText(foo);
+        }else if (postions==6){
+            tv_select_dest4.setText(foo);
+        }else if (postions==7){
+            tv_select_dest5.setText(foo);
 
+        }else if (postions==8){
+            tv_select_dest6.setText(foo);
+        }
         else if(postions==2){
             end.setText(foo);
         }
@@ -2207,8 +2427,16 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
         }
     }
 
+
+    @Override/*
     @Override
     public void onReturnValueProject(String fooProject) {
+        project.setText(fooProject);
+
+    }
+*/
+
+    public void onReturnValueProject(String fooProject, String fooProjectCode) {
         project.setText(fooProject);
 
     }
@@ -2229,5 +2457,19 @@ public class CreateNewTravelRequestActivity extends BaseActivity implements View
         }
 
     }*/
+     public  void seekBarCalculation(int calCheck2){
+         checkBoxAmount=calCheck2;
+
+     }
+
+    public  void seekBarCalculation(int calCheck2,int calCheck3){
+        checkBoxAmount=calCheck2+calCheck3;
+    }
+    public  void seekBarCalculation(int calCheck2,int calCheck3,int calCheck4){
+        checkBoxAmount=calCheck2+calCheck3+calCheck4;
+    }
+    public  void seekBarCalculation(int calCheck2,int calCheck3,int calCheck4,int calCheck5){
+        checkBoxAmount=calCheck2+calCheck3+calCheck4+calCheck5;
+    }
 }
 

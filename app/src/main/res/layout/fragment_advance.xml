@@ -3,12 +3,26 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-   android:paddingLeft="@dimen/dp_20"
-    android:paddingRight="@dimen/dp_20"
+       android:orientation="vertical"
     >
- <include layout="@layout/perdiam_view"/>
 
+ <include layout="@layout/perdiam_view" />
+
+ <LinearLayout
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:orientation="vertical">
+
+  <android.support.v7.widget.RecyclerView
+      android:id="@+id/dateParadim"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:scrollbars="vertical" />
+
+ </LinearLayout>
+
+
+<!--
  <LinearLayout
      android:layout_width="match_parent"
      android:layout_height="@dimen/dp_50"
@@ -58,13 +72,14 @@
       android:id="@+id/check5"/>
 
  </LinearLayout>
+-->
 
  <LinearLayout
      android:layout_width="match_parent"
      android:layout_height="wrap_content"
      android:orientation="horizontal"
      android:weightSum="1"
-     android:layout_marginTop="@dimen/dp_10"
+
      >
 
   <TextView
@@ -86,6 +101,181 @@
       android:gravity="center"/>
 
  </LinearLayout>
+
+ <LinearLayout
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:orientation="horizontal"
+     android:weightSum="1"
+     android:layout_marginTop="@dimen/sp_20"
+     android:id="@+id/llOtherAdv1">
+
+  <TextView
+      android:layout_width="0dp"
+      android:layout_height="@dimen/dp_40"
+      android:layout_weight=".3"
+      android:gravity="center"
+      android:textColor="@color/c_grey"
+      android:text="Other Advance"/>
+  <EditText
+      android:layout_width="0dp"
+      android:gravity="center"
+      android:hint="0"
+      android:id="@+id/otherAdv"
+      android:background="@drawable/edit_bg"
+      android:textColor="@color/c_grey"
+      android:layout_height="@dimen/dp_40"
+      android:layout_weight=".2"
+      android:textColorHint="@color/c_grey"
+      />
+  <EditText
+      android:layout_width="0dp"
+      android:gravity="center"
+      android:hint="purpose"
+      android:background="@drawable/edit_bg"
+      android:textColor="@color/c_grey"
+      android:layout_height="@dimen/dp_40"
+      android:layout_weight=".4"
+      android:textColorHint="@color/c_grey"
+      />
+ <!-- <ImageView
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_weight=".1"
+      android:src="@drawable/plus"
+      android:layout_gravity="center"
+      android:id="@+id/advPlus1"/>-->
+
+ </LinearLayout>
+
+ <LinearLayout
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:orientation="horizontal"
+     android:weightSum="1"
+     android:layout_marginTop="@dimen/sp_20"
+     android:visibility="gone"
+     android:id="@+id/llOtherAdv2">
+
+  <TextView
+      android:layout_width="0dp"
+      android:layout_height="@dimen/dp_40"
+      android:layout_weight=".3"
+      android:gravity="center"
+      android:textColor="@color/c_grey"
+      android:text="Other Advance"/>
+  <EditText
+      android:layout_width="0dp"
+      android:gravity="center"
+      android:hint="0"
+      android:id="@+id/otherAdv1"
+      android:background="@drawable/edit_bg"
+      android:textColor="@color/c_grey"
+      android:layout_height="@dimen/dp_40"
+      android:layout_weight=".2"
+      android:textColorHint="@color/c_grey"
+      />
+  <EditText
+      android:layout_width="0dp"
+      android:gravity="center"
+      android:hint="purpose"
+      android:background="@drawable/edit_bg"
+      android:textColor="@color/c_grey"
+      android:layout_height="@dimen/dp_40"
+      android:layout_weight=".4"
+      android:textColorHint="@color/c_grey"
+      />
+  <ImageView
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_weight=".1"
+      android:src="@drawable/plus"
+      android:layout_gravity="center"
+      android:id="@+id/advPlus2"/>
+
+ </LinearLayout>
+
+<!--
+ <LinearLayout
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:orientation="horizontal"
+     android:weightSum="1"
+     android:layout_marginTop="@dimen/sp_20"
+     android:visibility="gone"
+     android:id="@+id/llOtherAdv3">
+
+  <TextView
+      android:layout_width="0dp"
+      android:layout_height="@dimen/dp_40"
+      android:layout_weight=".3"
+      android:gravity="center"
+      android:textColor="@color/c_grey"
+      android:text="Other Advance"/>
+  <EditText
+      android:layout_width="0dp"
+      android:gravity="center"
+      android:hint="0"
+      android:id="@+id/otherAdv2"
+      android:background="@drawable/edit_bg"
+      android:textColor="@color/c_grey"
+      android:layout_height="@dimen/dp_40"
+      android:layout_weight=".2"
+      android:textColorHint="@color/c_grey"
+      />
+  <EditText
+      android:layout_width="0dp"
+      android:gravity="center"
+      android:hint="purpose"
+      android:background="@drawable/edit_bg"
+      android:textColor="@color/c_grey"
+      android:layout_height="@dimen/dp_40"
+      android:layout_weight=".4"
+      android:textColorHint="@color/c_grey"
+      />
+  <ImageView
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_weight=".1"
+      android:src="@drawable/plus"
+      android:layout_gravity="center"
+      android:id="@+id/advPlus3"/>
+
+ </LinearLayout>
+-->
+
+
+
+<!--
+ <LinearLayout
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:orientation="horizontal"
+     android:weightSum="1"
+     android:layout_marginTop="@dimen/sp_20">
+
+  <TextView
+      android:layout_width="0dp"
+      android:layout_height="@dimen/dp_40"
+      android:layout_weight=".5"
+      android:gravity="center"
+      android:textColor="@color/c_grey"
+      android:text="Total Amount"/>
+  <EditText
+      android:layout_width="0dp"
+      android:gravity="center"
+      android:text="0"
+      android:id="@+id/totalAdv"
+      android:background="@drawable/edit_bg"
+      android:textColor="@color/c_grey"
+      android:layout_height="@dimen/dp_40"
+      android:layout_weight=".5"
+      />
+
+ </LinearLayout>
+-->
+
+
 
  <LinearLayout
      android:layout_width="match_parent"
@@ -118,13 +308,11 @@
      android:layout_width="match_parent"
      android:layout_height="@dimen/dp_30"
      android:id="@+id/seekbar"
-
+     android:progressBackgroundTint="#f4511e"
      android:layout_marginBottom="@dimen/dp_10"
      android:layout_marginTop="@dimen/dp_20"
      android:thumb="@drawable/thumb"
-
      />
-
  <LinearLayout
      android:layout_width="match_parent"
      android:layout_height="wrap_content"
@@ -148,37 +336,13 @@
       android:layout_height="@dimen/dp_40"
 
       android:layout_weight=".3"
-     />
+      />
 
-<!--
-  <RadioGroup
-      android:layout_width="0dp"
+ </LinearLayout>
+ <TextView
+     android:layout_width="match_parent"
+     android:layout_height="@dimen/dp_40" />
 
-      android:layout_height="@dimen/dp_60"
-      android:layout_weight=".3"
-      android:orientation="vertical">
-
-   <RadioButton
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:text="Accept"
-       android:buttonTint="@color/c_grey"
-       android:checked="true"
-       android:textColor="@color/c_grey"
-       android:id="@+id/accept"/>
-
-   <RadioButton
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:text="Reject"
-       android:buttonTint="@color/c_grey"
-       android:textColor="@color/c_grey"
-       android:id="@+id/reject"/>
-
-  </RadioGroup>
--->
-
-  </LinearLayout>
 
 
 

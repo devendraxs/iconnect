@@ -31,11 +31,11 @@ import retrofit2.Response;
 @SuppressLint("ValidFragment")
 public class FragmentProject extends DialogFragment implements View.OnClickListener {
     public static String projectListName;
+    public static int projectCode;
     public  MyDialogFragmentListenerProject listenerProject;
     int intial_position=0;
     Context context;
     CallBackResult callBackResult;
-
 
 /*
     public FragmentProject(CreateNewTravelRequestActivity createNewTravelRequestActivity){
@@ -144,14 +144,13 @@ public class FragmentProject extends DialogFragment implements View.OnClickListe
 for(int i=0;i<projectSelected.size();i++) {
     projectListName = projectSelected.get(intial_position).projectName.trim();
     if(projectSelected.size()>1){
-        listenerProject.onReturnValueProject("multproject");
+        listenerProject.onReturnValueProject("multproject","");
     }
     else {
-        listenerProject.onReturnValueProject(projectListName);
+        listenerProject.onReturnValueProject(projectListName,"");
     }
 }
-
-        dismiss();
+    dismiss();
 
                     //FragmentItineary fragmentItineary = new FragmentItineary();
                    /* Intent intent=new Intent(getActivity(), CreateNewTravelRequestActivity.class);
@@ -175,6 +174,6 @@ for(int i=0;i<projectSelected.size();i++) {
 
 
     public interface MyDialogFragmentListenerProject {
-        public void onReturnValueProject(String fooProject);
+        public void onReturnValueProject(String fooProject, String fooProjectCode);
     }
 }

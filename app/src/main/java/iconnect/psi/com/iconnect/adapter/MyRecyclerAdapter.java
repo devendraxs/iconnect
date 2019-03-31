@@ -82,7 +82,6 @@ public class MyRecyclerAdapter  extends RecyclerView.Adapter<MyRecyclerAdapter.M
                 }
             }
         });
-
     }
     public List<ProjectResponse.Datum>checkedData(){
         return  projectList;

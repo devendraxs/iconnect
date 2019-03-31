@@ -85,6 +85,7 @@ public class MyTravelRequestActivity extends BaseActivity implements View.OnClic
         switch (view.getId()){
             case R.id.newTravelRequest:
 
+
                 Intent intent=new Intent(this,CreateNewTravelRequestActivity.class);
                 intent.putExtra("emp_name",emp_name);
                 intent.putExtra("Designation",Designation);
@@ -92,6 +93,7 @@ public class MyTravelRequestActivity extends BaseActivity implements View.OnClic
                 startActivity(intent);
                 }
     }
+
 
     static class ViewPagerAdapter extends FragmentPagerAdapter {
             private final List<Fragment> mFragmentList = new ArrayList<>();

@@ -74,13 +74,18 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 Log.e("Sign in Url", "" + call.request().url());
-                if (response.body().getErrorCode()==1) {
-
+                if (response.isSuccessful()) {
                     Intent intent = new Intent(LoginActivity.this, NavigationDrawerActivity.class);
                     intent.putExtra("emp_name", response.body().getData().getEmpName());
                     intent.putExtra("Designation", response.body().getData().getDesignation());
                     intent.putExtra("CostCenter", response.body().getData().getCostCenter());
                     startActivity(intent);
+                }else{
+                   //try {
+                        Log.e("Login Error",""+response.errorBody());
+                  ///  } catch (IOException e) {
+                   //     e.printStackTrace();
+                   // }
                 }
             }
 
